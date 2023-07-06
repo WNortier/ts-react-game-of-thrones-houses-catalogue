@@ -17,6 +17,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(false)
+  const [usersO, setUsersO] = useState(0)
 
   const getHouses = async () => {
     const response = await axios.get('https://anapioficeandfire.com/api/houses')
@@ -51,7 +52,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/splash',
+      path: '/',
       element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <ErrorPage />,
       children: [
@@ -93,7 +94,7 @@ function App() {
     },
     {
       path: '/login',
-      element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} />,
+      element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       // action: newsletterAction,
     }
   ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/' })

@@ -23,7 +23,7 @@ function BasicForm(props) {
     useEffect(() => {
 
         if (!props.init) {
-
+            props.setIsLoggedIn(true)
             document.querySelector('#basic-form')?.classList.add('invis')
             document.querySelector('.navigation-bar')?.classList.add('invis')
             // setTimeout(() => {
