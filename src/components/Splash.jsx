@@ -6,7 +6,6 @@ export default function Splash(props) {
 
     const handleBeginJourney = () => {
         navigate("login");
-        props.setIsLoggedIn(true)
 
         if (document !== null) {
             document.getElementById('splash-layer')?.classList.add('begin');

@@ -1,6 +1,6 @@
 {
   "name": "game-of-thrones-catalogue",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "homepage": "'/game-of-thrones-houses-catalogue",

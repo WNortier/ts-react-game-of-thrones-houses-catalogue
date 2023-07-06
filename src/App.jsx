@@ -32,6 +32,8 @@ function App() {
       document.querySelector('#basic-form')?.classList.add('invis')
       document.querySelector('.navigation-bar')?.classList.add('invis')
       document.getElementById('splash-layer')?.classList.add('begin');
+      // document.querySelector('.navigation-bar').classList.add('invis');
+
 
     }
     setInterval(() => {
@@ -52,13 +54,13 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: '/game-of-thrones-houses-catalogue',
       element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
         {
-          path: '/something',
+          path: 'login',
           element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
           children: [
             //   {

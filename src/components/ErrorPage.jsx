@@ -5,9 +5,9 @@ export default function ErrorPage() {
 
 
     useEffect(() => {
-        setTimeout(() => {
-            redirect('/splash')
-        }, 1000)
+        // setTimeout(() => {
+        //     redirect('/splash')
+        // }, 1000)
     }, [])
     return (
         <div style={{ marginTop: '5rem' }}>Error 404</div>
