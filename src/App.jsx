@@ -51,14 +51,14 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/splash',
+      path: '/',
       element: <Splash setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <Splash /> },
         {
           path: 'login',
-          element: <BasicForm></BasicForm>,
+          element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} />,
           children: [
             //   {
             //     index: true,
