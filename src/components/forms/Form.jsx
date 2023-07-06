@@ -14,6 +14,7 @@ function BasicForm(props) {
 
     const handleLogin = (e) => {
         e.preventDefault()
+        props.setIsLoggedIn(true)
         // document.querySelector('#basic-form')?.classList.add('invis')
         // document.querySelector('.navigation-bar')?.classList.add('invis')
         document.querySelector('#basic-form')?.classList.add('fadein')
@@ -23,7 +24,7 @@ function BasicForm(props) {
     useEffect(() => {
 
         if (!props.init) {
-            props.setIsLoggedIn(true)
+            // props.setIsLoggedIn(true)
             document.querySelector('#basic-form')?.classList.add('invis')
             document.querySelector('.navigation-bar')?.classList.add('invis')
             // setTimeout(() => {
