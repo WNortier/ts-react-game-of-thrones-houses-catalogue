@@ -13,7 +13,7 @@ import Splash from './components/Splash';
 
 function App() {
   const [count, setCount] = useState(0)
-  const [bg, setBg] = useState("/src/assets/mainbg01.jpeg")
+  const [bg, setBg] = useState("/mainbg01.jpeg")
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(false)
@@ -35,12 +35,12 @@ function App() {
     }
     setInterval(() => {
       switch (bg) {
-        case "/src/assets/mainbg01.jpeg": {
-          setBg("/src/assets/mainbg01.jpeg")
+        case "mainbg01.jpeg": {
+          setBg("mainbg01.jpeg")
           break
         }
-        case "/src/assets/mainbg01.jpeg": {
-          setBg("/src/assets/mainbg01.jpeg")
+        case "mainbg01.jpeg": {
+          setBg("mainbg01.jpeg")
           break
         }
       }
@@ -96,7 +96,7 @@ function App() {
       element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} />,
       // action: newsletterAction,
     }
-  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/' })
+  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/splash' })
 
   return (
 
