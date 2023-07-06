@@ -14,7 +14,7 @@ import Splash from './components/Splash';
 function App() {
   const [count, setCount] = useState(0)
   const [bg, setBg] = useState("/mainbg01.jpeg")
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(false)
   const [usersO, setUsersO] = useState(0)
@@ -32,8 +32,6 @@ function App() {
       document.querySelector('#basic-form')?.classList.add('invis')
       document.querySelector('.navigation-bar')?.classList.add('invis')
       document.getElementById('splash-layer')?.classList.add('begin');
-      // document.querySelector('.navigation-bar').classList.add('invis');
-
 
     }
     setInterval(() => {
@@ -60,7 +58,7 @@ function App() {
       children: [
         { index: true, element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
         {
-          path: 'login',
+          path: 'something',
           element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
           children: [
             //   {
@@ -109,7 +107,7 @@ function App() {
       {/* <div id='splash-layer'>
       </div> */}
 
-      {isLoggedIn && <NavigationBar isLoggedIn={isLoggedIn} setIsLoggedIn={isLoggedIn} />}
+      {isLoggedIn && <NavigationBar setIsLoggedIn={isLoggedIn} />}
 
       <RouterProvider router={router} />
 

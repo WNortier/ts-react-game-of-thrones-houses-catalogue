@@ -7,7 +7,6 @@ export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
     base: '/',
-    appType: "spa"
   }
 
   if (command !== 'serve') {

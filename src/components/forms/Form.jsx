@@ -14,6 +14,7 @@ function BasicForm(props) {
 
     const handleLogin = (e) => {
         e.preventDefault()
+        props.setIsLoggedIn(true)
         // document.querySelector('#basic-form')?.classList.add('invis')
         // document.querySelector('.navigation-bar')?.classList.add('invis')
         document.querySelector('#basic-form')?.classList.add('fadein')
@@ -21,21 +22,19 @@ function BasicForm(props) {
     }
 
     useEffect(() => {
-        document.querySelector('.navigation-bar').classList.add('invis');
 
         if (!props.init) {
-            document.querySelector('#basic-form')?.classList.add('invis');
-            // document.querySelector('.navigation-bar').style.display = 'none';
-
+            // props.setIsLoggedIn(true)
+            document.querySelector('#basic-form')?.classList.add('invis')
+            document.querySelector('.navigation-bar')?.classList.add('invis')
             // setTimeout(() => {
             // }, 3000)
 
             setTimeout(() => {
-                props.setIsLoggedIn(true)
-                document.getElementById('video')?.classList.add('begin')
+                document?.getElementById('video')?.classList.add('begin')
 
                 setTimeout(() => {
-                    document.getElementById('video').classList.add('invis');
+                    document?.getElementById('video').classList.add('invis');
                     document.getElementById('video').style.display = 'none';
                     document.getElementById('splash-layer').style.display = 'none';
 
@@ -49,13 +48,12 @@ function BasicForm(props) {
                 setTimeout(() => {
                     document.getElementById('video').pause();
                     props.setVideoComplete(true);
-                    document.querySelector('#basic-form').classList.remove('invis')
-                    // document.querySelector('.navigation-bar').style.display = 'block';
-                    document.querySelector('.navigation-bar').classList.remove('invis')
-                    document.querySelector('.navigation-bar').classList.add('vis')
-                    document.querySelector('#basic-form').classList.add('vis')
-                    document.querySelector('.navigation-bar').classList.add('fadein')
-                    document.querySelector('#basic-form').classList.add('fadein')
+                    document.querySelector('#basic-form')?.classList.remove('invis')
+                    document.querySelector('.navigation-bar')?.classList.remove('invis')
+                    document.querySelector('.navigation-bar')?.classList.add('vis')
+                    document.querySelector('#basic-form')?.classList.add('vis')
+                    document.querySelector('.navigation-bar')?.classList.add('fadein')
+                    document.querySelector('#basic-form')?.classList.add('fadein')
 
 
                     // document.querySelector('#basic-form').style.visibility = "visible";
