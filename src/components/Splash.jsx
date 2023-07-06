@@ -5,7 +5,6 @@ export default function Splash(props) {
     const navigate = useNavigate();
 
     const handleBeginJourney = () => {
-        navigate("/login");
         // props.setIsLoggedIn(true)
 
         if (document !== null) {
@@ -17,6 +16,7 @@ export default function Splash(props) {
             document.getElementById('video').classList.remove('invis');
             document.getElementById('video').classList.add('vis');
         }
+        navigate("/login");
 
     }
     return (

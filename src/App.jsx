@@ -13,7 +13,7 @@ import Splash from './components/Splash';
 
 function App() {
   const [count, setCount] = useState(0)
-  const [bg, setBg] = useState("./assets/mainbg01.jpeg")
+  const [bg, setBg] = useState("./src/assets/mainbg01.jpeg")
   const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(false)
@@ -52,7 +52,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: '/game-of-thrones-houses-catalogue',
       element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <ErrorPage />,
       children: [
@@ -97,23 +97,23 @@ function App() {
       element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       // action: newsletterAction,
     }
-  ], { basename: import.meta.env.DEV ? '/' : './' })
+  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/' })
 
   return (
 
 
     <Container id="main-container" style={{ backgroundImage: `url(${bg})` }} fluid>
-      {/* <div id='splash-layer'>
-      </div> */}
+      <div id='splash-layer'>
+      </div>
 
       {isLoggedIn && <NavigationBar setIsLoggedIn={isLoggedIn} />}
 
       <RouterProvider router={router} />
       <audio id='music'>
-        <source src="./assets/Enchanted Forest Music & Mystical Vocals ✦ Ethereal Fantasy Music ✦ 528 hz ✦ Path To The Elven Lands.mp3" type="audio/mpeg"></source>
+        <source src="./src/assets/mythical.mp3" type="audio/mpeg"></source>
       </audio>
       <video muted id='video' loop style={{ position: "absolute", top: "0", left: "0", bottom: "0", right: "0", width: "100%", height: "95%", margin: 'auto' }}>
-        <source src="./assets/got.mp4" type="video/mp4"></source>
+        <source src="./src/assets/got.mp4" type="video/mp4"></source>
       </video>
     </Container>
   )
