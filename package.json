@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://wnortier.github.io/game-of-thrones-houses-catalogue",
+  "homepage": "/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=./dist",
+    "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",

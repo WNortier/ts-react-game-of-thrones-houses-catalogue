@@ -52,13 +52,13 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/game-of-thrones-houses-catalogue',
+      path: '/',
       element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
         {
-          path: 'something',
+          path: 'login',
           element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
           children: [
             //   {
