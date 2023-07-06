@@ -3,7 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function NavigationBar() {
+function NavigationBar(props) {
+
     return (
         <Navbar expand="lg" className="navigation-bar">
             <Navbar.Brand className="nav-brand" href="">Game of Thrones Houses Catalogue</Navbar.Brand>
@@ -28,7 +29,7 @@ function NavigationBar() {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    );
+    )
 }
 
 export default NavigationBar;

@@ -14,7 +14,7 @@ import Splash from './components/Splash';
 function App() {
   const [count, setCount] = useState(0)
   const [bg, setBg] = useState("/mainbg01.jpeg")
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(false)
   const [usersO, setUsersO] = useState(0)
@@ -107,7 +107,7 @@ function App() {
       {/* <div id='splash-layer'>
       </div> */}
 
-      {isLoggedIn && <NavigationBar setIsLoggedIn={isLoggedIn} />}
+      {isLoggedIn && <NavigationBar isLoggedIn={isLoggedIn} setIsLoggedIn={isLoggedIn} />}
 
       <RouterProvider router={router} />
 
