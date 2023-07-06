@@ -97,7 +97,7 @@ function App() {
       element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       // action: newsletterAction,
     }
-  ], { basename: import.meta.env.DEV ? '/' : '/' })
+  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/' })
 
   return (
 
