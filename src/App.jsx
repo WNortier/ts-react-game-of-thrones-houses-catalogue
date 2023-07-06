@@ -3,12 +3,12 @@ import NavigationBar from './components/navigation/NavigationBar'
 import Container from 'react-bootstrap/Container';
 import BasicForm from './components/forms/Form';
 import axios from 'axios'
-import Splash from './components/splash';
 import { HashRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Route, Routes } from 'react-router-dom'
 import ErrorPage from './components/ErrorPage';
+import Splash from './components/Splash';
 
 
 function App() {
