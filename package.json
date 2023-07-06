@@ -6,7 +6,7 @@
   "homepage": "https://wnortier.github.io/game-of-thrones-houses-catalogue/",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist; vite build",
+    "build": "rm -rf dist; vite build --base=./",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",

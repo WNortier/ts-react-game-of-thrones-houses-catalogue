@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-    base: '/game-of-thrones-houses-catalogue/',
+    base: './',
     build: {
       rollupOptions: {
         output: {
@@ -18,7 +18,7 @@ export default defineConfig(({ command }) => {
   }
 
   if (command !== 'serve') {
-    config.base = '/game-of-thrones-houses-catalogue/'
+    config.base = '/game-of-thrones-houses-catalogue'
   }
 
   return config
