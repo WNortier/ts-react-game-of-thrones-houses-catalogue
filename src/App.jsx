@@ -51,14 +51,14 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Splash setIsLoggedIn={setIsLoggedIn} />,
+      path: '/splash',
+      element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <ErrorPage />,
       children: [
-        { index: true, element: <Splash /> },
+        { index: true, element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
         {
           path: 'login',
-          element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} />,
+          element: <BasicForm></BasicForm>,
           children: [
             //   {
             //     index: true,
@@ -84,7 +84,7 @@ function App() {
             //   },
             {
               path: 'splash',
-              element: <Splash />,
+              element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
               action: 'click',
             },
           ],
@@ -96,7 +96,7 @@ function App() {
       element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} />,
       // action: newsletterAction,
     }
-  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/splash' })
+  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/' })
 
   return (
 
