@@ -6,11 +6,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-    base: '/splash',
+    base: '/splash/',
   }
 
   if (command !== 'serve') {
-    config.base = '/game-of-thrones-houses-catalogue/'
+    config.base = '/game-of-thrones-houses-catalogue/splash'
   }
 
   return config
