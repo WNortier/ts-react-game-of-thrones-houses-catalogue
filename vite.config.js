@@ -7,6 +7,13 @@ export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
     base: '/game-of-thrones-houses-catalogue/',
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+        },
+      },
+    },
   }
 
   if (command !== 'serve') {
