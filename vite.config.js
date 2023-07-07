@@ -19,7 +19,9 @@ export default defineConfig(({ command }) => {
         },
       },
       cssCodeSplit: true,
-    }
+
+    },
+    appType: "spa"
   }
 
   if (command !== 'serve') {
