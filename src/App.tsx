@@ -13,7 +13,7 @@ import Splash from './components/Splash';
 
 function App() {
   const [count, setCount] = useState(0)
-  const [bg, setBg] = useState("./src/assets/mainbg01.jpeg")
+  const [bg, setBg] = useState("mainbg01.jpeg")
   const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(false)
@@ -36,12 +36,12 @@ function App() {
     }
     setInterval(() => {
       switch (bg) {
-        case "./assets/mainbg01.jpeg": {
-          setBg("./assets/mainbg01.jpeg")
+        case "mainbg01.jpeg": {
+          setBg("mainbg01.jpeg")
           break
         }
-        case "./assets/mainbg01.jpeg": {
-          setBg("./assets/mainbg01.jpeg")
+        case "mainbg01.jpeg": {
+          setBg("mainbg01.jpeg")
           break
         }
       }
@@ -97,7 +97,7 @@ function App() {
       // action: newsletterAction,
     }
     //@ts-ignore
-  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/' })
+  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue' })
 
   return (
 
@@ -113,7 +113,7 @@ function App() {
         <source src="./assets/mythical.mp3" type="audio/mpeg"></source>
       </audio>
       <video muted id='video' loop style={{ position: "absolute", top: "0", left: "0", bottom: "0", right: "0", width: "100%", height: "95%", margin: 'auto' }}>
-        <source src="./assets/got.mp4" type="video/mp4"></source>
+        <source src="got.mp4" type="video/mp4"></source>
       </video>
     </Container>
   )
