@@ -28,7 +28,7 @@ function App() {
     // document.getElementById('video').style.zIndex = "-10";
     if (!init) {
 
-      document.getElementById('video').classList.add('invis')
+      document.getElementById('video')?.classList.add('invis')
       document.querySelector('#basic-form')?.classList.add('invis')
       document.querySelector('.navigation-bar')?.classList.add('invis')
       document.getElementById('splash-layer')?.classList.add('begin');
@@ -85,8 +85,7 @@ function App() {
             //   },
             {
               path: 'splash',
-              element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
-              action: 'click',
+              element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             },
           ],
         },
@@ -97,6 +96,7 @@ function App() {
       element: <BasicForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       // action: newsletterAction,
     }
+    //@ts-ignore
   ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/' })
 
   return (

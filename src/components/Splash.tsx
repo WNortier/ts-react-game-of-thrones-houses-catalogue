@@ -1,7 +1,8 @@
 import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
-export default function Splash(props) {
+
+export default function Splash() {
     const navigate = useNavigate();
 
     const handleBeginJourney = () => {
@@ -9,12 +10,12 @@ export default function Splash(props) {
 
         if (document !== null) {
             document.getElementById('splash-layer')?.classList.add('begin');
-            document.getElementById('music').play();
-            document.getElementById('music').volume = 0.25;
-            document.getElementById('video').style.zIndex = "10";
-            document.getElementById('video').play();
-            document.getElementById('video').classList.remove('invis');
-            document.getElementById('video').classList.add('vis');
+            (document.getElementById('music') as HTMLAudioElement).play();
+            (document.getElementById('music') as HTMLAudioElement).volume = 0.25;
+            (document.getElementById('video') as HTMLVideoElement).style.zIndex = "10";
+            (document.getElementById('video') as HTMLVideoElement).play();
+            (document.getElementById('video') as HTMLVideoElement).classList.remove('invis');
+            (document.getElementById('video') as HTMLVideoElement).classList.add('vis');
         }
         navigate("/login");
 

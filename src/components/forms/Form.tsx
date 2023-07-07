@@ -2,13 +2,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Eye } from 'react-bootstrap-icons';
 import InputGroup from 'react-bootstrap/InputGroup';
+import React from 'react';
 import { useEffect, useState } from 'react'
 
 function BasicForm(props) {
     const [type, setType] = useState('password')
 
 
-    const handleChangePasswordType = (t) => {
+    const handleChangePasswordType = () => {
         setType(type === 'password' ? 'text' : 'password')
     }
 
@@ -34,9 +35,9 @@ function BasicForm(props) {
                 document?.getElementById('video')?.classList.add('begin')
 
                 setTimeout(() => {
-                    document?.getElementById('video').classList.add('invis');
-                    document.getElementById('video').style.display = 'none';
-                    document.getElementById('splash-layer').style.display = 'none';
+                    document?.getElementById('video')?.classList.add('invis');
+                    document.getElementById('video')!.style.display = 'none';
+                    document.getElementById('splash-layer')!.style.display = 'none';
 
                 }, 5500)
             }, 23_000)
@@ -46,7 +47,7 @@ function BasicForm(props) {
                 document.querySelector('.navigation-bar')?.classList.add('invis')
 
                 setTimeout(() => {
-                    document.getElementById('video').pause();
+                    (document.getElementById('video') as HTMLVideoElement).pause();
                     props.setVideoComplete(true);
                     document.querySelector('#basic-form')?.classList.remove('invis')
                     document.querySelector('.navigation-bar')?.classList.remove('invis')
@@ -87,7 +88,7 @@ function BasicForm(props) {
                     <InputGroup.Text onClick={handleChangePasswordType} id="basic-addon1"><Eye onClick={handleChangePasswordType} /></InputGroup.Text>
                 </Form.Group>
                 <Form.Group className="ml-4" controlId="formBasicCheckbox">
-                    <Form.Check bsPrefix className='basic-check' type="checkbox" label="Remember me" />
+                    <Form.Check className='basic-check' type="checkbox" label="Remember me" />
                 </Form.Group>
                 <Button id='login-btn' onClick={(e) => handleLogin(e)} variant="secondary" type="submit" size='sm'>
                     Submit
