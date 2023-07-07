@@ -31,7 +31,8 @@ function App() {
       document.getElementById('video')?.classList.add('invis')
       document.querySelector('#basic-form')?.classList.add('invis')
       document.querySelector('.navigation-bar')?.classList.add('invis')
-      document.getElementById('splash-layer')?.classList.add('begin');
+      if (document.getElementById('splash-layer'))
+        document.getElementById('splash-layer')?.classList.add('begin');
 
     }
     setInterval(() => {

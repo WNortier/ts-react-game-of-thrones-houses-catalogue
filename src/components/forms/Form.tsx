@@ -49,6 +49,7 @@ function BasicForm(props: any) {
                 setTimeout(() => {
                     (document.getElementById('video') as HTMLVideoElement).pause();
                     props.setVideoComplete(true);
+                    document.getElementById('splash-layer')!.style.display = 'none';
                     document.querySelector('#basic-form')?.classList.remove('invis')
                     document.querySelector('.navigation-bar')?.classList.remove('invis')
                     document.querySelector('.navigation-bar')?.classList.add('vis')
@@ -70,8 +71,8 @@ function BasicForm(props: any) {
     // console.log(type)
     return (
         <>
-            <div id='splash-layer'>
-            </div>
+            {/* <div id='splash-layer'> */}
+            {/* </div> */}
 
             <Form id='basic-form'>
                 <h4>Login</h4>
