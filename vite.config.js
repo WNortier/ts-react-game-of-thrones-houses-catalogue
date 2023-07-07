@@ -6,19 +6,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-    base: '/',
-    build: {
-      target: 'modules',
-      define: {
-        'process.env': {},
-      },
-      rollupOptions: {
-        output: {
-          manualChunks: undefined,
-        },
-      },
-      cssCodeSplit: true,
-    }
+    base: '/'
   }
 
   if (command !== 'serve') {
