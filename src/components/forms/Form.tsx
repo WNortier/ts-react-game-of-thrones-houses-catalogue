@@ -5,7 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import React from 'react';
 import { useEffect, useState } from 'react'
 
-function BasicForm(props) {
+function BasicForm(props: any) {
     const [type, setType] = useState('password')
 
 
@@ -13,7 +13,7 @@ function BasicForm(props) {
         setType(type === 'password' ? 'text' : 'password')
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = (e: any) => {
         e.preventDefault()
         props.setIsLoggedIn(true)
         // document.querySelector('#basic-form')?.classList.add('invis')

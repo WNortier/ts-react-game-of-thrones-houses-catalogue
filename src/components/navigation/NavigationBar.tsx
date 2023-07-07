@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import React from 'react';
 
-function NavigationBar(props) {
+function NavigationBar(props: any) {
 
     return (
         <Navbar expand="lg" className="navigation-bar">

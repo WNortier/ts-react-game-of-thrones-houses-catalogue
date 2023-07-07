@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
 
-export default function Splash() {
+export default function Splash(props: any) {
     const navigate = useNavigate();
 
     const handleBeginJourney = () => {

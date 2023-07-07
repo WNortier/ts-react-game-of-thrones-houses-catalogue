@@ -8,6 +8,10 @@ export default defineConfig(({ command }) => {
     plugins: [react()],
     base: '/game-of-thrones-houses-catalogue',
     build: {
+      target: 'modules',
+      define: {
+        'process.env': {},
+      },
       rollupOptions: {
         output: {
           manualChunks: undefined,
