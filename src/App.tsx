@@ -52,7 +52,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: '/game-of-thrones-houses-catalogue',
       element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <ErrorPage />,
       children: [
