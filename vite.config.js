@@ -8,7 +8,16 @@ export default defineConfig(({ command }) => {
     plugins: [react()],
     base: '/',
     build: {
-      outDir: "build"
+      target: 'modules',
+      define: {
+        'process.env': {},
+      },
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+        },
+      },
+      cssCodeSplit: true,
     }
   }
 
