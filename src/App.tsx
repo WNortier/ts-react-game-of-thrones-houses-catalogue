@@ -35,21 +35,21 @@ function App() {
         document.getElementById('splash-layer')?.classList.add('begin');
 
     }
-    setInterval(() => {
-      switch (bg) {
-        case "/mainbg01.jpeg": {
-          setBg("/mainbg01.jpeg")
-          break
-        }
-        case "/mainbg01.jpeg": {
-          setBg("/mainbg01.jpeg")
-          break
-        }
-      }
-    }, 1_000_00)
-
     // getHouses()
   }, [])
+  // setInterval(() => {
+  //   switch (bg) {
+  //     case "./src/assets/mainbg01.jpeg": {
+  //       setBg("./assets/mainbg01.jpeg")
+  //       break
+  //     }
+  //     case "./assets/mainbg01.jpeg": {
+  //       setBg("./assets/mainbg01.jpeg")
+  //       break
+  //     }
+  //   }
+  // }, 1_000_00)
+
 
   const router = createBrowserRouter([
     {
