@@ -13,7 +13,7 @@ import Splash from './components/Splash';
 
 function App() {
   const [count, setCount] = useState(0)
-  const [bg, setBg] = useState("mainbg01.jpeg")
+  const [bg, setBg] = useState("./src/assets/mainbg01.jpeg")
   const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(false)
@@ -37,12 +37,12 @@ function App() {
     }
     setInterval(() => {
       switch (bg) {
-        case "mainbg01.jpeg": {
-          setBg("mainbg01.jpeg")
+        case "./src/assets/mainbg01.jpeg": {
+          setBg("./src/assets/mainbg01.jpeg")
           break
         }
-        case "mainbg01.jpeg": {
-          setBg("mainbg01.jpeg")
+        case "./src/assets/mainbg01.jpeg": {
+          setBg("./src/assets/mainbg01.jpeg")
           break
         }
       }
@@ -111,10 +111,10 @@ function App() {
 
       <RouterProvider router={router} />
       <audio id='music'>
-        <source src="mythical.mp3" type="audio/mpeg"></source>
+        <source src="./src/assets/mythical.mp3" type="audio/mpeg"></source>
       </audio>
       <video muted id='video' loop style={{ position: "absolute", top: "0", left: "0", bottom: "0", right: "0", width: "100%", height: "95%", margin: 'auto' }}>
-        <source src="got.mp4" type="video/mp4"></source>
+        <source src="./src/assets/got.mp4" type="video/mp4"></source>
       </video>
     </Container>
   )
