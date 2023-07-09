@@ -3,40 +3,44 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/x-icon"
-    href="https://img.icons8.com/external-those-icons-flat-those-icons/24/external-Sword-objects-those-icons-flat-those-icons.png" />
+  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
   <link href="https://fonts.cdnfonts.com/css/medieval-scribish" rel="stylesheet">
-  <!-- <link href="./styles/index.css" rel="stylesheet">
-  <link href="./styles/forms.css" rel="stylesheet">
-  <link href="./styles/layout.css" rel="stylesheet">
-  <link href="./styles/interactive.css" rel="stylesheet">
-  <link href="./styles/pages/splash.css" rel="stylesheet">
-  <link href="./styles/animations.css" rel="stylesheet">
-  <link href="./styles/media-queries.css" rel="stylesheet"> -->
-  <!-- <img width="24" height="24"
-    src="https://img.icons8.com/external-those-icons-flat-those-icons/24/external-Sword-objects-those-icons-flat-those-icons.png"
-    alt="external-Sword-objects-those-icons-flat-those-icons" /> -->
-
-  
   <title>Game of Thrones Houses Catalogue</title>
-  <!-- <base href="./game-of-thrones-houses-catalogue"> -->
   <!-- <meta description="https://github.com/digital2morrow/coding-challenge/tree/master/Web" /> -->
   <style>
     body {
       cursor: url(https://img.icons8.com/external-edtim-lineal-color-edtim/50/external-Sword-games-edtim-lineal-color-edtim.png), auto;
     }
   </style>
-  <script type="module" crossorigin src="/game-of-thrones-houses-catalogue/assets/index-e26fda5c.js"></script>
-  <link rel="stylesheet" href="/game-of-thrones-houses-catalogue/assets/index-71312800.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('test')
+    })
+  </script>
+  <script type="module" crossorigin src="/game-of-thrones-houses-catalogue/assets/index-2fe3df11.js"></script>
+  <link rel="stylesheet" href="/game-of-thrones-houses-catalogue/assets/index-c1f67148.css">
 </head>
 
 <body>
   <div id="root"></div>
-
-
+  <audio id='music' autoplay="true">
+    <source
+      src="./Enchanted Forest Music & Mystical Vocals ✦ Ethereal Fantasy Music ✦ 528 hz ✦ Path To The Elven Lands.mp3"
+      type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <div style="border-radius: 15px">
+    <video muted id='video' loop
+      style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 95%; z-index: 0; margin: auto; border-radius: 13px !important;">
+      muted width="100%" height="100%">
+      <source src="./got.mp4" type="video/mp4">
+      </source>
+    </video>
+  </div>
+  
 </body>
 
 </html>
