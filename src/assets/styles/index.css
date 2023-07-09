@@ -1,0 +1,45 @@
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: black;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: palatino, serif, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: black;
+  position: static;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#main-container {
+  height: 100vh;
+  background: 'purple';
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
+  padding: 0;
+  opacity: 0.96;
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

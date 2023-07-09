@@ -1,0 +1,94 @@
+#login-form {
+    width: 35%;
+    z-index: 100000;
+    margin: auto;
+}
+
+#login-container {
+    position: absolute;
+    top: 0;
+    margin: auto;
+    top: 40%;
+    /* position the top  edge of the element at the middle of the parent */
+    left: 50%;
+    /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+}
+
+.layout-basic-input:active,
+.layout-basic-input:visited,
+.llayout-basic-input:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: rgb(222, 226, 230)
+}
+
+.layout-basic-input:hover {
+    box-shadow: none;
+    outline: none;
+    border-color: rgb(222, 226, 230)
+}
+
+#login-email {
+    /* margin-left: 5px; */
+    /* width: 431px; */
+}
+
+#login-password {
+    /* margin-left: 1.5px; */
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#show-password {
+    background: white;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    /* border-left: none; */
+    position: relative;
+    /* right: 34px; */
+}
+
+.layout-basic-form:hover {
+    /* animation: shake 4.5s ease-in-out; */
+    box-shadow: rgba(105, 23, 101, 0.3) 0px 8px 24px;
+}
+
+.layout-basic-form {
+    background: linear-gradient(87.4deg, rgb(255, 241, 165) 1.9%, rgb(200, 125, 76) 49.7%, rgb(83, 54, 54) 100.5%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* margin: 2.21rem; */
+    border-radius: 37.21px;
+    /* margin-top: 5rem; */
+    /* width: 800px; */
+    /* padding: 1rem 0 5rem 0; */
+    padding: 2.21rem;
+    /* margin: 5rem; */
+    /* animation: floating 4s ease-in-out infinite */
+}
+
+.modal-content {
+    background: linear-gradient(87.4deg, rgb(255, 241, 165) 1.9%, rgb(200, 125, 76) 49.7%, rgb(83, 54, 54) 100.5%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: none;
+}
+
+.modal-content:hover {
+    box-shadow: rgba(105, 23, 101, 0.3) 0px 8px 24px;
+}
+
+.layout-basic-offcanvas {
+    background: linear-gradient(87.4deg, rgb(255, 241, 165) 1.9%, rgb(200, 125, 76) 49.7%, rgb(83, 54, 54) 100.5%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: none;
+}
+
+.layout-basic-offcanvas:hover {
+    box-shadow: rgba(105, 23, 101, 0.3) 0px 8px 24px;
+}
+
+.layout-basic-offcanvas.offcanvas.offcanvas-start.show {
+    border: none;
+    border-top-right-radius: 10.21px;
+    border-bottom-right-radius: 10.21px;
+}

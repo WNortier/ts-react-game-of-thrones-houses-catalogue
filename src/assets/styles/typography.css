@@ -1,0 +1,19 @@
+#app-font {
+    font-family: 'Medieval Scribish', sans-serif;
+    letter-spacing: 1px;
+}
+
+
+h4 {
+    font-family: 'Medieval Scribish', sans-serif;
+    letter-spacing: 1px;
+    background: -webkit-linear-gradient(#eee, #333);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: auto;
+    padding: 0.25em 0.25em 0em 0.1em;
+    display: inline-block;
+    position: relative;
+    border-bottom: 3px solid transparent;
+}

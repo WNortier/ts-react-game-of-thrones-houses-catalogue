@@ -1,0 +1,36 @@
+/* .nav-brand:hover {
+    animation: shakeslow 5s ease-in-out;
+} */
+
+
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+/* .flex-row {} */
+
+.layout-basic-margin {
+    margin: 2.21rem auto 2.21rem auto;
+
+}
+
+.vis {
+    opacity: 1;
+    visibility: visible;
+}
+
+.invis {
+    opacity: 0;
+    visibility: hidden;
+}

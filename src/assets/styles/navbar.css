@@ -1,0 +1,101 @@
+#layout-basic-navbar {
+    width: 100%;
+    /* margin-right: auto; */
+    background: linear-gradient(87.4deg, rgb(255, 241, 165) 1.9%, rgb(200, 125, 76) 49.7%, rgb(83, 54, 54) 100.5%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    z-index: 10000;
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+    /* margin-left: auto; */
+    /* margin-right: 1rem !important; */
+    /* margin: auto 1rem auto 1rem; */
+    /* height: 200px; */
+    padding: 0.75em 2.21em 0.75em 2.21em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.nav-brand:hover,
+.nav-link:hover {
+    color: darkred;
+}
+
+.nav-brand {
+    /* color: black; */
+    padding: 1em auto 1em auto;
+    animation: shakeslow 30s ease-in-out infinite;
+    margin-right: auto;
+    font-family: 'Medieval Scribish', sans-serif;
+    letter-spacing: 1px;
+    background: -webkit-linear-gradient(rgb(128, 45, 45), #494343);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.nav-link {
+    font-family: 'Medieval Scribish', sans-serif;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.813);
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.nav-link-dropdown {
+    font-family: 'Medieval Scribish', sans-serif;
+    letter-spacing: 1px;
+    background: - webkit-linear-gradient(rgb(128, 45, 45), #494343);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* color: darkred; */
+    /* margin-left: 0.25em; */
+    /* margin-top: 0.5em; */
+    /* margin-bottom: 0.5em; */
+
+}
+
+.nav-link-dropdown div {
+    padding: 0.2em;
+    /* margin: 1em; */
+}
+
+
+#basic-nav-dropdown::after {
+    color: lightblack;
+}
+
+.nav-link.activeLink,
+.nav-link-dropdown.activeLink {
+    /* font-family: 'Medieval Scribish', sans-serif;
+    letter-spacing: 1px;
+    background: - webkit-linear-gradient(rgb(128, 45, 45), #494343);
+    background-clip: text;
+    -webkit-background-clip: text; */
+    border-bottom: 1px solid darkred;
+    color: darkred;
+
+}
+
+.nav-link-dropdown.activeLink.show {
+    border-bottom: none;
+}
+
+
+#logout-btn {
+    font-family: 'Medieval Scribish', sans-serif;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.813);
+    margin-left: 1em;
+}
+
+#logout-btn:hover {
+    background: red;
+}
+
+#nav-settings:hover {
+    color: darkred;
+}
