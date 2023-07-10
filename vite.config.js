@@ -6,17 +6,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-<<<<<<< Updated upstream
-    base: '/splash',
-  }
-
-  if (command !== 'serve') {
-    config.base = '/game-of-thrones-houses-catalogue/splash'
-  }
-
-  return config
-})
-=======
     base: './',
     build: {
       target: 'modules',
@@ -40,4 +29,3 @@ export default defineConfig(({ command }) => {
 
   return config
 })
->>>>>>> Stashed changes

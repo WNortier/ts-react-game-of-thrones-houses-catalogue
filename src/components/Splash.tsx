@@ -7,19 +7,29 @@ export default function Splash(props: any) {
 
     const handleBeginJourney = () => {
         // props.setIsLoggedIn(true)
-        // console.log('wow')
+        console.log('wow');
         (document.getElementById('music') as HTMLAudioElement).play();
-        (document.getElementById('music') as HTMLAudioElement).volume = 0.25;
+        (document.getElementById('music') as HTMLAudioElement).volume = 0.1;
 
-        if (document !== null && localStorage.getItem('init') === 'false') {
-            // document.getElementById('splash-layer')?.classList.add('begin');
+        // HANDLE LOGIN DISABLED CASES
+        if (localStorage.getItem('disableLogin') === 'true') {
+            // localStorage.setItem('loggedin', 'true')
+            navigate("/houses")
+            document.querySelector('#layout-basic-navbar')?.classList.remove('invis')
+            document.querySelector('#layout-basic-navbar')?.classList.add('vis')
+            document.querySelector('#layout-basic-navbar')?.classList.add('fadein')
+            // HANDLE LOGIN ENABLED CASES
+        } else if (localStorage.getItem('loggedin') === 'false' && localStorage.getItem('init') === 'true') {
+            navigate('/login')
+        } else {
+            localStorage.setItem('pause', 'false');
+            // (document.getElementById('video') as HTMLVideoElement).classList.add('vis');
             (document.getElementById('video') as HTMLVideoElement).style.zIndex = "10";
             (document.getElementById('video') as HTMLVideoElement).play();
             (document.getElementById('video') as HTMLVideoElement).classList.remove('invis');
             (document.getElementById('video') as HTMLVideoElement).classList.add('vis');
+            navigate('/login')
         }
-        navigate("/login");
-
     }
     return (
         <div id='splash'>

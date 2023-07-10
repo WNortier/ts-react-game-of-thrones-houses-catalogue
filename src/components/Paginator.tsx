@@ -3,6 +3,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import useTsPaginator from 'ts-paginator';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useEffect } from 'react';
+import React from 'react'
 
 function Paginator(props: any) {
 
@@ -20,14 +21,23 @@ function Paginator(props: any) {
     } = useTsPaginator(props.records, 10);
 
     useEffect(() => {
+        initPagination()
+
+    }, [])
+
+    const initPagination = () => {
         _handleChangeTotalRecordCount(props.records);
         _handleChangeRowsPerPage(10);
         _handleChangePage(1);
         if (props.setUserData)
-            props.setUserData([...props.data.filter((d: any, i: number) => (i > (rowsPerPage * 1) - rowsPerPage) && (i <= (rowsPerPage * +1)))]);
-
-    }, [])
-
+            props.setUserData([...props.data.filter((d: any, i: number) => (i >= (rowsPerPage * 1) - rowsPerPage) && (i <= (rowsPerPage * +1)))]);
+        if (props.getChars)
+            props.getChars(String(1), String(rowsPerPage))
+        // console.log(currentPage)
+        // console.log(totalRecordCount)
+        // console.log(rowsPerPage)
+        // console.log(_determinePaginationMessage())
+    }
 
     const message = _determinePaginationMessage({ verb: 'Showing' });
     const paginationPages = _determinePaginationPages()
@@ -40,20 +50,60 @@ function Paginator(props: any) {
         _handleChangePage(+page)
         _determinePaginationPages()
         _determineRowsPerPageOptions()
-        props.setUserData([...props.data.filter((d: any, i: number) => (i > (rowsPerPage * page) - rowsPerPage) && (i <= (rowsPerPage * +page)))]);
+        if (props.setUserData)
+            props.setUserData([...props.data.filter((d: any, i: number) => (i > (rowsPerPage * page) - rowsPerPage) && (i <= (rowsPerPage * +page)))]);
         // console.log(page, rowsPerPage)
-        props.getChars(String(page), String(rowsPerPage))
+        if (props.getChars)
+            props.getChars(String(page), String(rowsPerPage))
         // console.log(currentPage)
         // console.log(totalRecordCount)
         // console.log(rowsPerPage)
         // console.log(_determinePaginationMessage())
     }
 
+    const handlePaginationBtn = (n: number) => {
+        // _handleChangeTotalRecordCount(props.records);
+        // _handleChangeRowsPerPage(10);
+
+        handleChangePaginationPage(n);
+    }
+
+    const handleNext = (n: number) => {
+        let curr = currentPage + 1
+        handleChangePaginationPage(curr + 1);
+
+    }
+
+    const handlePrev = (n: number) => {
+        let curr = currentPage + 1
+        handleChangePaginationPage(curr - 1);
+
+    }
+
+    const handleFirst = (n: number) => {
+        // console.log(n)
+        handleChangePaginationPage(n);
+
+    }
+
+    const handleLast = (n: number) => {
+        // console.log(n)
+        handleChangePaginationPage(_determinePaginationPages()[(_determinePaginationPages().length - 1)]);
+
+    }
 
 
     let items: any = [];
-
-    console.log(paginationPages)
+    items.unshift(
+        <Pagination.Next disabled={_determinePaginationPages()[(_determinePaginationPages().length - 1)] === currentPage || totalRecordCount <= 10} id="paginator-item" onClick={(e) => handleNext(currentPage + 1)} key={Math.random()} >
+            {/* Next */}
+        </Pagination.Next>,
+    )
+    items.unshift(
+        <Pagination.First disabled={totalRecordCount <= 10} id="paginator-item" onClick={(e) => handleFirst(1)} key={Math.random()} >
+            {/* First */}
+        </Pagination.First>,
+    )
 
     paginationPages.forEach((p, i) => p === 0 ? items.push(
         <Pagination.Ellipsis key={i} id="paginator-item" onClick={(e) => e.preventDefault()} />
@@ -63,6 +113,24 @@ function Paginator(props: any) {
             {p}
         </Pagination.Item>,
     ))
+
+    items.push(
+        <Pagination.Prev id="paginator-item" disabled={currentPage === 0 || totalRecordCount <= 10} onClick={(e) => handlePrev(+currentPage - 1)} key={Math.random()} >
+            {/* Previous */}
+        </Pagination.Prev>,
+    )
+
+    items.push(
+        <Pagination.Last disabled={totalRecordCount <= 10} id="paginator-item" onClick={(e) => handleLast(1)} key={Math.random()} >
+            {/* Last */}
+        </Pagination.Last>,
+    )
+
+
+
+
+
+
 
     // for (let number = 0; number <= paginationPages.length; number++) {
     //     if (paginationPages[number] === 0) {

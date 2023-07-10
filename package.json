@@ -1,16 +1,5 @@
 {
   "name": "game-of-thrones-catalogue",
-<<<<<<< Updated upstream
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "homepage": "/splash",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build --base=./splash",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-=======
   "private": false,
   "version": "0.0.0",
   "type": "module",
@@ -20,29 +9,19 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
+    "publish": "gh-pages -d dist",
     "deploy": "gh-pages -d dist"
->>>>>>> Stashed changes
   },
   "dependencies": {
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
-<<<<<<< Updated upstream
-=======
     "json-server": "^0.17.3",
     "moment": "^2.29.4",
->>>>>>> Stashed changes
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",
-<<<<<<< Updated upstream
-    "ts-paginator": "^1.5.1"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.37",
-    "@types/react-dom": "^18.0.11",
-=======
     "react-spinners": "^0.13.8",
     "ts-paginator": "^1.5.1"
   },
@@ -50,20 +29,13 @@
     "@types/axios": "^0.14.0",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
->>>>>>> Stashed changes
     "@vitejs/plugin-react": "^4.0.0",
     "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-<<<<<<< Updated upstream
-    "vite": "^4.3.9"
-  }
-}
-=======
     "gh-pages": "^5.0.0",
     "typescript": "^5.1.6",
     "vite": "^4.3.9"
   }
 }
->>>>>>> Stashed changes

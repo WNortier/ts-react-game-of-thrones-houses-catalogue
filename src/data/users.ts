@@ -20,9 +20,9 @@ export const generateUsers = () => {
         }
     ]
 
-    for (let i = 0; i < 51; i++) {
-        users.push({ name: `test-user-${i}`, email: `email@${i}.com`, pass: '' })
-    }
+    // for (let i = 0; i < 51; i++) {
+    //     users.push({ name: `test-user-${i}`, email: `email@${i}.com`, pass: '' })
+    // }
 
 
     return users

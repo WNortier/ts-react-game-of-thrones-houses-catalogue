@@ -48,4 +48,13 @@
 #modal-btn:hover {
     transform: translateY(-1px);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    animation: shakeslow 30s ease-in-out infinite;
+}
+
+#explore-btn {
+    padding: 0.5em 0.65em 0.5em 0.65em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: rgb(105, 23, 101) !important;
 }

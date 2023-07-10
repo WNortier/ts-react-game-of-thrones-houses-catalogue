@@ -22,28 +22,13 @@ tr {
 
 }
 
-#layout-basic-td {
-    padding: 1rem 1rem 1rem 0.5rem !important;
-    background: rgba(105, 23, 101, 0.125);
-    /* border: 2px solid blue; */
 
-}
-
-#layout-basic-tr {
-    padding: 1rem !important;
-    margin: 1rem;
-    background-color: rgba(79, 63, 78, 0.4);
-}
-
-#layout-basic-table {
-    width: 85%;
-    height: 85%;
-}
 
 #characters-container,
 #books-container,
 #houses-container {
-    height: 83%;
     overflow: scroll;
-    margin-top: 7em;
+    margin-top: 5em;
+    /* margin: 1em; */
+    /* margin-top: 2em; */
 }

@@ -1,0 +1,37 @@
+#login-form {
+    width: 35%;
+    z-index: 100000;
+    margin: auto;
+}
+
+#login-container {
+    position: absolute;
+    top: 0;
+    margin: auto;
+    top: 40%;
+    /* position the top  edge of the element at the middle of the parent */
+    left: 50%;
+    /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+}
+
+/* #login-email {
+   margin-left: 5px; 
+}
+*/
+
+#login-password {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#show-password {
+    background: white;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    position: relative;
+}
+
+#login-btn {
+    animation: shakeslow 30s ease-in-out infinite;
+}

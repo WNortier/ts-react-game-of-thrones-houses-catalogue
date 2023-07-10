@@ -59,7 +59,7 @@ function LoginForm(props: any) {
                     document.querySelector('#layout-basic-navbar')?.classList.add('vis')
                     document.querySelector('#layout-basic-navbar')?.classList.add('fadein')
                     setLoading(false)
-                    navigate("/characters");
+                    navigate("/houses");
                 }, 2150)
             }
         })
@@ -90,7 +90,7 @@ function LoginForm(props: any) {
 
                 setTimeout(() => {
                     document?.getElementById('video')?.classList.add('invis');
-                    document.getElementById('video')!.style.display = 'none';
+                    // document.getElementById('video')!.style.display = 'none';
                 }, 5500)
             }, 23_000)
 
@@ -156,7 +156,7 @@ function LoginForm(props: any) {
                         <Form.Text className="text" style={{ color: 'red' }}>Invalid Password</Form.Text>
                     </div> : null}
 
-                    <Form.Group className="ml-4 mt-2 mb-2" controlId="formBasicCheckbox">
+                    <Form.Group className="ml-4 mt-3 mb-3" controlId="formBasicCheckbox">
                         <Form.Check className='basic-check' type="checkbox" label="Remember me" checked={loginCheckbox} onChange={(e) => handleLoginCheckboxChange(e)} />
                     </Form.Group>
                     <Button disabled={userEmail.length === 0 || userPassword.length === 0} id='login-btn' onClick={(e: any) => handleLogin(e, userEmail, userPassword)} variant="secondary" type="submit" size='sm'>

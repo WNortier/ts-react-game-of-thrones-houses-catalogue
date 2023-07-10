@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import useTsPaginator from 'ts-paginator';
 import Paginator from '../Paginator';
 import { generateUsers } from '../../data/users';
+import React from 'react';
 
 
 
@@ -23,7 +24,7 @@ function UsersTable(props: any) {
 
     const generateRandomNumber = () => String(Math.random() * 10).substring(0, 1)
     return (
-        <Container id='characters-container' className='layout-basic-form layout-basic-table layout-basic-margin'>
+        <Container fluid id='characters-container' className='layout-basic-form layout-basic-table layout-basic-margin'>
 
             <h4>Users</h4>
 

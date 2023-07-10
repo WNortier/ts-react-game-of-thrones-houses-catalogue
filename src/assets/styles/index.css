@@ -32,14 +32,22 @@ body {
   background-attachment: fixed;
   background-size: cover;
   width: 100%;
-  padding: 0;
+  padding: 1em 2em 1em 2em;
   opacity: 0.96;
   /* position: absolute;
   top: 0;
   left: 0; */
-  position: fixed;
-  top: 0;
+  position: sticky;
+  /* top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
+  overflow: scroll;
+
+}
+
+#characters-container,
+#books-container,
+#houses-container {
+  padding: 2em;
 }

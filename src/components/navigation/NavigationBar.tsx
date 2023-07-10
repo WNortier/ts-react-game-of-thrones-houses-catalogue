@@ -18,11 +18,12 @@ function NavigationBar(props: any) {
     const dropdownLinks = ['users', 'preferences']
 
     useEffect(() => {
-        const pathname = import.meta.env.DEV ? window.location.hash.replace("#", "") : '/' + window.location.hash.replace("#", "").split('/')[2]
+        // @ts-ignore
+        const pathname = import.meta.env.DEV ? window.location.pathname : '/' + window.location.pathname.split('/')[2]
         setActive(pathname)
     }, [])
     const handleUsersDropDownClick = (e: any, l: string) => {
-        console.log(l)
+        // console.log(l)
         // document.querySelector('.dropdown-toggle.nav-link.show')?.classList.remove('activeLink');
         // (document.querySelector('.dropdown-toggle') as HTMLDivElement)!.style!.color = '#f3f3f3';
         e.preventDefault()
@@ -62,12 +63,27 @@ function NavigationBar(props: any) {
 
         setTimeout(() => {
             props.setIsLoggedIn(false)
-            navigate('/login')
-            navigate('/login')
-            localStorage.removeItem('loggedin')
-            localStorage.removeItem('stayLoggedIn')
-            localStorage.removeItem('email')
+            localStorage.setItem('loggedin', 'false')
+            localStorage.setItem('stayLoggedIn', 'false')
+            localStorage.removeItem('email');
+            (document.getElementById('music') as HTMLAudioElement).pause();
+            (document.getElementById('music') as HTMLAudioElement).currentTime = 0;
+            (document.getElementById('video') as HTMLVideoElement).pause();
+            (document.getElementById('video') as HTMLVideoElement).currentTime = 0;
+            document.getElementById('video')!.style.display = 'block';
+
+            if (localStorage.getItem('disableLogin') === 'false' && localStorage.getItem('init') === 'false') {
+                // localStorage.setItem('loggedin', 'true');
+
+                // (document.querySelector('#layout-basic-navbar') as HTMLElement).style.display = 'none'
+                navigate('/')
+            } else {
+                navigate('/login')
+            }
+
+
             props.setLoading(false)
+
         }, 1500)
     }
 
@@ -76,10 +92,11 @@ function NavigationBar(props: any) {
     }
 
     // console.log(window.location.hash.replace("#", ""))
-    console.log(document.querySelector('#basic-nav-dropdown')?.classList.contains('show'))
+    // console.log(document.querySelector('#basic-nav-dropdown')?.classList.contains('show'))
     const checkActive = (navlink: string): string => {
         // console.log("/" + navlink, active)
-        const pathname = import.meta.env.DEV ? window.location.hash.replace("#", "") : '/' + window.location.hash.replace("#", "").split('/')[2]
+        // @ts-ignore
+        const pathname = import.meta.env.DEV ? window.location.pathname : '/' + window.location.pathname.split('/')[2]
         const currActive = (((pathname) === ("/" + navlink)) || navlink === 'settings' || navlink === 'offcanvas') ? true : false
         if (document.querySelector('.dropdown-toggle.nav-link')?.classList.contains('show')) {
 
@@ -101,7 +118,7 @@ function NavigationBar(props: any) {
 
         if (currActive) return 'activeLink'
         else return ''
-        console.log(currActive)
+        // console.log(currActive)
     }
 
     useEffect(() => {
@@ -120,10 +137,10 @@ function NavigationBar(props: any) {
                     {/* <Nav.Link className="nav-link" href="#home">Home</Nav.Link> */}
                     {/* <Nav.Link className="nav-link" href="#link">Houses</Nav.Link> */}
                     {links.map((l, i) =>
-                        l === 'settings' ? (<NavDropdown title="Settings" className={`nav-link-dropdown`} id="basic-nav-dropdown">
+                        l === 'settings' ? (<NavDropdown key={l} title="Settings" className={`nav-link-dropdown`} id="basic-nav-dropdown">
                             {/* <NavDropdown.Item className="nav-link-heading">Settings</NavDropdown.Item> */}
-                            {dropdownLinks.map((l) =>
-                                <div className={`${checkActive(l)} nav-link-dropdown`} onClick={(e: any) => handleUsersClick(e, l)}>
+                            {dropdownLinks.map((l, i) =>
+                                <div key={i} className={`${checkActive(l)} nav-link-dropdown`} onClick={(e: any) => handleUsersClick(e, l)}>
                                     {l}</div>
                             )}
                         </NavDropdown>) : (<Nav.Link key={i} disabled={false} className={`${checkActive(l)}`} onClick={(e) => { handleUsersDropDownClick(e, l) }}>{l.substring(0, 1).toUpperCase() + l.substring(1)}</Nav.Link>)
@@ -133,9 +150,9 @@ function NavigationBar(props: any) {
                 <div id='nav-settings' onClick={() => { setActive('offcanvas'); props.setShowOffCanvasSettings(!props.showOffCanvasSettings) }}>
                     <Gear id='nav-settings' color={active === 'offcanvas' ? 'darkred' : gearColor} onMouseEnter={() => { setGearColor('darkred'); }} onMouseLeave={() => setGearColor('white')} />
                 </div>
-                {props.isLoggedIn ? <div id='logout-btn' onClick={(e: any) => handleLogout(e)}>
+                {localStorage.getItem('disableLogin') === 'true' ? null : <div id='logout-btn' onClick={(e: any) => handleLogout(e)}>
                     Logout
-                </div> : null}
+                </div>}
             </Navbar.Collapse>
 
         </Navbar >

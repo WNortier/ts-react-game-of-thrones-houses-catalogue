@@ -23,7 +23,7 @@ import OffCanvas from './components/OffCanvas';
 
 function App() {
   const [count, setCount] = useState(0)
-  const [bg, setBg] = useState("mainbg01.jpeg")
+  const [bg, setBg] = useState("./mainbg01.jpeg")
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('stayLoggedIn') === 'true' ? true : false || false)
   const [videoComplete, setVideoComplete] = useState(false)
   const [init, setInit] = useState(localStorage.getItem('init'))
@@ -40,6 +40,11 @@ function App() {
   useEffect(() => {
     // if (!init) {
     document.getElementById('video')?.classList.add('invis')
+
+    if (localStorage.getItem('disableLogin') === 'true')
+      localStorage.setItem('loggedin', 'true')
+
+    // console.log(document.getElementById('video'))
     // localStorage.getItem('email')! !== '' ? localStorage.setItem('email', '') : null
     // document.querySelector('#login-form')?.classList.add('invis')
     // document.querySelector('#layout-basic-navbar')?.classList.add('invis')
@@ -95,7 +100,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/game-of-thrones-houses-catalogue',
+      path: '/',
       element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       // element: <PrimaryTable />,
       // element: <LoginForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
@@ -119,7 +124,7 @@ function App() {
       // ],
     },
     {
-      path: '/',
+      path: '/login',
       element: <LoginForm init={init} setInit={handleSetInit} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       // action: newsletterAction,
     }
@@ -153,7 +158,7 @@ function App() {
   return (
 
 
-    <Container id="main-container" style={{ backgroundImage: `url(${bg})` }} fluid>
+    <Container id="main-container" style={{ backgroundImage: `url(${bg})`, padding: window.location.pathname === '/splash' || window.location.pathname === '/' ? '0px' : '2em' }} fluid>
       {/* <div id='splash-layer'>
       </div> */}
 
@@ -161,18 +166,18 @@ function App() {
       {/* <RouterProvider router={router} /> */}
 
 
-      {localStorage.getItem('loggedin') === 'true' ? <NavigationBar showOffCanvasSettings={showOffCanvasSettings} setShowOffCanvasSettings={setShowOffCanvasSettings} setLoading={setLoading} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> : null}
+      {localStorage.getItem('loggedin') === 'true' || (localStorage.getItem('disableLogin') !== 'true' && window.location.pathname === '/') ? <NavigationBar showOffCanvasSettings={showOffCanvasSettings} setShowOffCanvasSettings={setShowOffCanvasSettings} setLoading={setLoading} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> : null}
       <Routes>
 
         <Route path={"/"} index element={<Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/login" element={<LoginForm init={init} setInit={handleSetInit} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/users" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <PrimaryTable /> : <></>} />
         <Route path="/books" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <BooksTable /> : <></>} />
-        <Route path="/characters" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <CharactersTable /> : <></>} />
+        <Route path="/characters" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <CharactersTable setLoading={setLoading} /> : <></>} />
         <Route path="/houses" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>} />
 
         <Route path="/preferences" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <Preferences /> : <></>} />
-        <Route path="/home" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <Home /> : <></>} />
+        <Route path="/home" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
 
@@ -182,10 +187,10 @@ function App() {
 
 
       <audio id='music'>
-        <source src="mythical.mp3" type="audio/mpeg"></source>
+        <source src="./mythical.mp3" type="audio/mpeg"></source>
       </audio>
       <video muted id='video' loop>
-        <source src="got.mp4" type="video/mp4"></source>
+        <source src="./got.mp4" type="video/mp4"></source>
       </video>
     </Container>
   )
