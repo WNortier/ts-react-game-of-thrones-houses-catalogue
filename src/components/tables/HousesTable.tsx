@@ -13,21 +13,30 @@ import React from 'react';
 function HousesTable(props: any) {
 
 
-
+    const navigate = useNavigate()
     const [houses, setHouses] = useState([])
+    // const [navigate, setNavigate] = useState()
 
     const getHouses = async (page?: string, rows?: string) => {
         const response = await axios.get(`https://anapioficeandfire.com/api/houses?page=${page}&pageSize=${rows}`)
-        // console.log(response.data)
         setHouses(response.data)
 
     }
 
     useEffect(() => {
-        getHouses("0", "10")
+        // getHouses("1", "10")
     }, [])
 
     const resetData = () => true
+
+    const handleMoreClick = (url: string, paramArg: string) => {
+        let arg = `${paramArg.split(' ')[0].toLowerCase()}-${paramArg.split(' ')[1].toLowerCase()}`
+        navigate(`/houses/${arg}`, {
+            state: {
+                url: url
+            }
+        })
+    }
 
 
 
@@ -42,7 +51,7 @@ function HousesTable(props: any) {
                     <Table striped bordered hover size="sm" responsive='md' className='m-auto'>
                         <thead id='app-font'>
                             <tr>
-                                <th style={{ fontFamily: 'arial' }}>#</th>
+                                {/* <th style={{ fontFamily: 'arial' }}>#</th> */}
 
                                 <th>Name</th>
                                 <th>Region</th>
@@ -56,11 +65,11 @@ function HousesTable(props: any) {
                             {houses.map((h: any, i: number) => {
                                 return (
                                     <tr id="layout-basic-tr" key={i}>
-                                        <td id="layout-basic-td"> {i === 0 ? `#${i}` : `#${i}`}</td>
+                                        {/* <td id="layout-basic-td"> {i === 0 ? `#${i}` : `#${i}`}</td> */}
                                         <td id="layout-basic-td"> {h.name}</td>
                                         <td id="layout-basic-td"> {h.region}</td>
                                         <td id="layout-basic-td"> {h.coatOfArms}</td>
-                                        <td id="layout-basic-td"><Button id='explore-btn' type='button' onClick={() => { true }}>More</Button> </td>
+                                        <td id="layout-basic-td"><Button id='explore-btn' type='button' onClick={() => handleMoreClick(h.url, h.name)}>More</Button> </td>
                                         {/* <td id="layout-basic-td"> <Link to={h.url}></Link>{h.url}</td> */}
 
                                     </tr>
@@ -69,7 +78,7 @@ function HousesTable(props: any) {
                         </tbody>
                     </Table >
                     {/* <Paginator data={houses} setData={getHouses} resetData={resetData} /> */}
-                    {houses.length ? <Paginator records={houses.length} getHouses={getHouses} data={houses} setData={setHouses} resetData={resetData} /> : null}
+                    <Paginator records={444} getHouses={getHouses} data={houses} setData={setHouses} resetData={resetData} />
                 </Container>
             </Col>
         </Row>

@@ -15,9 +15,6 @@ import { CircleLoader } from 'react-spinners';
 
 function CharactersTable(props: any) {
 
-
-    // console.log(window.location)
-
     const [characters, setChars] = useState([])
     const [charsPics, setCharsPics] = useState([])
     const [modalShow, setModalShow] = useState(false);
@@ -37,61 +34,69 @@ function CharactersTable(props: any) {
     const [loading, setLoading] = useState(false)
 
 
+    const [searchErrors, setSearchErrors] = useState({ searchErr: false })
 
 
     const handleFormSubmission = async (e, name, gender, culture, born, died, isAlive) => {
         e.preventDefault();
         // console.log(name, typeof name)
         setLoading(true)
+        // console.log(nameQueryParam)
+        // console.log('g', genderQueryParam)
+        // console.log('g', cultureQueryParam)
+        // console.log('g', bornQueryParam)
+        // console.log('g', diedQueryParam)
+
         setTimeout(async () => {
+            if (nameQueryParam === '' && genderQueryParam === '' && cultureQueryParam === '' && bornQueryParam === '' && diedQueryParam === '') {
+                setSearchErrors({ searchErr: true })
+                setLoading(false)
+                setNameQueryParam('')
+                setBornQueryParam('')
+                setGenderQueryParam('')
+                setCultureQueryParam('')
+                setDiedQueryParam('')
+                setIsAliveQueryParam(false)
 
-            // if (name !== '' && gender !== '' && culture !== '' && born !== '' && died !== '') {
-            // }
+                return
 
-            // console.log(name)
-            setLoading(false)
-            let url = `https://anapioficeandfire.com/api/characters?page=1&pageSize=10`
-            // console.log(page, rows, name, gender, culture, born)
+            } else if (nameQueryParam !== '' || genderQueryParam !== '' || cultureQueryParam !== '' || bornQueryParam !== '' || diedQueryParam !== '') {
+                setSearchErrors({ searchErr: false })
+                setLoading(false)
 
+                setLoading(false)
+                let url = `https://anapioficeandfire.com/api/characters?page=1&pageSize=10`
 
-            // console.log('N Q P', nameQueryParam)
-            // console.log(url, 'URL HERE')
+                if (name) url = url + `&name=${name}`
+                if (gender) url = url + `&gender=${gender}`
+                if (culture) url = url + `&culture=${culture}`
+                if (born) url = url + `&born=${born}`
+                if (died) url = url + `&died=${died}`
+                if (isAlive) url = url + `&isAlive=${isAlive}`
 
-            if (name) url = url + `&name=${name}`
-            if (gender) url = url + `&gender=${gender}`
-            if (culture) url = url + `&culture=${culture}`
-            if (born) url = url + `&born=${born}`
-            if (died) url = url + `&died=${died}`
-            if (isAlive) url = url + `&isAlive=${isAlive}`
-            // console.log(name)
-            console.log(url)
-            let rez = await axios.get(url)
-            // console.log('response data >>>', rez.data)
-            // console.log(rez)
-            // props.setChars([...rez.data])
-            // props.handler(url)
-
-            setChars(rez.data)
+                let rez = await axios.get(url)
 
 
-            // const charactersPics = await axios.get(`https://thronesapi.com/api/v2/characters`)
-            // setCharsPics(charactersPics.data)
+                setChars(rez.data)
+                setNameQueryParam('')
+                setBornQueryParam('')
+                setGenderQueryParam('')
+                setCultureQueryParam('')
+                setDiedQueryParam('')
+                setIsAliveQueryParam(false)
 
-            // setM([...rez.data])
-            // console.log('first')
-
+            }
         }, 1350)
     }
 
 
 
     const getChars = async (page?: string, rows?: string, name?: string, gender?: string, culture?: string, born?: string, died?: string, isAlive?: boolean) => {
-        // console.log(name)
 
         setTimeout(async () => {
-            setLoadingReset(false)
             let endpoint = `https://anapioficeandfire.com/api/characters?page=${page}&pageSize=${rows}`
             const response = await axios.get(endpoint)
+
             setChars(response.data)
             const charactersPics = await axios.get(`https://thronesapi.com/api/v2/characters`)
             setCharsPics(charactersPics.data)
@@ -100,16 +105,24 @@ function CharactersTable(props: any) {
     }
 
     const resetTable = async () => {
-        setLoadingReset(true)
+        // setLoadingReset(true)
+        setLoading(true)
+
         setTimeout(async () => {
             let endpoint = `https://anapioficeandfire.com/api/characters?page=${1}&pageSize=${10}`
             const response = await axios.get(endpoint)
+            setNameQueryParam('')
+            setBornQueryParam('')
+            setGenderQueryParam('')
+            setCultureQueryParam('')
+            setDiedQueryParam('')
+            setIsAliveQueryParam(false)
+            setLoading(false)
             setChars(response.data)
             const charactersPics = await axios.get(`https://thronesapi.com/api/v2/characters`)
             setCharsPics(charactersPics.data)
-            setLoadingReset(false)
 
-        }, 1350)
+        }, 1650)
     }
 
 
@@ -117,11 +130,11 @@ function CharactersTable(props: any) {
     const resetData = () => true
     const override: CSSProperties = {
         // display: "block",
-        // margin: "auto auto",
+        margin: "auto auto auto 6em",
         borderColor: "rgb(105, 23, 101)",
         // float: 'left',
         // margin: '5rem'
-        marginLeft: '1.5em'
+        // marginLeft: '1.5em'
     };
 
 
@@ -129,7 +142,7 @@ function CharactersTable(props: any) {
         // getChars("1", "10")
     }, [])
 
-    // console.log(charsPics)
+
 
     return (
 
@@ -144,7 +157,7 @@ function CharactersTable(props: any) {
                     <Table striped bordered hover size="sm" responsive='md' className='m-auto'>
                         <thead id='app-font'>
                             <tr>
-                                <th style={{ fontFamily: 'arial' }}>#</th>
+                                {/* <th style={{ fontFamily: 'arial' }}>#</th> */}
                                 <th>Name</th>
                                 <th>Culture</th>
                                 <th>Gender</th>
@@ -154,32 +167,39 @@ function CharactersTable(props: any) {
                                 <th>Created</th>
                             </tr>
                         </thead>
-                        <tbody style={{ width: '50%', }}>
-                            {/* {console.log('inline', characters)} */}
-                            {characters.map((h: any, i: number) => {
-                                const name = h.name.replace(" ", "-").toLowerCase()
-                                const hasIt = charsPics.map((c: any) => c.image.split('.')[0]).includes(name)
+                        {/* {console.log('inline', characters)} */}
 
-                                return (
-                                    <tr id="layout-basic-tr" key={i}>
-                                        <td id="layout-basic-td"> {i === 0 ? `#${i}` : `#${i}`}</td>
-                                        <td id="layout-basic-td"> {h.name}</td>
-                                        <td id="layout-basic-td"> {h.culture}</td>
-                                        <td id="layout-basic-td"> {h.gender}</td>
-                                        <td id="layout-basic-td"> {h.aliases[0]}</td>
-                                        {/* <td id="layout-basic-td"> {h.died !== "" ? h.died : ""}</td> */}
-                                        {/* <td id="layout-basic-id">{charsPics.map((c: any) => c.imageUrl).includes(h.name.replace(" ", "-").toLowerCase()) ? <img src={`https://thronesapi.com/assets/images/${h.name.replace(" ", "-").toLowerCase()}.jpg`}></img> : null} </td> */}
-                                        {/* <td id="layout-basic-td">{hasIt ? <img src={`https://thronesapi.com/assets/images/${name}.jpg`}></img> : null} </td> */}
-                                        <td id="layout-basic-td">{hasIt ? <Button type='button' onClick={() => { setModalShow(true); setModalImg(`https://thronesapi.com/assets/images/${name}.jpg`); setModalData(h) }}>Image</Button> : null} </td>
+                        {loadingReset ? <CircleLoader color={'rgb(105, 23, 101)'}
+                            loading={loadingReset}
+                            cssOverride={override}
+                            size={50}
+                            aria-label="Loading Spinner"
+                            data-testid="loader" /> :
+                            <tbody style={{ width: '50%', }}>
+                                {characters.map((h: any, i: number) => {
+                                    const name = h.name.replace(" ", "-").toLowerCase()
+                                    const hasIt = charsPics.map((c: any) => c.image.split('.')[0]).includes(name)
+
+                                    return (
+                                        <tr id="layout-basic-tr" key={i}>
+                                            {/* <td id="layout-basic-td"> {i === 0 ? `#${i}` : `#${i}`}</td> */}
+                                            <td id="layout-basic-td"> {h.name}</td>
+                                            <td id="layout-basic-td"> {h.culture}</td>
+                                            <td id="layout-basic-td"> {h.gender}</td>
+                                            <td id="layout-basic-td"> {h.aliases[0]}</td>
+                                            {/* <td id="layout-basic-td"> {h.died !== "" ? h.died : ""}</td> */}
+                                            {/* <td id="layout-basic-id">{charsPics.map((c: any) => c.imageUrl).includes(h.name.replace(" ", "-").toLowerCase()) ? <img src={`https://thronesapi.com/assets/images/${h.name.replace(" ", "-").toLowerCase()}.jpg`}></img> : null} </td> */}
+                                            {/* <td id="layout-basic-td">{hasIt ? <img src={`https://thronesapi.com/assets/images/${name}.jpg`}></img> : null} </td> */}
+                                            <td id="layout-basic-td">{hasIt ? <Button type='button' onClick={() => { setModalShow(true); setModalImg(`https://thronesapi.com/assets/images/${name}.jpg`); setModalData(h) }}>Image</Button> : null} </td>
 
 
-                                        <td id="layout-basic-td"> {moment().subtract(1, 'days').calendar()}</td>
-                                    </tr>
-                                )
-                            })}
+                                            <td id="layout-basic-td"> {moment().subtract(1, 'days').calendar()}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
 
-
-                        </tbody>
+                        }
                         {/* {characters[0] ? characters[0].name : ''} */}
                     </Table >
                     <Paginator setLoading={props.setLoading} records={1136} getChars={getChars} data={characters} setData={setChars} resetData={resetData} />
@@ -227,35 +247,36 @@ function CharactersTable(props: any) {
                                 <Form.Control autoComplete='true' value={diedQueryParam} onChange={(e) => setDiedQueryParam(e.target.value)} className='login-input login-email' type="text" placeholder="Died" />
                             </Form.Group>
                             <Form.Group className="mb-3">
-                                <Form.Label>Is Alive</Form.Label>
-
-                                <Form.Check className='basic-check' type="checkbox" label="" checked={isAliveQueryParam === false ? false : true} onChange={(e) => setIsAliveQueryParam(!isAliveQueryParam)} />
+                                <Form.Check className='basic-check' type="checkbox" label="Is Alive" checked={isAliveQueryParam === false ? false : true} onChange={(e) => setIsAliveQueryParam(!isAliveQueryParam)} />
                             </Form.Group>
                             <Form.Group className="mb-3 d-flex">
-                                {loading ? <CircleLoader color={'rgb(105, 23, 101)'}
-                                    loading={loading}
-                                    cssOverride={override}
-                                    size={50}
-                                    aria-label="Loading Spinner"
-                                    data-testid="loader" /> :
-                                    <Button style={{ float: 'left', marginRight: '0.5em', position: 'absolute' }} id='login-btn' type="button" variant="secondary" size='sm' onClick={(e: any) => handleFormSubmission(e, nameQueryParam, genderQueryParam, cultureQueryParam, bornQueryParam, diedQueryParam, isAliveQueryParam)}>
-                                        Submit
-                                    </Button>}
+                                {loading ?
+                                    <CircleLoader color={'rgb(105, 23, 101)'}
+                                        loading={loading}
+                                        cssOverride={override}
+                                        size={50}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader" /> :
+                                    <>
+                                        <Button style={{ float: 'left', marginRight: '0.5em' }} id='search-btn' type="button" variant="secondary" size='sm' onClick={(e: any) => handleFormSubmission(e, nameQueryParam, genderQueryParam, cultureQueryParam, bornQueryParam, diedQueryParam, isAliveQueryParam)}>
+                                            Submit
+                                        </Button>
 
-                                {loadingReset ? <CircleLoader color={'rgb(105, 23, 101)'}
-                                    loading={loadingReset}
-                                    cssOverride={override}
-                                    size={50}
-                                    aria-label="Loading Spinner"
-                                    data-testid="loader" /> :
-                                    <Button style={{ float: 'left' }} className="ml-5" id='login-btn' type="button" variant="secondary" size='sm' onClick={async (e: any) => await resetTable()}>
-                                        Reset
-                                    </Button>}
+
+                                        <Button style={{ float: 'left' }} className="ml-5" id='search-btn' type="button" variant="secondary" size='sm' onClick={async (e: any) => await resetTable()}>
+                                            Reset
+                                        </Button>
+                                    </>}
                             </Form.Group>
+                            {searchErrors.searchErr ?
+                                <Form.Group>
+                                    <Form.Text className="text" style={{ color: 'red' }}>Please complete atleast one field to perform a search</Form.Text>
+                                </Form.Group>
+                                : null}
                         </Form>
                     </>
-                </Container>
-            </Col>
+                </Container >
+            </Col >
         </Row >
 
 

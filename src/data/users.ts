@@ -17,6 +17,11 @@ export const generateUsers = () => {
             name: 'Johan',
             email: 'johan@avochoc.com',
             pass: 'admin@1234'
+        },
+        {
+            name: 'Martin',
+            email: 'martin@avochoc.com',
+            pass: 'admin@qwe'
         }
     ]
 

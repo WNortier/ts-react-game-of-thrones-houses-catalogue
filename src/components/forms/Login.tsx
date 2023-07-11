@@ -18,6 +18,47 @@ function LoginForm(props: any) {
     const [loginCheckbox, setLoginCheckbox] = useState(false)
     const navigate = useNavigate();
 
+    useEffect(() => {
+        document.onkeydown = function (evt) {
+            {
+                evt = evt || window.event;
+                var isEscape = false;
+                if ("key" in evt) {
+                    isEscape = (evt.key === "Escape" || evt.key === "Esc");
+                } else {
+                    //@ts-ignore
+                    isEscape = (evt.keyCode === 27);
+                }
+                if (isEscape) {
+                    document.querySelector('#login-form')?.classList.add('invis')
+                    document?.getElementById('video')?.classList.add('begin')
+                    localStorage.setItem('hasExited', 'true')
+
+                    // document.getElementById('video')!.style.display = 'none';
+
+
+
+                    setTimeout(() => {
+                        document?.getElementById('video')?.classList.add('invis');
+
+                        setTimeout(() => {
+                            (document.getElementById('video') as HTMLVideoElement).pause();
+                            document.querySelector('#layout-basic-navbar')?.classList.add('invis')
+                            props.setVideoComplete(true);
+                            document.querySelector('#login-form')?.classList.remove('invis')
+                            document.querySelector('#login-form')?.classList.add('vis')
+                            document.querySelector('#login-form')?.classList.add('fadein')
+                            props.setInit()
+                        }, 250)
+
+                    }, 5100)
+                }
+            };
+            // <DO YOUR WORK HERE>
+        }
+    });
+
+
 
 
 
@@ -53,8 +94,10 @@ function LoginForm(props: any) {
                     if (loginCheckbox) {
                         localStorage.setItem('stayLoggedIn', 'true')
                         localStorage.setItem('email', email)
+                    } else {
+                        localStorage.removeItem('email')
+                        localStorage.removeItem('stayLoggedIn')
                     }
-                    else localStorage.removeItem('email')
                     document.querySelector('#layout-basic-navbar')?.classList.remove('invis')
                     document.querySelector('#layout-basic-navbar')?.classList.add('vis')
                     document.querySelector('#layout-basic-navbar')?.classList.add('fadein')
@@ -78,28 +121,32 @@ function LoginForm(props: any) {
         setLoginCheckbox(!loginCheckbox)
     }
     useEffect(() => {
+        document.getElementById('video')?.classList.add('vis')
 
-        if (localStorage.getItem('init') === 'false') {
+        if (localStorage.getItem('init') === 'false' && localStorage.getItem('hasExited') !== 'true') {
             if (!localStorage.getItem('email')) localStorage.setItem('email', '')
             document.querySelector('#login-form')?.classList.add('invis')
             document.querySelector('#layout-basic-navbar')?.classList.add('invis')
 
 
             setTimeout(() => {
+                if (localStorage.getItem('hasExited') === 'true') return
                 document?.getElementById('video')?.classList.add('begin')
 
                 setTimeout(() => {
-                    document?.getElementById('video')?.classList.add('invis');
+                    // document?.getElementById('video')?.classList.add('invis');
                     // document.getElementById('video')!.style.display = 'none';
                 }, 5500)
             }, 23_000)
 
             setTimeout(() => {
+                if (localStorage.getItem('hasExited') === 'true') return
                 document.querySelector('#login-form')?.classList.add('invis')
                 document.querySelector('#layout-basic-navbar')?.classList.add('invis')
 
                 setTimeout(() => {
                     (document.getElementById('video') as HTMLVideoElement).pause();
+                    document?.getElementById('video')?.classList.add('invis')
                     props.setVideoComplete(true);
                     document.querySelector('#login-form')?.classList.remove('invis')
                     document.querySelector('#login-form')?.classList.add('vis')

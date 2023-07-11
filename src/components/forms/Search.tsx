@@ -12,7 +12,7 @@ function Search(props: any) {
     // const [type, setType] = useState('password')
     // const [userPassword, setUserPassword] = useState('')
     // const [userEmail, setUserEmail] = useState('')
-    const [errors, setErrors] = useState({ emailErr: false, passErr: false })
+    const [searchErrors, setSearchErrors] = useState({ searchErr: false })
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const [m, setM] = useState<any>([])
@@ -23,34 +23,48 @@ function Search(props: any) {
     const handleFormSubmission = async (e: any, name, gender, culture, born, died, isAlive) => {
         // console.log(name)
         props.setLoading(true)
+        setSearchErrors({ searchErr: false })
 
 
         setTimeout(async () => {
             // if (name !== '' && gender !== '' && culture !== '' && born !== '' && died !== '') {
             // e.preventDefault()
             // }
-            let url = `https://anapioficeandfire.com/api/characters?page=1&pageSize=10`
-            // console.log(page, rows, name, gender, culture, born)
+            if (props.name === '' || props.gender === '' || props.culture === '' || props.born === '' || props.died === '') {
+                setSearchErrors({ searchErr: true })
+                props.setLoading(false)
+                return
+
+            } else if (props.name !== '' || props.gender !== '' || props.culture !== '' || props.born !== '' || props.died !== '') {
+                setSearchErrors({ searchErr: false })
+                props.setLoading(false)
+                return
+            } else {
 
 
-            // console.log('N Q P', nameQueryParam)
-            // if (name) url = url + `&name=${name}`
-            // if (gender) url = url + `&gender=${gender}`
-            // if (culture) url = url + `&culture=${culture}`
-            // if (born) url = url + `&born=${born}`
-            // if (died) url = url + `&died=${died}`
-            // if (isAlive !== '') url = url + `&isAlive=${isAlive}`
-            // let rez = await axios.get(url)
-            // console.log('rezzi', rez.data)
-            // console.log(rez)
-            // props.setChars([...rez.data])
-            // props.handler(url)
-            // console.log(url)
-            // console.log(url)
-            props.handleFormSubmission(url)
-            props.setLoading(false)
+                let url = `https://anapioficeandfire.com/api/characters?page=1&pageSize=10`
+                // console.log(page, rows, name, gender, culture, born)
 
-            // setM([...rez.data])
+
+                // console.log('N Q P', nameQueryParam)
+                // if (name) url = url + `&name=${name}`
+                // if (gender) url = url + `&gender=${gender}`
+                // if (culture) url = url + `&culture=${culture}`
+                // if (born) url = url + `&born=${born}`
+                // if (died) url = url + `&died=${died}`
+                // if (isAlive !== '') url = url + `&isAlive=${isAlive}`
+                // let rez = await axios.get(url)
+                // console.log('rezzi', rez.data)
+                // console.log(rez)
+                // props.setChars([...rez.data])
+                // props.handler(url)
+                // console.log(url)
+                // console.log(url)
+                props.handleFormSubmission(url)
+                props.setLoading(false)
+
+                // setM([...rez.data])
+            }
 
 
         }, 1350)
@@ -109,6 +123,10 @@ function Search(props: any) {
                     <Button id='login-btn' onClick={(e: any) => handleFormSubmission(e, props.name, props.gender, props.culture, props.born, props.died, props.isAlive)} variant="secondary" type="button" size='sm'>
                         Submit
                     </Button>
+
+                    {searchErrors.searchErr ? <div>
+                        <Form.Text className="text" style={{ color: 'red' }}>Please complete atlease one field to perform a search</Form.Text>
+                    </div> : null}
                 </Form>}
         </>
     );

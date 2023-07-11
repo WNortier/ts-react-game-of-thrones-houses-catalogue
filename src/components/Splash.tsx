@@ -22,6 +22,7 @@ export default function Splash(props: any) {
         } else if (localStorage.getItem('loggedin') === 'false' && localStorage.getItem('init') === 'true') {
             navigate('/login')
         } else {
+            document.querySelector('#layout-basic-navbar')?.classList.add('invis')
             localStorage.setItem('pause', 'false');
             // (document.getElementById('video') as HTMLVideoElement).classList.add('vis');
             (document.getElementById('video') as HTMLVideoElement).style.zIndex = "10";

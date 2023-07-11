@@ -15,10 +15,11 @@ import { CircleLoader } from 'react-spinners';
 import BooksTable from './components/tables/BooksTable';
 import { Breadcrumb } from 'react-bootstrap';
 import AppModal from './components/Modal';
-import Preferences from './components/Preferences';
+import Preferences from './components/About';
 import Home from './components/Home';
 import HousesTable from './components/tables/HousesTable';
 import OffCanvas from './components/OffCanvas';
+import HousesTableMore from './components/tables/HousesTableMore';
 
 
 function App() {
@@ -34,10 +35,52 @@ function App() {
 
   const getHouses = async () => {
     const response = await axios.get('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=500')
-    console.log(response.data)
+    // console.log(response.data)
   }
 
+
   useEffect(() => {
+    // console.log(localStorage.getItem('disableVary'))
+    if (localStorage.getItem('disableVary') === 'true') {
+      setBg("./houses.jpeg")
+
+    } else {
+
+      //@ts-ignore
+      if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2]?.substring(0, 5) === 'house') {
+        setBg("./houses.jpeg")
+        //@ts-ignore
+      } else if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2] === 'books') {
+
+        setBg("./books.jpeg")
+        //@ts-ignore
+      } else if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2] === 'about') {
+
+        setBg("./houses.jpeg")
+        //@ts-ignore
+      } else if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2] === 'users') {
+        //@ts-ignore
+
+        setBg("./houses.jpeg")
+      } else {
+        //@ts-ignore
+
+        setBg("./mainbg01.jpeg")
+      }
+    }
+  }, [window.location.pathname])
+
+  useEffect(() => {
+
+
+
+    if (localStorage.getItem('flush') !== 'true') {
+      localStorage.removeItem('hasExited')
+      localStorage.setItem('loggedin', 'false');
+      localStorage.setItem('disableLogin', 'false')
+      localStorage.setItem('init', 'false')
+      localStorage.setItem('flush', 'true')
+    }
     // if (!init) {
     document.getElementById('video')?.classList.add('invis')
 
@@ -47,7 +90,6 @@ function App() {
     // console.log(document.getElementById('video'))
     // localStorage.getItem('email')! !== '' ? localStorage.setItem('email', '') : null
     // document.querySelector('#login-form')?.classList.add('invis')
-    // document.querySelector('#layout-basic-navbar')?.classList.add('invis')
     // if (document.getElementById('splash-layer'))
     // document.getElementById('splash-layer')?.classList.add('begin');
     // }
@@ -75,6 +117,8 @@ function App() {
     margin: "0 auto",
     borderColor: "rgb(105, 23, 101)",
   };
+
+
 
 
   const appLoader = (
@@ -148,6 +192,16 @@ function App() {
       // action: newsletterAction,
     },
     {
+      path: '/houses',
+      element:
+        loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>,
+    },
+    {
+      path: '/houses/:name',
+      element:
+        loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTableMore /> : <></>,
+    },
+    {
       path: '*',
       element: <ErrorPage />,
       // action: newsletterAction,
@@ -158,7 +212,7 @@ function App() {
   return (
 
 
-    <Container id="main-container" style={{ backgroundImage: `url(${bg})`, padding: window.location.pathname === '/splash' || window.location.pathname === '/' ? '0px' : '2em' }} fluid>
+    <Container id="main-container" style={{ backgroundImage: `url(${bg})`, padding: window.location.pathname === '/' ? '0px' : '2em' }} fluid>
       {/* <div id='splash-layer'>
       </div> */}
 
@@ -175,8 +229,9 @@ function App() {
         <Route path="/books" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <BooksTable /> : <></>} />
         <Route path="/characters" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <CharactersTable setLoading={setLoading} /> : <></>} />
         <Route path="/houses" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>} />
+        <Route path="/houses/:name" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTableMore /> : <></>} />
 
-        <Route path="/preferences" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <Preferences /> : <></>} />
+        <Route path="/about" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <Preferences /> : <></>} />
         <Route path="/home" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>

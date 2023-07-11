@@ -10,6 +10,7 @@ function OffCanvasSettings(props: any) {
     const [showAdditionalSettings, setShowAdditionalSettings] = useState(false)
     const [pause, setPause] = useState(false)
     const [disableLogin, setDisableLogin] = useState(false)
+    const [disableVaryCheckbox, setDisableVaryCheckbox] = useState(false)
 
 
 
@@ -45,6 +46,11 @@ function OffCanvasSettings(props: any) {
         setDisableLogin(!disableLogin);
         localStorage.setItem('disableLogin', String(!disableLogin))
         localStorage.setItem('loggedin', String(true))
+    }
+
+    const handleDisableVaryCheckbox = (e: any) => {
+        localStorage.setItem('disableVary', String(!disableVaryCheckbox))
+        setDisableVaryCheckbox(!disableVaryCheckbox);
     }
 
     return (
@@ -84,8 +90,11 @@ function OffCanvasSettings(props: any) {
                         <Form.Group className="ml-4 mt-2 mb-3" controlId="formBasicCheckbox">
                             <Form.Check className='basic-check' type="checkbox" label="Disable authentication" checked={localStorage.getItem('disableLogin') === 'true' ? true : false} onChange={(e) => handleDisableLogin(e)} />
                         </Form.Group>
+                        {localStorage.getItem('disableLogin') === 'false' ? <Form.Group className="ml-4 mt-2 mb-3" controlId="formBasicCheckbox">
+                            <Form.Check className='basic-check' type="checkbox" label="Re-enable login cinematic" checked={localStorage.getItem('init') === 'true' ? false : true} onChange={(e) => handleVideoSettingCheckbox(e)} />
+                        </Form.Group> : null}
                         <Form.Group className="ml-4 mt-2 mb-3" controlId="formBasicCheckbox">
-                            <Form.Check className='basic-check' type="checkbox" label="Replay intro cinematic on next login" checked={localStorage.getItem('init') === 'true' ? false : true} onChange={(e) => handleVideoSettingCheckbox(e)} />
+                            <Form.Check className='basic-check' type="checkbox" label="Disable varying wallpaper" checked={localStorage.getItem('disableVary') === 'true' ? true : false} onChange={(e) => handleDisableVaryCheckbox(e)} />
                         </Form.Group>
                         <Button id='login-btn' onClick={(e: any) => handleChangeSettings(e)} variant="secondary" type="submit" size='sm'>
                             Submit

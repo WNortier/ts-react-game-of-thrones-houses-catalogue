@@ -12,10 +12,10 @@ function NavigationBar(props: any) {
     const navigate = useNavigate();
 
 
-    const links = ['characters', 'houses', 'books', 'settings']
+    const links = ['houses', 'characters', 'books', 'settings']
     const [active, setActive] = useState('/books');
     const [gearColor, setGearColor] = useState('#f3f3f3');
-    const dropdownLinks = ['users', 'preferences']
+    const dropdownLinks = ['users', 'about']
 
     useEffect(() => {
         // @ts-ignore
@@ -40,7 +40,7 @@ function NavigationBar(props: any) {
         e.preventDefault()
         setActive('/users')
         props.setLoading(true)
-        // document.querySelector('.dropdown-menu')?.classList.remove('show');
+        document.querySelector('.dropdown-menu')?.classList.remove('show');
         // document.querySelector('.dropdown-toggle.nav-link.show')?.classList.remove('activeLink');
         // (document.querySelector('.dropdown-toggle') as HTMLDivElement)!.style!.color = '#f3f3f3';
         // console.log('pls')
@@ -54,7 +54,16 @@ function NavigationBar(props: any) {
     }
 
     const handleBrandClick = () => {
-        navigate('/home')
+        props.setLoading(true)
+        setTimeout(() => {
+
+            navigate('/home')
+
+            props.setLoading(false)
+        }, 2100)
+
+
+
     }
 
 
@@ -65,6 +74,7 @@ function NavigationBar(props: any) {
             props.setIsLoggedIn(false)
             localStorage.setItem('loggedin', 'false')
             localStorage.setItem('stayLoggedIn', 'false')
+            localStorage.setItem('hasExited', 'false')
             localStorage.removeItem('email');
             (document.getElementById('music') as HTMLAudioElement).pause();
             (document.getElementById('music') as HTMLAudioElement).currentTime = 0;
@@ -140,7 +150,7 @@ function NavigationBar(props: any) {
                         l === 'settings' ? (<NavDropdown key={l} title="Settings" className={`nav-link-dropdown`} id="basic-nav-dropdown">
                             {/* <NavDropdown.Item className="nav-link-heading">Settings</NavDropdown.Item> */}
                             {dropdownLinks.map((l, i) =>
-                                <div key={i} className={`${checkActive(l)} nav-link-dropdown`} onClick={(e: any) => handleUsersClick(e, l)}>
+                                <div key={i} style={{ marginTop: '0.9em', marginBottom: '0.9em', marginLeft: '0.2em' }} className={`${checkActive(l)} nav-link-dropdown`} onClick={(e: any) => handleUsersClick(e, l)}>
                                     {l}</div>
                             )}
                         </NavDropdown>) : (<Nav.Link key={i} disabled={false} className={`${checkActive(l)}`} onClick={(e) => { handleUsersDropDownClick(e, l) }}>{l.substring(0, 1).toUpperCase() + l.substring(1)}</Nav.Link>)

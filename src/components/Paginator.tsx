@@ -33,10 +33,10 @@ function Paginator(props: any) {
             props.setUserData([...props.data.filter((d: any, i: number) => (i >= (rowsPerPage * 1) - rowsPerPage) && (i <= (rowsPerPage * +1)))]);
         if (props.getChars)
             props.getChars(String(1), String(rowsPerPage))
-        // console.log(currentPage)
-        // console.log(totalRecordCount)
-        // console.log(rowsPerPage)
-        // console.log(_determinePaginationMessage())
+        if (props.getBooks)
+            props.getBooks(String(1), String(rowsPerPage))
+        if (props.getHouses)
+            props.getHouses(String(1), String(rowsPerPage))
     }
 
     const message = _determinePaginationMessage({ verb: 'Showing' });
@@ -55,15 +55,15 @@ function Paginator(props: any) {
         // console.log(page, rowsPerPage)
         if (props.getChars)
             props.getChars(String(page), String(rowsPerPage))
-        // console.log(currentPage)
-        // console.log(totalRecordCount)
-        // console.log(rowsPerPage)
-        // console.log(_determinePaginationMessage())
+
+        if (props.getBooks)
+            props.getBooks(String(page), String(rowsPerPage))
+
+        if (props.getHouses)
+            props.getHouses(String(page), String(rowsPerPage))
     }
 
     const handlePaginationBtn = (n: number) => {
-        // _handleChangeTotalRecordCount(props.records);
-        // _handleChangeRowsPerPage(10);
 
         handleChangePaginationPage(n);
     }
@@ -81,13 +81,11 @@ function Paginator(props: any) {
     }
 
     const handleFirst = (n: number) => {
-        // console.log(n)
         handleChangePaginationPage(n);
 
     }
 
     const handleLast = (n: number) => {
-        // console.log(n)
         handleChangePaginationPage(_determinePaginationPages()[(_determinePaginationPages().length - 1)]);
 
     }

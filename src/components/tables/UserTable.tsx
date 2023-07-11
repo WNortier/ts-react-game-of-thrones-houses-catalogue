@@ -31,20 +31,20 @@ function UsersTable(props: any) {
             <Table striped bordered hover size="sm" className='layout-basic'>
                 <thead>
                     <tr>
-                        <th style={{ fontFamily: 'arial' }}>#</th>
+                        {/* <th style={{ fontFamily: 'arial' }}>#</th> */}
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Created</th>
+                        {/* <th>Created</th> */}
                     </tr>
                 </thead>
                 <tbody>
                     {appUsers.map((u, i: number) => {
                         return (
                             <tr key={i}>
-                                <td> {"#" + generateRandomNumber() + generateRandomNumber() + generateRandomNumber()}</td>
+                                {/* <td> {"#" + generateRandomNumber() + generateRandomNumber() + generateRandomNumber()}</td> */}
                                 <td> {u.name}</td>
                                 <td> {u.email}</td>
-                                <td> {moment().subtract(1, 'days').calendar()}</td>
+                                {/* <td> {moment().subtract(1, 'days').calendar()}</td> */}
                             </tr>
                         )
                     })}

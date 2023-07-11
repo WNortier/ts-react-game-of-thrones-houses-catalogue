@@ -102,3 +102,8 @@
 #nav-settings:hover {
     color: darkred;
 }
+
+div.nav-link-dropdown:hover {
+    color: darkred;
+
+}

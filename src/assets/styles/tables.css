@@ -9,9 +9,14 @@ table {
 th {
     padding: 1rem 1rem 1rem 0.5rem !important;
     font-size: 1.1em;
+    padding-left: 0.45em !important;
 }
 
 td {
+    padding-left: 0.45em !important;
+    padding-top: 0.35em !important;
+    padding-bottom: 0.35em !important;
+
     font-size: 1.1em;
 }
 
@@ -28,7 +33,7 @@ tr {
 #books-container,
 #houses-container {
     overflow: scroll;
-    margin-top: 5em;
+    margin-top: 3em;
     /* margin: 1em; */
     /* margin-top: 2em; */
 }
