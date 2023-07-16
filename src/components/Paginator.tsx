@@ -7,7 +7,6 @@ import {
   FormEvent,
   ReactNode,
   SetStateAction,
-  useCallback,
   useEffect,
 } from "react";
 
@@ -16,9 +15,9 @@ function Paginator(props: {
   resetData?: () => void;
   setLoading?: Dispatch<SetStateAction<boolean>>;
   setData?: Dispatch<SetStateAction<never[]>>;
-  data: any[];
+  data: { name: string; email: string; pass: string; }[];
   records: number;
-  setUserData?: (arg: any) => void;
+  setUserData?: (arg: { name: string; email: string; pass: string; }[]) => void;
   getHouses?: (page: string, rows: string) => void;
   getChars?: (page: string, rows: string) => void;
   getBooks?: (page: string, rows: string) => void;
@@ -52,7 +51,7 @@ function Paginator(props: {
     if (props.setUserData)
       props.setUserData([
         ...props.data.filter(
-          (d, i: number) =>
+          (d: object, i: number) =>
             i >= rowsPerPage * 1 - rowsPerPage && i <= rowsPerPage * +1,
         ),
       ]);
@@ -72,7 +71,7 @@ function Paginator(props: {
     if (props.setUserData)
       props.setUserData([
         ...props.data.filter(
-          (i: number) =>
+          (i: any) =>
             i >= rowsPerPage * 1 - rowsPerPage && i <= rowsPerPage * +1,
         ),
       ]);

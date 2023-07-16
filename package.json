@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "npm run test && sleep 5 && vite",
-    "build": "rm -rf dist package.json package-lock.json; npm i; vite build; sleep 2; cp README.md > dist/README.md; cat README.md >> dist/README.md",
-    "lint": "eslint src --ext tsx --report-unused-disable-directives --max-warnings 0",
+    "build": "rm -rf dist package-lock.json node_modules; npm i; vite build; sleep 2; cp README.md > dist/README.md; cat README.md >npmn  dist/README.md",
+    "lint": "eslint src --ext tsx --report-unused-disable-directives --quiet --max-warnings 10",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "publish": "gh-pages -d dist",

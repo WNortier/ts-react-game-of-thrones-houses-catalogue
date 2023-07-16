@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { ForwardRefExoticComponent, ForwardedRef, RefAttributes, useRef } from "react"
 
 export default function Splash() {
   const navigate = useNavigate();

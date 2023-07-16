@@ -1,5 +1,3 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from 'react-router-dom';
 import { generateUsers } from '../../data/users';
 describe("Application users test", () => {
 

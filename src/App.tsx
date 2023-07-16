@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import NavigationBar from "./components/navigation/NavigationBar";
 import Container from "react-bootstrap/Container";
 import LoginForm from "./pages/Login";

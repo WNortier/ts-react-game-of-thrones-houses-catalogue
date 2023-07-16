@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import CharacterDetail from '../../../components/characters/CharacterDetail';
 
 jest.mock('react-router', () => ({
-    ...jest.requireActual("react-router") as {},
+    ...jest.requireActual("react-router") as object,
     useLocation: jest.fn().mockImplementation(() => {
         return { state: { url: "https://google.com" } };
     })

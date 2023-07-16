@@ -7,7 +7,7 @@ describe("OffCanvas Sidebar Test", () => {
     const setup = () => render(<MemoryRouter>
         <OffCanvasSettings
             showOffCanvasSettings={true}
-            setShowOffCanvasSettings={(arg: boolean) => null}
+            setShowOffCanvasSettings={() => null}
         />
     </MemoryRouter>)
 

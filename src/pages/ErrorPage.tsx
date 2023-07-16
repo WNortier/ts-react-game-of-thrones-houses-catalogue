@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ErrorPage() {
-  let [counter, setCounter] = useState(5)
+  const [counter, setCounter] = useState(5)
   const decrementor = (i: number) => {
     setTimeout(() => {
       setCounter(counter - i)
