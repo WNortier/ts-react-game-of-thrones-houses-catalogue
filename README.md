@@ -2,16 +2,9 @@
 
 ![example workflow](https://github.com/wnortier/game-of-thrones-houses-catalogue/actions/workflows/deploy.yml/badge.svg)
 
-<<<<<<< Updated upstream
-
 # game-of-thrones-houses-catalogue
 
-=======
-<<<<<<< Updated upstream
 A catalogue detailing the various Houses from Game of Thrones
-=======
-
-> > > > > > > Stashed changes
 
 # Web-App Coding Challenge 👨🏼‍💻
 
@@ -66,5 +59,3 @@ Hierzu stehen dir folgende Hilfsmittel zur Verfügung:
 ### Hinweis
 
 Denk daran, dass du mit der Aufgabe deine Fähigkeiten demonstrierst. Also beeindrucke uns 🤯
-
-> > > > > > > Stashed changes

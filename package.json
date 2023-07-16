@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run test && sleep 5 && vite",
-    "build": "rm -rf dist; vite build; sleep 2; cp README.md > dist/README.md; cat README.md >> dist/README.md",
+    "build": "rm -rf dist package.json package-lock.json; npm i; vite build; sleep 2; cp README.md > dist/README.md; cat README.md >> dist/README.md",
     "lint": "eslint src --ext tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -20,6 +20,7 @@
     "@babel/preset-react": "^7.22.5",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
+    "esbuild-wasm": "^0.18.13",
     "json-server": "^0.17.3",
     "moment": "^2.29.4",
     "react": "^18.2.0",
