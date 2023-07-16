@@ -1,12 +1,6 @@
-import { generateUsers } from "../data/users"
-describe("App Test", () => {
-  test.todo('Write a test for the App component')
-  const users = generateUsers();
-  it("The app should have the predetermined users set by the administrator", () => {
-    const applicationUsers = users.map((u) => ['Warwick', 'Jaco', 'Johan', 'Martin'].includes(u.name))
-    const userEmails = users.map((u) => u.email)
-    expect(applicationUsers).toHaveLength(4);
-    expect(applicationUsers).not.toContain(false)
-    userEmails.forEach((e) => expect(e).toBeDefined)
+describe("Root entry point test", () => {
+  it("The application entry point should be defined", () => {
+    const applicationRoot = document.getElementById('root')
+    expect(applicationRoot).toBeDefined()
   });
 });

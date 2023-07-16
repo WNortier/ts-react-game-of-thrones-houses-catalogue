@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
 import Paginator from "../components/Paginator";
+import { GOTService } from '../api/api';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
 
-  const getBooks = async (page?: string, rows?: string) => {
-    const response = await axios.get(
-      `https://anapioficeandfire.com/api/books?page=${page}&pageSize=${rows}`,
-    );
-    // console.log(response.data)
-    setBooks(response.data);
+  const fetchBooks = async (page?: string, rows?: string) => {
+    const apiService = GOTService()
+    const data = await apiService.getBooks(page, rows)
+    setBooks(data);
   };
 
   useEffect(() => {
-    getBooks("1", "10");
+    fetchBooks("1", "10");
   }, []);
 
   const resetData = () => true;
@@ -96,7 +94,7 @@ const Books = () => {
           {books.length ? (
             <Paginator
               records={12}
-              getBooks={getBooks}
+              getBooks={fetchBooks}
               data={books}
               setData={setBooks}
               resetData={resetData}

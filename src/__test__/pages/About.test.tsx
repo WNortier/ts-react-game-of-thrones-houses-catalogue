@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
 import About from '../../pages/About';
 
-describe("Splash Screen Test", () => {
+describe("About Screen Test", () => {
 
     const setup = () => render(<MemoryRouter>
         <About />
@@ -12,7 +12,7 @@ describe("Splash Screen Test", () => {
         setup()
     })
 
-    it("The welcome message should be in the document", () => {
+    it("The About heading should be in the document", () => {
         const heading = screen.getByText(/About/i);
         expect(heading).toBeInTheDocument();
     });

@@ -1,19 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
 import AppModal from '../../components/Modal';
-describe("Splash Screen Test", () => {
+describe("Modal Test", () => {
 
     const setup = () => render(<MemoryRouter>
-        <AppModal data={{ name: 'Walder' }} modalImg={''} modalShow={true} setModalShow={() => true} show={true} />
+        <AppModal data={{ name: 'Walder' }} modalImg={'https://thronesapi.com/assets/images/walder.jpg'} modalShow={true} setModalShow={() => true} show={true} />
     </MemoryRouter>)
 
     beforeEach(() => {
         setup()
     })
 
-    it("The welcome message should be in the document", () => {
+    it("The modal should display the correct character", () => {
         const navbarHeading = screen.getByText(/Walder/i);
-        // const headingByRole = screen.getByRole("splash");
         expect(navbarHeading).toBeInTheDocument();
     });
 

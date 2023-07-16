@@ -68,7 +68,7 @@ function LoginForm(props: {
     setType(type === "password" ? "text" : "password");
   };
 
-  const handleLogin = (e: FormEvent, email: string, pass: string) => {
+  const handleLogin = async (e: FormEvent, email: string, pass: string) => {
     setErrors({ passErr: false, emailErr: false });
     e.preventDefault();
     const includesEmail = generateUsers()
@@ -203,6 +203,7 @@ function LoginForm(props: {
           <Form.Group className="mb-1">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              data-testid='login-input'
               autoComplete="true"
               value={userEmail}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -217,7 +218,7 @@ function LoginForm(props: {
 
           {errors.emailErr ? (
             <div>
-              <Form.Text className="text" style={{ color: "red" }}>
+              <Form.Text data-testid='email-err' className="text" style={{ color: "red" }}>
                 Invalid Email
               </Form.Text>
             </div>
@@ -226,6 +227,7 @@ function LoginForm(props: {
           <Form.Label>Password</Form.Label>
           <Form.Group className="mb-1 d-flex">
             <Form.Control
+              data-testid='login-input'
               autoComplete="true"
               value={userPassword}
               onChange={(e) => setUserPassword(e.target.value)}
@@ -245,7 +247,7 @@ function LoginForm(props: {
 
           {errors.passErr ? (
             <div>
-              <Form.Text className="text" style={{ color: "red" }}>
+              <Form.Text data-testid='pass-err' className="text" style={{ color: "red" }}>
                 Invalid Password
               </Form.Text>
             </div>
@@ -261,6 +263,7 @@ function LoginForm(props: {
             />
           </Form.Group>
           <Button
+            data-testid='login-btn'
             disabled={userEmail.length === 0 || userPassword.length === 0}
             id="login-btn"
             onClick={(e: FormEvent) => handleLogin(e, userEmail, userPassword)}

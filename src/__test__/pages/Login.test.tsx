@@ -1,18 +1,11 @@
 
-import { fireEvent, render, screen } from "@testing-library/react"
+import { act, fireEvent, render, screen } from "@testing-library/react"
 import { MemoryRouter } from 'react-router-dom';
 import LoginForm from '../../pages/Login';
 
 
 describe('Login component tests', () => {
 
-    // const loginPropsMock = {
-    //     isLoggedIn: true,
-    //     videoComplete: true,
-    //     setInit: jest.fn(),
-    //     setIsLoggedIn: jest.fn(),
-    //     setVideoComplete: jest.fn()
-    // }
 
     let container: HTMLElement;
     function setup() {
@@ -32,37 +25,48 @@ describe('Login component tests', () => {
     beforeEach(() => {
         setup();
     })
-    test.todo('should render correctly the login component')
-    test.todo('should render correctly when logging in incorrectly')
-    test.todo('should render correctly when logging in correctly')
 
-    it('should render correctly the login component', () => {
+    test('should render correctly the login component', () => {
         const mainElement = screen.getByRole('login');
         expect(mainElement).toBeInTheDocument();
         // expect(screen.queryByTestId('resultLabel')).not.toBeInTheDocument();
     })
-    xit('should render correctly when logging in incorrectly', () => {
-        const inputs = screen.getAllByTestId('input');
-        expect(inputs).toHaveLength(3);
+    test('should render all the login inputs correctly', () => {
+        const inputs = screen.getAllByTestId('login-input');
         expect(inputs[0].getAttribute('value')).toBe('');
         expect(inputs[1].getAttribute('value')).toBe('');
-        expect(inputs[2].getAttribute('value')).toBe('Login');
     })
-    xit('should render correctly when logging in correctly', () => {
-        const inputs = container.querySelectorAll('input');
-        expect(inputs).toHaveLength(3);
-        expect(inputs[0].value).toBe('');
-        expect(inputs[1].value).toBe('');
-        expect(inputs[2].value).toBe('Login');
-    })
-
-    xit('Click login button with incomplete credentials - show required message', () => {
-        const inputs = screen.getAllByTestId('input');
-        const loginButton = inputs[2];
-
+    test('Click login button with incomplete credentials - show required message', async () => {
+        const inputs = screen.getAllByTestId('login-input');
+        expect(inputs[0].getAttribute('value')).toBe('');
+        expect(inputs[1].getAttribute('value')).toBe('');
+        inputs[0].setAttribute('value', 'test')
+        const btns = screen.getAllByTestId('login-btn');
+        const loginButton = btns[0];
         fireEvent.click(loginButton);
+        setTimeout(async () => {
+            expect((await screen.findByTestId('email-err')).textContent).toBe('Invalid Email')
+            expect((await screen.findByTestId('pass-err')).textContent).toBe('Invalid Password')
+        }, 1000)
+    })
 
-        const resultLabel = screen.getByTestId('resultLabel');
-        expect(resultLabel.textContent).toBe('UserName and password required!');
+
+    test('Click login button with correct credentials - login successful without errors', async () => {
+        const inputs = screen.getAllByTestId('login-input');
+        expect(inputs[0].getAttribute('value')).toBe('');
+        // inputs[0].setAttribute('value', 'warwick@avochoc.com')
+        expect(inputs[1].getAttribute('value')).toBe('');
+        // inputs[1].setAttribute('value', 'admin@01')
+        fireEvent.change(inputs[0], { target: { value: 'warwick@avochoc.com' } })
+        fireEvent.change(inputs[1], { target: { value: 'admin@01' } })
+
+        expect(inputs[0].getAttribute('value')).toBe('warwick@avochoc.com');
+        const btns = screen.getAllByTestId('login-btn');
+        const loginButton = btns[0];
+        await fireEvent.click(loginButton);
+        setTimeout(async () => {
+            expect((await screen.findByTestId('email-err')).textContent).toBe('')
+            expect((await screen.findByTestId('pass-err')).textContent).toBe('')
+        }, 1000)
     })
 })

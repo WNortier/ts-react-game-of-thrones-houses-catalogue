@@ -6,9 +6,9 @@ import Row from "react-bootstrap/Row";
 
 function MydModalWithGrid(props: {
   data: { name: string };
-  modalImg: string;
   onHide: () => void;
   show: boolean;
+  modalimg?: string;
 }) {
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -22,7 +22,7 @@ function MydModalWithGrid(props: {
           <Row>
             <Col xs={12} md={12} className="flex flex-center">
               <img
-                src={props.modalImg}
+                src={props.modalimg}
                 height="225"
                 style={{ border: "#603B3B solid brown", borderRadius: "5px" }}
               />
@@ -42,7 +42,7 @@ function MydModalWithGrid(props: {
 function AppModal(props: {
   data: { name: string };
   modalShow: boolean;
-  modalImg: string;
+  modalImg?: string;
   setModalShow: (arg: boolean) => void;
   show?: boolean;
 }) {
@@ -50,7 +50,7 @@ function AppModal(props: {
     <MydModalWithGrid
       data={props.data}
       show={props.modalShow}
-      modalImg={props.modalImg}
+      modalimg={props.modalImg}
       onHide={() => props.setModalShow(false)}
     />
   );
