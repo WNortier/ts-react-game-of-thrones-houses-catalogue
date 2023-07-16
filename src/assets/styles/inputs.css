@@ -1,60 +1,114 @@
 .form-check-input {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .form-check-input:checked {
-    background-color: rgb(105, 23, 101);
-    border-color: rgb(105, 23, 101);
-    outline: rgb(105, 23, 101);
+  background-color: rgb(105, 23, 101);
+  border-color: rgb(105, 23, 101);
+  outline: rgb(105, 23, 101);
 }
 
 .form-check-input {
-    margin-right: 0.5rem;
-    margin-bottom: 2rem;
-    margin-top: 0.75px;
+  margin-right: 0.5rem;
+  margin-bottom: 2rem;
+  margin-top: 0.75px;
 }
 
 /* buttons */
 
 .btn,
 .btn:active {
-    background: rgb(105, 23, 101);
-    font-size: 17px;
-    border: rgb(105, 23, 101);
-    padding: 0.85rem 1.1rem 0.85rem 1.1rem;
-    font-family: 'Medieval Scribish', sans-serif;
-    letter-spacing: 3px;
-    cursor: url(https://img.icons8.com/external-edtim-lineal-color-edtim/50/external-Sword-games-edtim-lineal-color-edtim.png), auto;
+  background: rgb(105, 23, 101);
+  font-size: 17px;
+  border: rgb(105, 23, 101);
+  padding: 0.85rem 1.1rem 0.85rem 1.1rem;
+  font-family: "Medieval Scribish", sans-serif;
+  letter-spacing: 3px;
+  cursor: url(https://img.icons8.com/external-edtim-lineal-color-edtim/50/external-Sword-games-edtim-lineal-color-edtim.png),
+    auto;
 }
 
 .btn:hover {
-    background: rgb(105, 23, 101);
-    font-size: 17px;
-    border: rgb(105, 23, 101);
-    padding: 0.85rem 1.1rem 0.85rem 1.1rem;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    cursor: url(https://img.icons8.com/external-edtim-lineal-color-edtim/50/external-Sword-games-edtim-lineal-color-edtim.png), auto;
+  background: rgb(105, 23, 101);
+  font-size: 17px;
+  border: rgb(105, 23, 101);
+  padding: 0.85rem 1.1rem 0.85rem 1.1rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: url(https://img.icons8.com/external-edtim-lineal-color-edtim/50/external-Sword-games-edtim-lineal-color-edtim.png),
+    auto;
 }
 
 #app-loader {
-    /* margin-top: 6em; */
-    margin: auto
+  /* margin-top: 6em; */
+  margin: auto;
 }
 
 .btn:active {
-    background: rgb(105, 23, 101) !important;
+  background: rgb(105, 23, 101) !important;
 }
 
 #modal-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    animation: shakeslow 30s ease-in-out infinite;
+  transform: translateY(-1px);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  animation: shakeslow 30s ease-in-out infinite;
 }
 
 #explore-btn {
-    padding: 0.5em 0.65em 0.5em 0.65em;
+  padding: 0.5em 0.65em 0.5em 0.65em;
+}
+
+#explore-btn:hover {
+  animation: shake 5s ease-in-out;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-    background: rgb(105, 23, 101) !important;
+  background: rgb(105, 23, 101) !important;
+}
+
+#image-btn {
+  padding: 0.5em 0.65em 0.5em 0.65em;
+}
+
+#image-btn:hover {
+  animation: shake 5s ease-in-out;
+}
+
+.dropdown-toggle {
+  /* padding: 0.55em; */
+}
+
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown-toggle:hover {
+  /* background: #6D2369 !important; */
+}
+
+.dropdown-toggle.show.btn.btn-primary {
+  background: #6d2369 !important;
+}
+
+.breadcrumb a {
+  color: white;
+}
+
+.breadcrumb a:hover {
+  color: green;
+}
+
+.breadcrumb-item::before {
+  color: white !important;
+}
+
+.offcanvas-header button.btn-close {
+  filter: invert(94%) sepia(19%) saturate(465%) hue-rotate(175deg)
+    brightness(111%) contrast(98%);
+}
+
+.offcanvas-header button.btn-close {
+  box-shadow: none;
+}
+
+.offcanvas-header button.btn-close:hover {
+  filter: invert(9%) sepia(65%) saturate(5498%) hue-rotate(355deg)
+    brightness(100%) contrast(113%);
 }

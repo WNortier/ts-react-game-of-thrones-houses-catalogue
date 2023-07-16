@@ -1,15 +1,21 @@
 .layout-basic-offcanvas {
-    background: linear-gradient(87.4deg, rgb(255, 241, 165) 1.9%, rgb(200, 125, 76) 49.7%, rgb(83, 54, 54) 100.5%);
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border: none;
+  background: linear-gradient(
+    87.4deg,
+    rgb(255, 241, 165) 1.9%,
+    rgb(200, 125, 76) 49.7%,
+    rgb(83, 54, 54) 100.5%
+  );
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: none !important;
+  outline: none !important;
 }
 
 .layout-basic-offcanvas:hover {
-    box-shadow: rgba(105, 23, 101, 0.3) 0px 8px 24px;
+  box-shadow: rgba(105, 23, 101, 0.3) 0px 8px 24px;
 }
 
 .layout-basic-offcanvas.offcanvas.offcanvas-start.show {
-    border: none;
-    border-top-right-radius: 10.21px;
-    border-bottom-right-radius: 10.21px;
+  border: none;
+  border-top-right-radius: 10.21px;
+  border-bottom-right-radius: 10.21px;
 }

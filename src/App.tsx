@@ -1,129 +1,83 @@
-import { useState, useEffect } from 'react'
-import NavigationBar from './components/navigation/NavigationBar'
-import Container from 'react-bootstrap/Container';
-import LoginForm from './components/forms/Login';
-import axios from 'axios'
-import { HashRouter, createBrowserRouter, RouterProvider, useNavigate, BrowserRouter } from "react-router-dom";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Route, Routes } from 'react-router-dom'
-import ErrorPage from './components/ErrorPage';
-import Splash from './components/Splash';
-import PrimaryTable from './components/tables/UserTable';
-import CharactersTable from './components/tables/CharactersTable';
-import { CircleLoader } from 'react-spinners';
-import BooksTable from './components/tables/BooksTable';
-import { Breadcrumb } from 'react-bootstrap';
-import AppModal from './components/Modal';
-import Preferences from './components/About';
-import Home from './components/Home';
-import HousesTable from './components/tables/HousesTable';
-import OffCanvas from './components/OffCanvas';
-import HousesTableMore from './components/tables/HousesTableMore';
-
+import { useState, useEffect, useRef } from "react";
+import NavigationBar from "./components/navigation/NavigationBar";
+import Container from "react-bootstrap/Container";
+import LoginForm from "./pages/Login";
+import { Route, Routes } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import Splash from "./pages/Splash";
+import PrimaryTable from "./components/tables/UserTable";
+import CharactersTable from "./components/tables/CharactersTable";
+import { CircleLoader } from "react-spinners";
+import BooksTable from "./components/tables/BooksTable";
+import { Breadcrumb } from "react-bootstrap";
+import Preferences from "./pages/About";
+import HousesTable from "./components/tables/HousesTable";
+import OffCanvas from "./components/OffCanvas";
+import HousesTableMore from "./components/tables/HousesTableMore";
+import Lore from "./pages/Lore";
+import CharactersMore from "./components/tables/CharactersMore";
+import React from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [bg, setBg] = useState("./mainbg01.jpeg")
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('stayLoggedIn') === 'true' ? true : false || false)
-  const [videoComplete, setVideoComplete] = useState(false)
-  const [init, setInit] = useState(localStorage.getItem('init'))
-  const [usersO, setUsersO] = useState(0)
-  const [loading, setLoading] = useState(false)
+  const musicRef = useRef()
+  const [bg, setBg] = useState("./mainbg01.jpeg");
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("stayLoggedIn") === "true" ? true : false || false,
+  );
+  const [videoComplete, setVideoComplete] = useState(false);
+  const [init] = useState(localStorage.getItem("init"));
+  const [loading, setLoading] = useState(false);
 
-  const [showOffCanvasSettings, setShowOffCanvasSettings] = useState(false)
-
-  const getHouses = async () => {
-    const response = await axios.get('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=500')
-    // console.log(response.data)
-  }
-
+  const [showOffCanvasSettings, setShowOffCanvasSettings] = useState(false);
 
   useEffect(() => {
-    // console.log(localStorage.getItem('disableVary'))
-    if (localStorage.getItem('disableVary') === 'true') {
-      setBg("./houses.jpeg")
-
+    if (localStorage.getItem("disableVary") === "true") {
+      setBg("./houses.jpeg");
     } else {
-
-      //@ts-ignore
-      if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2]?.substring(0, 5) === 'house') {
-        setBg("./houses.jpeg")
-        //@ts-ignore
-      } else if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2] === 'books') {
-
-        setBg("./books.jpeg")
-        //@ts-ignore
-      } else if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2] === 'about') {
-
-        setBg("./houses.jpeg")
-        //@ts-ignore
-      } else if (window.location.pathname.split('/')[import.meta.env.DEV ? 1 : 2] === 'users') {
-        //@ts-ignore
-
-        setBg("./houses.jpeg")
+      const path = window.location.pathname.split("/")[process.env.DEV ? 1 : 2]?.substring(0, 5);
+      if (path === "house" || path === "chara") {
+        setBg("./houses.jpeg");
+      } else if (path === "books" || path === "lore" || path === "/*") {
+        setBg("./mainbg01.jpeg");
       } else {
-        //@ts-ignore
-
-        setBg("./mainbg01.jpeg")
+        setBg("./books.jpeg");
       }
     }
-  }, [window.location.pathname])
+  }, []);
 
   useEffect(() => {
+    document.getElementById("video")?.classList.add("invis");
 
-
-
-    if (localStorage.getItem('flush') !== 'true') {
-      localStorage.removeItem('hasExited')
-      localStorage.setItem('loggedin', 'false');
-      localStorage.setItem('disableLogin', 'false')
-      localStorage.setItem('init', 'false')
-      localStorage.setItem('flush', 'true')
+    if (localStorage.getItem("flush") !== "true") {
+      localStorage.setItem("flush", "true");
+      localStorage.setItem("hasExited", "false");
+      localStorage.setItem("loggedin", "false");
+      // localStorage.setItem("disableLogin", "false");
+      localStorage.setItem("init", "false");
+      localStorage.setItem("flush", "false");
     }
-    // if (!init) {
-    document.getElementById('video')?.classList.add('invis')
 
-    if (localStorage.getItem('disableLogin') === 'true')
-      localStorage.setItem('loggedin', 'true')
+    if (localStorage.getItem("disableLogin") === "true")
+      localStorage.setItem("loggedin", "true");
+  }, []);
 
-    // console.log(document.getElementById('video'))
-    // localStorage.getItem('email')! !== '' ? localStorage.setItem('email', '') : null
-    // document.querySelector('#login-form')?.classList.add('invis')
-    // if (document.getElementById('splash-layer'))
-    // document.getElementById('splash-layer')?.classList.add('begin');
-    // }
-
-    // window.location.pathname = '/chars's
-    // setIsLoggedIn(true)
-
-    // getHouses()
-  }, [])
-  // setInterval(() => {
-  //   switch (bg) {
-  //     case "./src/assets/mainbg01.jpeg": {
-  //       setBg("./assets/mainbg01.jpeg")
-  //       break
-  //     }
-  //     case "./assets/mainbg01.jpeg": {
-  //       setBg("./assets/mainbg01.jpeg")
-  //       break
-  //     }
-  //   }
-  // }, 1_000_00)
-
-  const override: React.CSSProperties = {
+  const override = {
     display: "block",
     margin: "0 auto",
     borderColor: "rgb(105, 23, 101)",
   };
 
-
-
-
   const appLoader = (
-    <div style={{ margin: 'auto', display: 'flex', justifyContent: 'center', marginTop: '15em' }}>
-      <CircleLoader color={'rgb(105, 23, 101)'}
+    <div
+      style={{
+        margin: "auto",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "15em",
+      }}
+    >
+      <CircleLoader
+        color={"rgb(105, 23, 101)"}
         loading={loading}
         cssOverride={override}
         size={50}
@@ -131,124 +85,182 @@ function App() {
         data-testid="loader"
       />
     </div>
-  )
+  );
 
   const handleSetInit = () => {
-    const init = localStorage.getItem('init')
-
+    const init = localStorage.getItem("init");
     if (init) {
-      if (init === 'true') localStorage.setItem('init', 'false')
-    } else localStorage.setItem('init', 'true')
-  }
-
-
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
-      // element: <PrimaryTable />,
-      // element: <LoginForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
-
-      // errorElement: <ErrorPage />,
-      // children: [
-      //   // { index: true, element: <LoginForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
-
-      //   // { index: true, element: <PrimaryTable isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
-      //   { index: true, element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
-      //   {
-      //     path: 'something',
-      //     element: <LoginForm init={init} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
-      //     children: [
-      //       {
-      //         path: 'splash',
-      //         element: <Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      //       },
-      //     ],
-      //   },
-      // ],
-    },
-    {
-      path: '/login',
-      element: <LoginForm init={init} setInit={handleSetInit} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
-      // action: newsletterAction,
-    }
-    ,
-    {
-      path: '/users',
-      element: loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <PrimaryTable /> : <></>,
-      // action: newsletterAction,
-    },
-    {
-      path: '/characters',
-      element:
-        loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <CharactersTable /> : <></>,
-      // action: newsletterAction,
-    },
-
-    {
-      path: '/books',
-      element:
-        loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <BooksTable /> : <></>,
-      // action: newsletterAction,
-    },
-    {
-      path: '/houses',
-      element:
-        loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>,
-    },
-    {
-      path: '/houses/:name',
-      element:
-        loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTableMore /> : <></>,
-    },
-    {
-      path: '*',
-      element: <ErrorPage />,
-      // action: newsletterAction,
-    }
-    //@ts-ignore
-  ], { basename: import.meta.env.DEV ? '/' : '/game-of-thrones-houses-catalogue' })
+      if (init === "true") localStorage.setItem("init", "false");
+    } else localStorage.setItem("init", "true");
+  };
 
   return (
-
-
-    <Container id="main-container" style={{ backgroundImage: `url(${bg})`, padding: window.location.pathname === '/' ? '0px' : '2em' }} fluid>
+    <Container
+      id="main-container"
+      style={{
+        backgroundImage: `url(${bg})`,
+        padding: window.location.pathname === "/" ? "0px" : "2em",
+      }}
+      fluid
+    >
       {/* <div id='splash-layer'>
       </div> */}
 
-      {localStorage.getItem('loggedin') === 'true' ? <Breadcrumb /> : null}
+      {localStorage.getItem("loggedin") === "true" ? <Breadcrumb /> : null}
       {/* <RouterProvider router={router} /> */}
 
-
-      {localStorage.getItem('loggedin') === 'true' || (localStorage.getItem('disableLogin') !== 'true' && window.location.pathname === '/') ? <NavigationBar showOffCanvasSettings={showOffCanvasSettings} setShowOffCanvasSettings={setShowOffCanvasSettings} setLoading={setLoading} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> : null}
+      {localStorage.getItem("loggedin") === "true" ||
+        (localStorage.getItem("disableLogin") !== "true" &&
+          window.location.pathname === "/") ? (
+        <NavigationBar
+          showOffCanvasSettings={showOffCanvasSettings}
+          setShowOffCanvasSettings={setShowOffCanvasSettings}
+          setLoading={setLoading}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      ) : null}
       <Routes>
+        <Route path={"/"} index element={<Splash />} />
+        <Route
+          path="/login"
+          element={
+            <LoginForm
+              init={init}
+              setInit={handleSetInit}
+              setVideoComplete={setVideoComplete}
+              videoComplete={videoComplete}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <PrimaryTable />
+            ) : (
+              <></>
+            )
+          }
+        />
+        <Route
+          path="/books"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <BooksTable />
+            ) : (
+              <></>
+            )
+          }
+        />
+        <Route
+          path="/characters"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <CharactersTable setLoading={setLoading} />
+            ) : (
+              <></>
+            )
+          }
+        />
+        <Route
+          path="/characters/:name"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <CharactersMore />
+            ) : (
+              <></>
+            )
+          }
+        />
 
-        <Route path={"/"} index element={<Splash isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/login" element={<LoginForm init={init} setInit={handleSetInit} setVideoComplete={setVideoComplete} videoComplete={videoComplete} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/users" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <PrimaryTable /> : <></>} />
-        <Route path="/books" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <BooksTable /> : <></>} />
-        <Route path="/characters" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <CharactersTable setLoading={setLoading} /> : <></>} />
-        <Route path="/houses" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>} />
-        <Route path="/houses/:name" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTableMore /> : <></>} />
+        <Route
+          path="/houses"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <HousesTable />
+            ) : (
+              <></>
+            )
+          }
+        />
+        <Route
+          path="/houses/:name"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <HousesTableMore />
+            ) : (
+              <></>
+            )
+          }
+        />
 
-        <Route path="/about" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <Preferences /> : <></>} />
-        <Route path="/home" element={loading ? appLoader : localStorage.getItem('loggedin') === 'true' ? <HousesTable /> : <></>} />
+        <Route
+          path="/about"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <Preferences />
+            ) : (
+              <></>
+            )
+          }
+        />
+        <Route
+          path="/lore"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <Lore />
+            ) : (
+              <></>
+            )
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            loading ? (
+              appLoader
+            ) : localStorage.getItem("loggedin") === "true" ? (
+              <HousesTable />
+            ) : (
+              <></>
+            )
+          }
+        />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
 
-      <OffCanvas showOffCanvasSettings={showOffCanvasSettings} setShowOffCanvasSettings={setShowOffCanvasSettings} />
+      <OffCanvas
+        showOffCanvasSettings={showOffCanvasSettings}
+        setShowOffCanvasSettings={setShowOffCanvasSettings}
+      />
 
-
-
-
-      <audio id='music'>
+      <audio id="music">
         <source src="./mythical.mp3" type="audio/mpeg"></source>
       </audio>
-      <video muted id='video' loop>
+      <video muted id="video" loop>
         <source src="./got.mp4" type="video/mp4"></source>
       </video>
     </Container>
-  )
+  );
 }
 
-export default App
+export default App;

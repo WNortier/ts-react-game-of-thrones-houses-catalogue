@@ -1,39 +1,36 @@
 table {
-    border-collapse: collapse;
-    /* border-radius: 50px; */
-    /* width: 50%; */
-    /* margin: 5rem; */
-    font-weight: bold;
+  border-collapse: collapse;
+  /* border-radius: 50px; */
+  /* width: 50%; */
+  /* margin: 5rem; */
+  font-weight: bold;
 }
 
 th {
-    padding: 1rem 1rem 1rem 0.5rem !important;
-    font-size: 1.1em;
-    padding-left: 0.45em !important;
+  padding: 1rem 1rem 1rem 0.5rem !important;
+  font-size: 1.1em;
+  padding-left: 0.45em !important;
 }
 
 td {
-    padding-left: 0.45em !important;
-    padding-top: 0.35em !important;
-    padding-bottom: 0.35em !important;
+  padding-left: 0.45em !important;
+  padding-top: 0.35em !important;
+  padding-bottom: 0.35em !important;
 
-    font-size: 1.1em;
+  font-size: 1.1em;
 }
 
 tr {
-    background: rgb(105, 23, 101);
-    /* border: 2px solid blue; */
-    padding: 1em auto 1em auto;
-
+  background: rgb(105, 23, 101);
+  /* border: 2px solid blue; */
+  padding: 1em auto 1em auto;
 }
-
-
 
 #characters-container,
 #books-container,
 #houses-container {
-    overflow: scroll;
-    margin-top: 3em;
-    /* margin: 1em; */
-    /* margin-top: 2em; */
+  overflow: scroll;
+  margin-top: 3em;
+  /* margin: 1em; */
+  /* margin-top: 2em; */
 }

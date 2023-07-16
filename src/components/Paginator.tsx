@@ -1,190 +1,252 @@
-import { Container } from 'react-bootstrap';
-import Pagination from 'react-bootstrap/Pagination';
-import useTsPaginator from 'ts-paginator';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { useEffect } from 'react';
-import React from 'react'
+import { Container } from "react-bootstrap";
+import Pagination from "react-bootstrap/Pagination";
+import useTsPaginator from "ts-paginator";
+import Dropdown from "react-bootstrap/Dropdown";
+import {
+  Dispatch,
+  FormEvent,
+  ReactNode,
+  SetStateAction,
+  useCallback,
+  useEffect,
+} from "react";
 
-function Paginator(props: any) {
+function Paginator(props: {
+  searched?: boolean;
+  resetData?: () => void;
+  setLoading?: Dispatch<SetStateAction<boolean>>;
+  setData?: Dispatch<SetStateAction<never[]>>;
+  data: number[];
+  records: number;
+  setUserData?: (arg: number[]) => void;
+  getHouses?: (page: string, rows: string) => void;
+  getChars?: (page: string, rows: string) => void;
+  getBooks?: (page: string, rows: string) => void;
+}) {
+  const {
+    totalRecordCount,
+    rowsPerPage,
+    currentPage,
+    _determinePaginationMessage,
+    // _determinePaginationDisabledState,
+    _determinePaginationPages,
+    _determineRowsPerPageOptions,
+    _handleChangeTotalRecordCount,
+    _handleChangeRowsPerPage,
+    _handleChangePage,
+  } = useTsPaginator(props.records, 10);
 
-    const {
-        totalRecordCount,
-        rowsPerPage,
-        currentPage,
-        _determinePaginationMessage,
-        _determinePaginationDisabledState,
-        _determinePaginationPages,
-        _determineRowsPerPageOptions,
-        _handleChangeTotalRecordCount,
-        _handleChangeRowsPerPage,
-        _handleChangePage,
-    } = useTsPaginator(props.records, 10);
+  const initPagination = () => {
+    _handleChangeTotalRecordCount(props.records);
+    _handleChangeRowsPerPage(10);
+    _handleChangePage(1);
+    handlePages();
+    dataFetcher();
+  };
 
-    useEffect(() => {
-        initPagination()
+  useEffect(() => {
+    initPagination();
+  }, []);
 
-    }, [])
+  const dataFetcher = () => {
+    if (props.setUserData)
+      props.setUserData([
+        ...props.data.filter(
+          (i: number) =>
+            i >= rowsPerPage * 1 - rowsPerPage && i <= rowsPerPage * +1,
+        ),
+      ]);
+    if (props.getChars) props.getChars(String(1), String(10));
+    if (props.getBooks) props.getBooks(String(1), String(10));
+    if (props.getHouses) props.getHouses(String(1), String(10));
+  };
 
-    const initPagination = () => {
-        _handleChangeTotalRecordCount(props.records);
-        _handleChangeRowsPerPage(10);
-        _handleChangePage(1);
-        if (props.setUserData)
-            props.setUserData([...props.data.filter((d: any, i: number) => (i >= (rowsPerPage * 1) - rowsPerPage) && (i <= (rowsPerPage * +1)))]);
-        if (props.getChars)
-            props.getChars(String(1), String(rowsPerPage))
-        if (props.getBooks)
-            props.getBooks(String(1), String(rowsPerPage))
-        if (props.getHouses)
-            props.getHouses(String(1), String(rowsPerPage))
-    }
+  const handleChangePaginationPage = (page: number, rows?: number) => {
+    const rowCount = rows ? rows : rowsPerPage;
+    _handleChangeRowsPerPage(rowCount);
+    _handleChangePage(+page);
+    _determinePaginationPages();
+    _determineRowsPerPageOptions();
+    handlePages();
+    // dataFetcher();
+    if (props.setUserData)
+      props.setUserData([
+        ...props.data.filter(
+          (i: number) =>
+            i >= rowsPerPage * 1 - rowsPerPage && i <= rowsPerPage * +1,
+        ),
+      ]);
+    if (props.getChars) props.getChars(String(page), String(rowCount));
+    if (props.getBooks) props.getBooks(String(page), String(rowCount));
+    if (props.getHouses) props.getHouses(String(page), String(rowCount));
+  };
 
-    const message = _determinePaginationMessage({ verb: 'Showing' });
-    const paginationPages = _determinePaginationPages()
-
-    const rowsPerPageOptions = _determineRowsPerPageOptions()
-
-    const handleChangePaginationPage = (page: any) => {
-        // if (e)s
-        // e.preventDefault()
-        _handleChangePage(+page)
-        _determinePaginationPages()
-        _determineRowsPerPageOptions()
-        if (props.setUserData)
-            props.setUserData([...props.data.filter((d: any, i: number) => (i > (rowsPerPage * page) - rowsPerPage) && (i <= (rowsPerPage * +page)))]);
-        // console.log(page, rowsPerPage)
-        if (props.getChars)
-            props.getChars(String(page), String(rowsPerPage))
-
-        if (props.getBooks)
-            props.getBooks(String(page), String(rowsPerPage))
-
-        if (props.getHouses)
-            props.getHouses(String(page), String(rowsPerPage))
-    }
-
-    const handlePaginationBtn = (n: number) => {
-
-        handleChangePaginationPage(n);
-    }
-
-    const handleNext = (n: number) => {
-        let curr = currentPage + 1
-        handleChangePaginationPage(curr + 1);
-
-    }
-
-    const handlePrev = (n: number) => {
-        let curr = currentPage + 1
-        handleChangePaginationPage(curr - 1);
-
-    }
-
-    const handleFirst = (n: number) => {
-        handleChangePaginationPage(n);
-
-    }
-
-    const handleLast = (n: number) => {
-        handleChangePaginationPage(_determinePaginationPages()[(_determinePaginationPages().length - 1)]);
-
-    }
-
-
-    let items: any = [];
-    items.unshift(
-        <Pagination.Next disabled={_determinePaginationPages()[(_determinePaginationPages().length - 1)] === currentPage || totalRecordCount <= 10} id="paginator-item" onClick={(e) => handleNext(currentPage + 1)} key={Math.random()} >
-            {/* Next */}
-        </Pagination.Next>,
-    )
-    items.unshift(
-        <Pagination.First disabled={totalRecordCount <= 10} id="paginator-item" onClick={(e) => handleFirst(1)} key={Math.random()} >
-            {/* First */}
-        </Pagination.First>,
-    )
-
-    paginationPages.forEach((p, i) => p === 0 ? items.push(
-        <Pagination.Ellipsis key={i} id="paginator-item" onClick={(e) => e.preventDefault()} />
-    ) : items.push(
-        // active={p === active}
-        <Pagination.Item id="paginator-item" onClick={(e) => handleChangePaginationPage(p)} key={i} >
-            {p}
-        </Pagination.Item>,
-    ))
-
-    items.push(
-        <Pagination.Prev id="paginator-item" disabled={currentPage === 0 || totalRecordCount <= 10} onClick={(e) => handlePrev(+currentPage - 1)} key={Math.random()} >
-            {/* Previous */}
-        </Pagination.Prev>,
-    )
-
-    items.push(
-        <Pagination.Last disabled={totalRecordCount <= 10} id="paginator-item" onClick={(e) => handleLast(1)} key={Math.random()} >
-            {/* Last */}
-        </Pagination.Last>,
-    )
-
-
-
-
-
-
-
-    // for (let number = 0; number <= paginationPages.length; number++) {
-    //     if (paginationPages[number] === 0) {
-    //         items.push(
-    //             <Pagination.Ellipsis key={number} id="paginator-item" onClick={(e) => e.preventDefault()} />
-    //         );
-    //     } else {
-
-    //         items.push(
-    //             // active={number === active}
-    //             <Pagination.Item id="paginator-item" onClick={(e) => handleChangePaginationPage(number)} key={number} >
-    //                 {number}
-    //             </Pagination.Item>,
-    //         );
-    //     }
-
-    // }
-
-    const rppo = rowsPerPageOptions.map((o, i) =>
-
-        <Dropdown.Item style={{ width: '300px' }} key={i} onClick={(e) => e.preventDefault()} href={String(o)}>{o}</Dropdown.Item>
-    )
-
-    const handleRowsPerPageDropdownChange = (e: any) => {
-        _handleChangeRowsPerPage(+e)
-        props.setData(props.fetcher().filter((d: any, i: number) => i < rowsPerPage * (currentPage + 1)))
-        _handleChangeTotalRecordCount(props.fethcher().length)
-    }
-
-    const pagesUserInterfaceElement = (
-        <Dropdown className='mr-auto'>
-            <Dropdown.Toggle id="paginator-item" onSelect={handleRowsPerPageDropdownChange}>
-                Dropdown Button
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu id="app-font" className='w-100'>
-                {rppo}
-            </Dropdown.Menu>
-        </Dropdown>
-    )
-
-
-    return (
-
-        <Container id="paginator-container" className='p-o m-0 mt-3' >
-            {/* {pagesUserInterfaceElement} */}
-            <div className='mr-auto'>
-                <div className="mb-2" style={{ display: 'flex', alignItems: 'end', color: '#000' }}>
-                    Page {currentPage + 1}
-                </div>
-                <Pagination id="paginator">{items}</Pagination>
-                <div style={{ display: 'flex', alignItems: 'end', color: '#000' }}>
-                    {_determinePaginationMessage()}
-                </div>
-            </div>
-        </Container>
+  const handleNext = () => handleChangePaginationPage(currentPage + 1 + 1);
+  const handlePrev = () => handleChangePaginationPage(currentPage + 1 - 1);
+  const handleFirst = () => handleChangePaginationPage(1);
+  const handleLast = () =>
+    handleChangePaginationPage(
+      _determinePaginationPages()[_determinePaginationPages().length - 1],
     );
+
+  const handlePages = (): ReactNode[] => {
+    const items: ReactNode[] = [];
+    items.unshift(
+      <Pagination.Next
+        disabled={
+          _determinePaginationPages()[
+          _determinePaginationPages().length - 1
+          ] === currentPage || totalRecordCount <= 10
+        }
+        id="paginator-item"
+        onClick={() => handleNext()}
+        key={Math.random()}
+      ></Pagination.Next>,
+    );
+    items.unshift(
+      <Pagination.First
+        disabled={totalRecordCount <= 10}
+        id="paginator-item"
+        onClick={() => handleFirst()}
+        key={Math.random()}
+      ></Pagination.First>,
+    );
+    let arr: number[] = [];
+
+    if (_determinePaginationPages().length === 0) {
+      arr = [
+        1,
+        0,
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        currentPage + 2,
+        currentPage + 3,
+        0,
+        23,
+      ];
+    } else {
+      arr = _determinePaginationPages();
+    }
+    arr.forEach((p: number, i: number) =>
+      p === 0
+        ? items.push(
+          <Pagination.Ellipsis
+            key={i}
+            id="paginator-item"
+            onClick={(e) => e.preventDefault()}
+          />,
+        )
+        : items.push(
+          <Pagination.Item
+            className={currentPage + 1 === p ? "paginator-item-active" : ""}
+            id="paginator-item"
+            onClick={() => handleChangePaginationPage(p)}
+            key={i}
+          >
+            {p}
+          </Pagination.Item>,
+        ),
+    );
+    items.push(
+      <Pagination.Prev
+        id="paginator-item"
+        disabled={currentPage === 0 || totalRecordCount <= 10}
+        onClick={() => handlePrev()}
+        key={Math.random()}
+      ></Pagination.Prev>,
+    );
+    items.push(
+      <Pagination.Last
+        disabled={totalRecordCount <= 10}
+        id="paginator-item"
+        onClick={() => handleLast()}
+        key={Math.random()}
+      ></Pagination.Last>,
+    );
+    return items;
+  };
+
+
+
+  useEffect(() => {
+    _handleChangeRowsPerPage(10);
+    _handleChangePage(1);
+    handlePages();
+  }, [
+    props.searched,
+  ]);
+
+  const handleRowsPerPageDropdownChange = (o: number) => {
+    handleChangePaginationPage(1, o);
+    window.scrollTo(0, 0);
+    _determinePaginationMessage();
+  };
+
+  const pagesUserInterfaceElement = (
+    <Dropdown style={{ marginRight: "10px", padding: "0px" }}>
+      <Dropdown.Toggle
+        style={{ padding: "0.55em", background: "#6D2369 !important" }}
+      >
+        {rowsPerPage}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu id="app-font" className="mr-5">
+        <Dropdown.Item
+          style={{ padding: "0.5em" }}
+          key={0}
+          onClick={(e: FormEvent) => {
+            e.preventDefault();
+            handleRowsPerPageDropdownChange(10);
+          }}
+        >
+          10
+        </Dropdown.Item>
+        <Dropdown.Item
+          style={{ padding: "0.5em" }}
+          key={1}
+          onClick={(e: FormEvent) => {
+            e.preventDefault();
+            handleRowsPerPageDropdownChange(50);
+          }}
+        >
+          50
+        </Dropdown.Item>
+        {/* {rppo} */}
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+
+  return (
+    <Container id="paginator-container" className="p-o m-0 mt-2">
+      <div className="mr-auto">
+        <div
+          className="mb-3 mt-4"
+          style={{ display: "flex", alignItems: "end", color: "#000" }}
+        >
+          Page {currentPage + 1}
+        </div>
+
+        <div className="flex">
+          {pagesUserInterfaceElement}
+          <Pagination id="paginator">
+            {handlePages()}
+          </Pagination>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "end",
+            color: "#000",
+            paddingBottom: "1.5em",
+          }}
+        >
+          {_determinePaginationMessage()}
+        </div>
+      </div>
+    </Container>
+  );
 }
+
 export default Paginator;

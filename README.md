@@ -1,11 +1,15 @@
 # game-of-thrones-houses-catalogue
+
 <<<<<<< Updated upstream
+
 # game-of-thrones-houses-catalogue
+
 =======
 <<<<<<< Updated upstream
 A catalogue detailing the various Houses from Game of Thrones
 =======
->>>>>>> Stashed changes
+
+> > > > > > > Stashed changes
 
 # Web-App Coding Challenge 👨🏼‍💻
 
@@ -17,7 +21,7 @@ By clicking on one house there should be further information on a details page.
 
 Please treat the coding challenge as if you were going to show it to a client afterwards.
 
-Design and UX are completely up to your creativity. 
+Design and UX are completely up to your creativity.
 
 ### APIs and Docs
 
@@ -43,7 +47,7 @@ Durch Klick auf ein Haus soll dieses auf einer Detailseite mit weiteren Informat
 
 Bitte behandle die Coding Challenge so, als würdest du sie anschließend einem Kunden vorstellen.
 
-Design und UX sind komplett deiner Kreativität überlassen. 
+Design und UX sind komplett deiner Kreativität überlassen.
 
 ### APIs und Docs
 
@@ -60,4 +64,5 @@ Hierzu stehen dir folgende Hilfsmittel zur Verfügung:
 ### Hinweis
 
 Denk daran, dass du mit der Aufgabe deine Fähigkeiten demonstrierst. Also beeindrucke uns 🤯
->>>>>>> Stashed changes
+
+> > > > > > > Stashed changes

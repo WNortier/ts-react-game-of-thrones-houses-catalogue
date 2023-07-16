@@ -1,16 +1,17 @@
 // vite.config.js
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import EnvironmentPlugin from 'vite-plugin-environment';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
   const config = {
-    plugins: [react()],
-    base: './',
+    plugins: [react(), EnvironmentPlugin('all')],
+    base: "./",
     build: {
-      target: 'modules',
+      target: "modules",
       define: {
-        'process.env': {},
+        "process.env": {},
       },
       rollupOptions: {
         output: {
@@ -18,14 +19,13 @@ export default defineConfig(({ command }) => {
         },
       },
       cssCodeSplit: true,
-
     },
-    appType: "spa"
+    appType: "spa",
+  };
+
+  if (command !== "serve") {
+    config.base = "/game-of-thrones-houses-catalogue";
   }
 
-  if (command !== 'serve') {
-    config.base = '/game-of-thrones-houses-catalogue'
-  }
-
-  return config
-})
+  return config;
+});
