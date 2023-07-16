@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import { Container } from "react-bootstrap";
-import Paginator from "../Paginator";
-import { generateUsers } from "../../data/users";
+import { generateUsers } from "../data/users";
+import Paginator from '../components/Paginator';
 
 function UsersTable() {
   const [appUsers, setAppUsers] = useState<
@@ -46,8 +46,8 @@ function UsersTable() {
         </tbody>
       </Table>
       <Paginator
-        records={generateUsers().length}
         data={generateUsers()}
+        records={generateUsers().length}
         setUserData={setAppUsersHandler}
         resetData={resetData}
       />

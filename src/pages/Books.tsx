@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
-import Paginator from "../Paginator";
+import Paginator from "../components/Paginator";
 
-function BooksTable() {
+const Books = () => {
   const [books, setBooks] = useState([]);
 
   const getBooks = async (page?: string, rows?: string) => {
@@ -108,4 +108,4 @@ function BooksTable() {
   );
 }
 
-export default BooksTable;
+export default Books;

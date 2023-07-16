@@ -1,7 +1,7 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 
-function BreadcrumbExample(props: { name: string; house?: string }) {
+function AppBreadcrumb(props: { name?: string; house?: string }) {
   const navigate = useNavigate();
   return (
     <Breadcrumb style={{ padding: "2em 0 0 5em", color: "white !important" }}>
@@ -20,4 +20,4 @@ function BreadcrumbExample(props: { name: string; house?: string }) {
   );
 }
 
-export default BreadcrumbExample;
+export default AppBreadcrumb;

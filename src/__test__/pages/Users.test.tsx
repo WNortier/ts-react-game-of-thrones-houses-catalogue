@@ -1,19 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
-import Lore from '../../pages/Lore';
 
-describe("Splash Screen Test", () => {
+import Users from '../../pages/Users';
 
+describe("Users Page Test Suite", () => {
     const setup = () => render(<MemoryRouter>
-        <Lore />
+        <Users />
     </MemoryRouter>)
 
     beforeEach(() => {
         setup()
     })
 
-    it("The heading should be in the document", () => {
-        const heading = screen.getByText(/Lore/i);
+    it("The heading should be in the documen", () => {
+        const heading = screen.getByText(/Users/i);
         expect(heading).toBeInTheDocument();
     });
 });

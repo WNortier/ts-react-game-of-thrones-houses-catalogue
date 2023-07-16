@@ -1,11 +1,11 @@
 {
   "name": "game-of-thrones-catalogue",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "rm -rf dist; vite build",
+    "dev": "npm run test && sleep 5 && vite",
+    "build": "rm -rf dist; vite build; sleep 2; cp README.md > dist/README.md; cat README.md >> dist/README.md",
     "lint": "eslint src --ext tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",

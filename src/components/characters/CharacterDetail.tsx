@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import BreadcrumbExample from "../Breadcrumb";
 
-function CharactersMore() {
+const CharacterDetail = () => {
   const location = useLocation();
   const [books, setResolvedBooks] = useState<string[]>([]);
   const [allegiances, setResolvedAllegiances] = useState<
@@ -40,7 +40,7 @@ function CharactersMore() {
 
   useEffect(() => {
     getCharacter(location.state.url);
-  }, [location.state.url]);
+  }, []);
 
   const getCharacter = async (url: string) => {
     const response = await axios.get(url);
@@ -78,7 +78,7 @@ function CharactersMore() {
   };
 
   return (
-    <Container>
+    <Container role='character-detail'>
       <BreadcrumbExample
         name={data?.name === "" ? data?.aliases[0] : data?.name}
       />
@@ -233,4 +233,4 @@ function CharactersMore() {
   );
 }
 
-export default CharactersMore;
+export default CharacterDetail;

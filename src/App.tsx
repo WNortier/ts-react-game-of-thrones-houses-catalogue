@@ -5,21 +5,19 @@ import LoginForm from "./pages/Login";
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import Splash from "./pages/Splash";
-import PrimaryTable from "./components/tables/UserTable";
-import CharactersTable from "./components/tables/CharactersTable";
+import PrimaryTable from "./pages/Users";
+import CharactersTable from "./pages/Characters";
 import { CircleLoader } from "react-spinners";
-import BooksTable from "./components/tables/BooksTable";
+import BooksTable from "./pages/Books";
 import { Breadcrumb } from "react-bootstrap";
 import Preferences from "./pages/About";
-import HousesTable from "./components/tables/HousesTable";
+import HousesTable from "./pages/Houses";
 import OffCanvas from "./components/OffCanvas";
-import HousesTableMore from "./components/tables/HousesTableMore";
+import HousesTableMore from "./components/houses/HousesDetail";
 import Lore from "./pages/Lore";
-import CharactersMore from "./components/tables/CharactersMore";
-import React from 'react';
+import CharactersMore from "./components/characters/CharacterDetail";
 
 function App() {
-  const musicRef = useRef()
   const [bg, setBg] = useState("./mainbg01.jpeg");
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("stayLoggedIn") === "true" ? true : false || false,

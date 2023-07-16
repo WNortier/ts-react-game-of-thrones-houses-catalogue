@@ -1,19 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
-import Lore from '../../pages/Lore';
+import Houses from '../../pages/Houses';
 
-describe("Splash Screen Test", () => {
+describe("Characters Page Test Suite", () => {
 
     const setup = () => render(<MemoryRouter>
-        <Lore />
+        <Houses />
     </MemoryRouter>)
 
     beforeEach(() => {
         setup()
     })
 
-    it("The heading should be in the document", () => {
-        const heading = screen.getByText(/Lore/i);
+    it("The heading should be in the documen", () => {
+        const heading = screen.getByText(/Houses/i);
         expect(heading).toBeInTheDocument();
     });
 });

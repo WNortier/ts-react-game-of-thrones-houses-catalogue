@@ -1,5 +1,7 @@
 # game-of-thrones-houses-catalogue
 
+![example workflow](https://github.com/wnortier/game-of-thrones-houses-catalogue/actions/workflows/deploy.yml/badge.svg)
+
 <<<<<<< Updated upstream
 
 # game-of-thrones-houses-catalogue

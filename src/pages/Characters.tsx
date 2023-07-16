@@ -3,11 +3,11 @@ import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import Paginator from "../Paginator";
-import AppModal from "../Modal";
+import Paginator from "../components/Paginator";
+import AppModal from "../components/Modal";
 import { CircleLoader } from "react-spinners";
 
-function CharactersTable(props: { setLoading: Dispatch<SetStateAction<boolean>> }) {
+const Characters = (props: { setLoading: Dispatch<SetStateAction<boolean>> }) => {
   const navigate = useNavigate();
   const [characters, setChars] = useState([]);
   const [charsPics, setCharsPics] = useState([]);
@@ -464,4 +464,4 @@ function CharactersTable(props: { setLoading: Dispatch<SetStateAction<boolean>> 
   );
 }
 
-export default CharactersTable;
+export default Characters;

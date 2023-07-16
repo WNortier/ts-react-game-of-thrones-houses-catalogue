@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import Paginator from "../Paginator";
+import Paginator from "../components/Paginator";
 
 function HousesTable() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function HousesTable() {
     const response = await axios.get(
       `https://anapioficeandfire.com/api/houses?page=${page}&pageSize=${rows}`,
     );
-    console.log(response.data);
+    // console.log(response.data);
     setHouses(response.data);
   };
 

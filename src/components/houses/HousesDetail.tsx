@@ -34,7 +34,7 @@ function HousesTableMore() {
   useEffect(() => {
     // getHouses("1", "10")
     getHouseMore(location.state.url);
-  }, [location.state.url]);
+  }, []);
 
   const getHouseMore = async (url: string) => {
     const response = await axios.get(url);
@@ -76,15 +76,15 @@ function HousesTableMore() {
         paramArg.split(" ").length === 1
           ? paramArg.split(" ")[0].toLowerCase()
           : `${paramArg.split(" ")[0].toLowerCase()}-${paramArg
-              .split(" ")[1]
-              .toLowerCase()}`;
+            .split(" ")[1]
+            .toLowerCase()}`;
     } else {
       arg =
         alias.split(" ").length === 1
           ? alias.split(" ")[0].toLowerCase()
           : `${alias.split(" ")[0].toLowerCase()}-${alias
-              .split(" ")[1]
-              .toLowerCase()}`;
+            .split(" ")[1]
+            .toLowerCase()}`;
     }
     navigate(`/characters/${arg}`, {
       state: {
@@ -94,7 +94,7 @@ function HousesTableMore() {
   };
 
   return (
-    <Container>
+    <Container role="houses-detail">
       <Row className="mb-5">
         <BreadcrumbExample house={houses?.name} />
         <Col

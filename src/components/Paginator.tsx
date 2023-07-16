@@ -16,9 +16,9 @@ function Paginator(props: {
   resetData?: () => void;
   setLoading?: Dispatch<SetStateAction<boolean>>;
   setData?: Dispatch<SetStateAction<never[]>>;
-  data: number[];
+  data: any[];
   records: number;
-  setUserData?: (arg: number[]) => void;
+  setUserData?: (arg: any) => void;
   getHouses?: (page: string, rows: string) => void;
   getChars?: (page: string, rows: string) => void;
   getBooks?: (page: string, rows: string) => void;
@@ -28,7 +28,7 @@ function Paginator(props: {
     rowsPerPage,
     currentPage,
     _determinePaginationMessage,
-    // _determinePaginationDisabledState,
+    _determinePaginationDisabledState,
     _determinePaginationPages,
     _determineRowsPerPageOptions,
     _handleChangeTotalRecordCount,
@@ -52,7 +52,7 @@ function Paginator(props: {
     if (props.setUserData)
       props.setUserData([
         ...props.data.filter(
-          (i: number) =>
+          (d, i: number) =>
             i >= rowsPerPage * 1 - rowsPerPage && i <= rowsPerPage * +1,
         ),
       ]);
@@ -185,7 +185,7 @@ function Paginator(props: {
 
   const pagesUserInterfaceElement = (
     <Dropdown style={{ marginRight: "10px", padding: "0px" }}>
-      <Dropdown.Toggle
+      <Dropdown.Toggle disabled={_determinePaginationDisabledState()}
         style={{ padding: "0.55em", background: "#6D2369 !important" }}
       >
         {rowsPerPage}

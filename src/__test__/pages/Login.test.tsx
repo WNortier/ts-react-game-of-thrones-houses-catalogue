@@ -1,7 +1,7 @@
 
 import { act, fireEvent, render, screen } from "@testing-library/react"
-import LoginForm from '../../../pages/Login'
 import { MemoryRouter } from 'react-router-dom';
+import LoginForm from '../../pages/Login';
 
 
 describe('Login component tests', () => {
