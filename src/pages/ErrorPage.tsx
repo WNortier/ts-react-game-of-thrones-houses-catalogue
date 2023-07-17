@@ -11,7 +11,7 @@ export default function ErrorPage() {
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
-      if (localStorage.getItem("init") === "false") navigate("/game-of-thrones-houses-catalogue/");
+      if (localStorage.getItem("init") === "false") navigate("/game-of-thrones-houses-catalogue");
       else navigate("/login");
     }, 5000);
     for (let i = 1; i <= 5; i++) {
