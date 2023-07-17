@@ -36,7 +36,7 @@ function App() {
       setBg(base + "houses.jpeg");
     } else {
       const path = window.location.pathname
-        .split("/")[process.env.DEV ? 0 : 1]?.substring(0, 5);
+        .split("/")[process.env.DEV ? 1 : 2]?.substring(0, 5);
       if (path === "house" || path === "chara") {
         setBg(base + "houses.jpeg");
       } else if (path === "books" || path === "lore" || path === "/*") {
