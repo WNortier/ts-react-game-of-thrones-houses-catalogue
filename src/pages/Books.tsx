@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { Col, Container, Row } from "react-bootstrap";
 import Paginator from "../components/Paginator";
-import { GOTService } from '../api/api';
+import { GOTService } from "../api/api";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
 
   const fetchBooks = async (page?: string, rows?: string) => {
-    const apiService = GOTService()
-    const data = await apiService.getBooks(page, rows)
+    const apiService = GOTService();
+    const data = await apiService.getBooks(page, rows);
     setBooks(data);
   };
 
@@ -104,6 +104,6 @@ const Books = () => {
       </Col>
     </Row>
   );
-}
+};
 
 export default Books;

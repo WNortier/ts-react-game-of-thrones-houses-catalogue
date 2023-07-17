@@ -76,15 +76,15 @@ function HousesTableMore() {
         paramArg.split(" ").length === 1
           ? paramArg.split(" ")[0].toLowerCase()
           : `${paramArg.split(" ")[0].toLowerCase()}-${paramArg
-            .split(" ")[1]
-            .toLowerCase()}`;
+              .split(" ")[1]
+              .toLowerCase()}`;
     } else {
       arg =
         alias.split(" ").length === 1
           ? alias.split(" ")[0].toLowerCase()
           : `${alias.split(" ")[0].toLowerCase()}-${alias
-            .split(" ")[1]
-            .toLowerCase()}`;
+              .split(" ")[1]
+              .toLowerCase()}`;
     }
     navigate(`/characters/${arg}`, {
       state: {

@@ -15,9 +15,9 @@ function Paginator(props: {
   resetData?: () => void;
   setLoading?: Dispatch<SetStateAction<boolean>>;
   setData?: Dispatch<SetStateAction<never[]>>;
-  data: { name: string; email: string; pass: string; }[];
+  data: { name: string; email: string; pass: string }[];
   records: number;
-  setUserData?: (arg: { name: string; email: string; pass: string; }[]) => void;
+  setUserData?: (arg: { name: string; email: string; pass: string }[]) => void;
   getHouses?: (page: string, rows: string) => void;
   getChars?: (page: string, rows: string) => void;
   getBooks?: (page: string, rows: string) => void;
@@ -71,8 +71,13 @@ function Paginator(props: {
     if (props.setUserData)
       props.setUserData([
         ...props.data.filter(
-          (i: any) =>
-            i >= rowsPerPage * 1 - rowsPerPage && i <= rowsPerPage * +1,
+          (d: { name: string; email: string; pass: string }, i: number) => {
+            if (i) {
+              return (
+                i >= +(rowsPerPage * 1 - rowsPerPage) && i <= rowsPerPage * +1
+              );
+            }
+          },
         ),
       ]);
     if (props.getChars) props.getChars(String(page), String(rowCount));
@@ -94,7 +99,7 @@ function Paginator(props: {
       <Pagination.Next
         disabled={
           _determinePaginationPages()[
-          _determinePaginationPages().length - 1
+            _determinePaginationPages().length - 1
           ] === currentPage || totalRecordCount <= 10
         }
         id="paginator-item"
@@ -130,22 +135,22 @@ function Paginator(props: {
     arr.forEach((p: number, i: number) =>
       p === 0
         ? items.push(
-          <Pagination.Ellipsis
-            key={i}
-            id="paginator-item"
-            onClick={(e) => e.preventDefault()}
-          />,
-        )
+            <Pagination.Ellipsis
+              key={i}
+              id="paginator-item"
+              onClick={(e) => e.preventDefault()}
+            />,
+          )
         : items.push(
-          <Pagination.Item
-            className={currentPage + 1 === p ? "paginator-item-active" : ""}
-            id="paginator-item"
-            onClick={() => handleChangePaginationPage(p)}
-            key={i}
-          >
-            {p}
-          </Pagination.Item>,
-        ),
+            <Pagination.Item
+              className={currentPage + 1 === p ? "paginator-item-active" : ""}
+              id="paginator-item"
+              onClick={() => handleChangePaginationPage(p)}
+              key={i}
+            >
+              {p}
+            </Pagination.Item>,
+          ),
     );
     items.push(
       <Pagination.Prev
@@ -166,15 +171,11 @@ function Paginator(props: {
     return items;
   };
 
-
-
   useEffect(() => {
     _handleChangeRowsPerPage(10);
     _handleChangePage(1);
     handlePages();
-  }, [
-    props.searched,
-  ]);
+  }, [props.searched]);
 
   const handleRowsPerPageDropdownChange = (o: number) => {
     handleChangePaginationPage(1, o);
@@ -184,7 +185,8 @@ function Paginator(props: {
 
   const pagesUserInterfaceElement = (
     <Dropdown style={{ marginRight: "10px", padding: "0px" }}>
-      <Dropdown.Toggle disabled={_determinePaginationDisabledState()}
+      <Dropdown.Toggle
+        disabled={_determinePaginationDisabledState()}
         style={{ padding: "0.55em", background: "#6D2369 !important" }}
       >
         {rowsPerPage}
@@ -228,9 +230,7 @@ function Paginator(props: {
 
         <div className="flex">
           {pagesUserInterfaceElement}
-          <Pagination id="paginator">
-            {handlePages()}
-          </Pagination>
+          <Pagination id="paginator">{handlePages()}</Pagination>
         </div>
 
         <div

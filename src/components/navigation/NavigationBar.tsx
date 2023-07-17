@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { Gear } from "react-bootstrap-icons";
 
 function NavigationBar(props: {
-  init?: string | null,
-  showOffCanvasSettings: boolean,
-  isLoggedIn: boolean,
-  setLoading: (arg: boolean) => void,
-  setIsLoggedIn: (arg: boolean) => void,
-  setShowOffCanvasSettings: (arg: boolean) => void,
+  init?: string | null;
+  showOffCanvasSettings: boolean;
+  isLoggedIn: boolean;
+  setLoading: (arg: boolean) => void;
+  setIsLoggedIn: (arg: boolean) => void;
+  setShowOffCanvasSettings: (arg: boolean) => void;
 }) {
   const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ function NavigationBar(props: {
       (document.getElementById("video") as HTMLVideoElement).pause();
       (document.getElementById("video") as HTMLVideoElement).currentTime = 0;
       document.getElementById("video")!.style.display = "block";
-      document.getElementById("video")!.classList.remove('begin');
+      document.getElementById("video")!.classList.remove("begin");
 
       if (
         localStorage.getItem("disableLogin") === "false" &&
@@ -111,8 +111,8 @@ function NavigationBar(props: {
       : "/" + window.location.pathname.split("/")[2];
     const currActive =
       pathname === "/" + navlink ||
-        navlink === "settings" ||
-        navlink === "offcanvas"
+      navlink === "settings" ||
+      navlink === "offcanvas"
         ? true
         : false;
     if (
@@ -172,10 +172,10 @@ function NavigationBar(props: {
                   active === ""
                     ? "Users"
                     : active === "/users"
-                      ? "Users"
-                      : active === "/about"
-                        ? "About"
-                        : "Users"
+                    ? "Users"
+                    : active === "/about"
+                    ? "About"
+                    : "Users"
                 }
                 style={{ marginLeft: "0.2em" }}
                 className={`nav-link-dropdown`}

@@ -1,4 +1,10 @@
-import { CSSProperties, Dispatch, FormEvent, SetStateAction, useState } from "react";
+import {
+  CSSProperties,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useState,
+} from "react";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,8 +12,11 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import Paginator from "../components/Paginator";
 import AppModal from "../components/Modal";
 import { CircleLoader } from "react-spinners";
+import { GOTService } from "../api/api";
 
-const Characters = (props: { setLoading: Dispatch<SetStateAction<boolean>> }) => {
+const Characters = (props: {
+  setLoading: Dispatch<SetStateAction<boolean>>;
+}) => {
   const navigate = useNavigate();
   const [characters, setChars] = useState([]);
   const [charsPics, setCharsPics] = useState([]);
@@ -98,25 +107,13 @@ const Characters = (props: { setLoading: Dispatch<SetStateAction<boolean>> }) =>
     }, 1350);
   };
 
-  const getChars = async (
-    page?: string,
-    rows?: string,
-    // name?: string,
-    // gender?: string,
-    // culture?: string,
-    // born?: string,
-    // died?: string,
-    // isAlive?: boolean,
-  ) => {
+  const fetchChars = async (page?: string, rows?: string) => {
     setTimeout(async () => {
-      const endpoint = `https://anapioficeandfire.com/api/characters?page=${page}&pageSize=${rows}`;
-      const response = await axios.get(endpoint);
-
-      setChars(response.data);
-      const charactersPics = await axios.get(
-        `https://thronesapi.com/api/v2/characters`,
-      );
-      setCharsPics(charactersPics.data);
+      const apiService = GOTService();
+      const data = await apiService.getCharacters(page, rows);
+      setChars(data);
+      const characterPics = await apiService.getCharacterPictures();
+      setCharsPics(characterPics);
     }, 1350);
   };
 
@@ -165,15 +162,15 @@ const Characters = (props: { setLoading: Dispatch<SetStateAction<boolean>> }) =>
         paramArg.split(" ").length === 1
           ? paramArg.split(" ")[0].toLowerCase()
           : `${paramArg.split(" ")[0].toLowerCase()}-${paramArg
-            .split(" ")[1]
-            .toLowerCase()}`;
+              .split(" ")[1]
+              .toLowerCase()}`;
     } else {
       arg =
         alias.split(" ").length === 1
           ? alias.split(" ")[0].toLowerCase()
           : `${alias.split(" ")[0].toLowerCase()}-${alias
-            .split(" ")[1]
-            .toLowerCase()}`;
+              .split(" ")[1]
+              .toLowerCase()}`;
     }
     navigate(`/characters/${arg}`, {
       state: {
@@ -300,7 +297,7 @@ const Characters = (props: { setLoading: Dispatch<SetStateAction<boolean>> }) =>
           <Paginator
             setLoading={props.setLoading}
             records={1136}
-            getChars={getChars}
+            getChars={fetchChars}
             data={characters}
             setData={setChars}
             resetData={resetData}
@@ -462,6 +459,6 @@ const Characters = (props: { setLoading: Dispatch<SetStateAction<boolean>> }) =>
       </Col>
     </Row>
   );
-}
+};
 
 export default Characters;

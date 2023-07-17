@@ -1,19 +1,21 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from 'react-router-dom';
-import Lore from '../../pages/Lore';
+import { MemoryRouter } from "react-router-dom";
+import Lore from "../../pages/Lore";
 
 describe("Splash Screen Test", () => {
-
-    const setup = () => render(<MemoryRouter>
+  const setup = () =>
+    render(
+      <MemoryRouter>
         <Lore />
-    </MemoryRouter>)
+      </MemoryRouter>,
+    );
 
-    beforeEach(() => {
-        setup()
-    })
+  beforeEach(() => {
+    setup();
+  });
 
-    it("The heading should be in the document", () => {
-        const heading = screen.getByText(/Lore/i);
-        expect(heading).toBeInTheDocument();
-    });
+  it("The heading should be in the document", () => {
+    const heading = screen.getByText(/Lore/i);
+    expect(heading).toBeInTheDocument();
+  });
 });

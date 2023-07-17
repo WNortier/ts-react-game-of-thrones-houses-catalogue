@@ -2,7 +2,7 @@ import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import { Container } from "react-bootstrap";
 import { generateUsers } from "../data/users";
-import Paginator from '../components/Paginator';
+import Paginator from "../components/Paginator";
 
 function UsersTable() {
   const [appUsers, setAppUsers] = useState<

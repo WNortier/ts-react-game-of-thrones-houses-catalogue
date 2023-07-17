@@ -14,11 +14,7 @@
     "react-app"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "jest"
-  ],
+  "plugins": ["@typescript-eslint", "react", "jest"],
   "settings": {
     "react": {
       "pragma": "React",
@@ -28,10 +24,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.js", "*.jsx"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": "off"
       }

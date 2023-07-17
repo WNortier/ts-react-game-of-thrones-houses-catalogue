@@ -40,7 +40,11 @@ const About = () => {
             src="https://avatars.githubusercontent.com/u/45207010?v=4"
           />
           <Card.Body>
-            <Card.Title id="app-font" className="slowshake" style={{ marginBottom: '5em' }}>
+            <Card.Title
+              id="app-font"
+              className="slowshake"
+              style={{ marginBottom: "5em" }}
+            >
               About
             </Card.Title>
 

@@ -4,7 +4,6 @@ const Lore = () => {
   return (
     <Row className="mb-5">
       <Col md={12}>
-
         <Container
           id="books-container"
           className="layout-basic-form layout-basic-table layout-basic-margin"
@@ -12,7 +11,7 @@ const Lore = () => {
         >
           <h4 id="app-font">Lore</h4>
           <iframe
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", height: "95%" }}
             src="https://gameofthrones.fandom.com/wiki/Game_of_Thrones"
           ></iframe>
         </Container>

@@ -10,12 +10,12 @@ import { Container } from "react-bootstrap";
 import { generateUsers } from "../data/users";
 
 function LoginForm(props: {
-  setInit: () => void,
-  isLoggedIn: boolean,
-  setIsLoggedIn: (arg: boolean) => void,
-  setVideoComplete: (arg: boolean) => void,
-  init?: string | null,
-  videoComplete: boolean,
+  setInit: () => void;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (arg: boolean) => void;
+  setVideoComplete: (arg: boolean) => void;
+  init?: string | null;
+  videoComplete: boolean;
 }) {
   const [type, setType] = useState("password");
   const [userPassword, setUserPassword] = useState("");
@@ -26,9 +26,10 @@ function LoginForm(props: {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loginFormEl = (document.querySelector("#login-form") as HTMLDivElement);
-    const videoEl = (document?.getElementById("video") as HTMLVideoElement)
-    const navbarEl = document.querySelector("#layout-basic-navbar")
+
+    const loginFormEl = document.querySelector("#login-form") as HTMLDivElement;
+    const videoEl = document?.getElementById("video") as HTMLVideoElement;
+    const navbarEl = document.querySelector("#layout-basic-navbar");
     document.onkeydown = function (evt: { key: string; keyCode: number }) {
       {
         evt = evt || window;
@@ -39,11 +40,8 @@ function LoginForm(props: {
           isEscape = evt["keycode"] === 27;
         }
         if (isEscape) {
-          // loginFormEl?.classList.add("invis");
           videoEl?.classList.add("begin");
           localStorage.setItem("hasExited", "true");
-
-          // document.getElementById('video')!.style.display = 'none';
 
           setTimeout(() => {
             videoEl?.classList.add("invis");
@@ -58,11 +56,8 @@ function LoginForm(props: {
               props.setInit();
             }, 250);
           }, 5100);
-        } else {
-
         }
       }
-      // <DO YOUR WORK HERE>
     };
   }, []);
 
@@ -73,13 +68,13 @@ function LoginForm(props: {
   const handleLogin = async (e: FormEvent, email: string, pass: string) => {
     setErrors({ passErr: false, emailErr: false });
     e.preventDefault();
+    const navbarEl = document.querySelector("#layout-basic-navbar");
     const includesEmail = generateUsers()
       .map((u: { email: string; pass: string }) => u.email)
       .includes(email);
     const includesPass = generateUsers()
       .map((u: { email: string; pass: string }) => u.pass)
       .includes(pass);
-
     const bothIncorrect = !includesEmail && !includesPass;
     generateUsers().forEach(() => {
       if (includesEmail && includesPass === false) {
@@ -102,23 +97,15 @@ function LoginForm(props: {
             localStorage.removeItem("email");
             localStorage.removeItem("stayLoggedIn");
           }
-          document
-            .querySelector("#layout-basic-navbar")
-            ?.classList.remove("invis");
-          document.querySelector("#layout-basic-navbar")?.classList.add("vis");
-          document
-            .querySelector("#layout-basic-navbar")
-            ?.classList.add("fadein");
+          navbarEl?.classList.remove("invis");
+          navbarEl?.classList.add("vis");
+          navbarEl?.classList.add("fadein");
           setLoading(false);
           navigate("/houses");
         }, 2150);
       }
     });
   };
-
-  useEffect(() => {
-    // console.log(localStorage.getItem('email'))
-  }, []);
 
   const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserEmail(e.target.value);
@@ -128,45 +115,46 @@ function LoginForm(props: {
   const handleLoginCheckboxChange = () => {
     setLoginCheckbox(!loginCheckbox);
   };
-  useEffect(() => {
-    document.getElementById("video")?.classList.add("vis");
 
+  useEffect(() => {
+    (document.querySelector("#login-form") as HTMLDivElement)?.classList.add('invis')
+
+  }, [])
+  useEffect(() => {
+    const loginFormEl = document.querySelector("#login-form") as HTMLDivElement;
+    const navbarEl = document.querySelector("#layout-basic-navbar");
+    const videoEl = document?.getElementById("video") as HTMLVideoElement;
+
+    videoEl?.classList.add("vis");
+    // loginFormEl?.classList.remove('vis')
     if (
       localStorage.getItem("init") === "false" &&
       localStorage.getItem("hasExited") === "false"
     ) {
       if (!localStorage.getItem("email")) localStorage.setItem("email", "");
       if (localStorage.getItem("hasExited") === "true") return;
-      document.querySelector("#login-form")?.classList.add("invis");
+      navbarEl?.classList.add("invis");
       document.querySelector("#layout-basic-navbar")?.classList.add("invis");
 
       setTimeout(() => {
         if (localStorage.getItem("hasExited") === "true") return;
-        document?.getElementById("video")?.classList.remove("begin");
-        document?.getElementById("video")?.classList.add("begin");
-        document.querySelector("#login-form")?.classList.add("invis");
-
-        // document?.getElementById("video")?.classList.remove("begin");
-
-        // setTimeout(() => {
-        // document?.getElementById('video')?.classList.add('invis');
-        // document.getElementById('video')!.style.display = 'none';
-        // }, 5500);
+        videoEl?.classList.remove("begin");
+        videoEl?.classList.add("begin");
+        navbarEl?.classList.add("invis");
       }, 23_000);
-
-      // if (localStorage.getItem("hasExited") === "true") return;
-      // document.querySelector("#layout-basic-navbar")?.classList.add("invis");
 
       setTimeout(() => {
         if (localStorage.getItem("hasExited") === "true") return;
-        // (document.getElementById("video") as HTMLVideoElement).pause();
-        document?.getElementById("video")?.classList.add("invis");
+        videoEl?.classList.add("invis");
         props.setVideoComplete(true);
-        document.querySelector("#login-form")?.classList.remove("invis");
-        document.querySelector("#login-form")?.classList.add("vis");
-        document.querySelector("#login-form")?.classList.add("fadein");
+        navbarEl?.classList.remove("invis");
+        navbarEl?.classList.add("vis");
+        navbarEl?.classList.add("fadein");
+        loginFormEl?.classList.remove("invis");
+        loginFormEl?.classList.add("vis");
+        loginFormEl?.classList.add("fadein");
         props.setInit();
-      }, 27_000);
+      }, 26_000);
     }
   }, []);
 
@@ -207,7 +195,7 @@ function LoginForm(props: {
           <Form.Group className="mb-1">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              data-testid='login-input'
+              data-testid="login-input"
               autoComplete="true"
               value={userEmail}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -222,7 +210,11 @@ function LoginForm(props: {
 
           {errors.emailErr ? (
             <div>
-              <Form.Text data-testid='email-err' className="text" style={{ color: "red" }}>
+              <Form.Text
+                data-testid="email-err"
+                className="text"
+                style={{ color: "red" }}
+              >
                 Invalid Email
               </Form.Text>
             </div>
@@ -231,7 +223,7 @@ function LoginForm(props: {
           <Form.Label>Password</Form.Label>
           <Form.Group className="mb-1 d-flex">
             <Form.Control
-              data-testid='login-input'
+              data-testid="login-input"
               autoComplete="true"
               value={userPassword}
               onChange={(e) => setUserPassword(e.target.value)}
@@ -251,7 +243,11 @@ function LoginForm(props: {
 
           {errors.passErr ? (
             <div>
-              <Form.Text data-testid='pass-err' className="text" style={{ color: "red" }}>
+              <Form.Text
+                data-testid="pass-err"
+                className="text"
+                style={{ color: "red" }}
+              >
                 Invalid Password
               </Form.Text>
             </div>
@@ -267,7 +263,7 @@ function LoginForm(props: {
             />
           </Form.Group>
           <Button
-            data-testid='login-btn'
+            data-testid="login-btn"
             disabled={userEmail.length === 0 || userPassword.length === 0}
             id="login-btn"
             onClick={(e: FormEvent) => handleLogin(e, userEmail, userPassword)}

@@ -78,7 +78,7 @@ const CharacterDetail = () => {
   };
 
   return (
-    <Container role='character-detail'>
+    <Container role="character-detail">
       <BreadcrumbExample
         name={data?.name === "" ? data?.aliases[0] : data?.name}
       />
@@ -231,6 +231,6 @@ const CharacterDetail = () => {
       </Row>
     </Container>
   );
-}
+};
 
 export default CharacterDetail;

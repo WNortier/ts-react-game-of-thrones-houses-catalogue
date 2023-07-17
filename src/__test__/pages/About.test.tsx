@@ -1,19 +1,21 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from 'react-router-dom';
-import About from '../../pages/About';
+import { MemoryRouter } from "react-router-dom";
+import About from "../../pages/About";
 
 describe("About Screen Test", () => {
-
-    const setup = () => render(<MemoryRouter>
+  const setup = () =>
+    render(
+      <MemoryRouter>
         <About />
-    </MemoryRouter>)
+      </MemoryRouter>,
+    );
 
-    beforeEach(() => {
-        setup()
-    })
+  beforeEach(() => {
+    setup();
+  });
 
-    it("The About heading should be in the document", () => {
-        const heading = screen.getByText(/About/i);
-        expect(heading).toBeInTheDocument();
-    });
+  it("The About heading should be in the document", () => {
+    const heading = screen.getByText(/About/i);
+    expect(heading).toBeInTheDocument();
+  });
 });

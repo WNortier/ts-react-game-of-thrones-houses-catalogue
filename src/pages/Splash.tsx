@@ -5,8 +5,12 @@ export default function Splash() {
   const navigate = useNavigate();
 
   const handleBeginJourney = () => {
+
     // props.setIsLoggedIn(true)
-    const m = (document.getElementById("music") as HTMLAudioElement | null);
+    // document.querySelector("#layout-basic-navbar")?.classList.remove("vis");
+    // loginFormEl?.classList.add("invis");
+    // loginFormEl?.classList.remove("vis");
+    const m = document.getElementById("music") as HTMLAudioElement | null;
     if (m !== null) {
       m.play();
       m.volume = 0.1;
@@ -25,6 +29,8 @@ export default function Splash() {
     ) {
       navigate("/login");
     } else {
+      document.querySelector("#layout-basic-navbar")?.classList.remove("vis");
+
       document.querySelector("#layout-basic-navbar")?.classList.add("invis");
       localStorage.setItem("pause", "false");
       // (document.getElementById('video') as HTMLVideoElement).classList.add('vis');
