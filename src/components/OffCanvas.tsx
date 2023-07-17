@@ -21,13 +21,13 @@ function OffCanvasSettings(props: {
   const handleVideoSettingCheckbox = () => {
     if (showVid === true) {
       setShowVid(false);
-      setDisableVaryCheckbox(true);
-      localStorage.setItem("init", String('true'));
+      setDisableVaryCheckbox(false);
+      localStorage.setItem("init", String('false'));
       localStorage.setItem("disableVary", String('true'));
     } else {
       setShowVid(true);
-      setDisableVaryCheckbox(false);
-      localStorage.setItem("init", String('false'));
+      setDisableVaryCheckbox(true);
+      localStorage.setItem("init", String('true'));
       localStorage.setItem("disableVary", String('false'));
     }
   };
@@ -59,8 +59,14 @@ function OffCanvasSettings(props: {
   };
 
   const handleDisableVaryCheckbox = () => {
-    localStorage.setItem("disableVary", String(!disableVaryCheckbox));
+    // if (disableVaryCheckbox === true) {
+    // setShowVid(false);
     setDisableVaryCheckbox(!disableVaryCheckbox);
+    localStorage.setItem("disableVary", String(!disableVaryCheckbox));
+
+
+    // }
+    // setDisableVaryCheckbox(!disableVaryCheckbox);
   };
 
   return (
@@ -155,6 +161,7 @@ function OffCanvasSettings(props: {
                 className="basic-check"
                 type="checkbox"
                 label="Disable varying wallpaper"
+                disabled={!showVid}
                 checked={
                   localStorage.getItem("disableVary") === "true" ? true : false
                 }

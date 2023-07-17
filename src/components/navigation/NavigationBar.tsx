@@ -81,7 +81,7 @@ function NavigationBar(props: {
         // localStorage.setItem('loggedin', 'true');
 
         // (document.querySelector('#layout-basic-navbar') as HTMLElement).style.display = 'none'
-        navigate("/game-of-thrones-houses-catalogue");
+        navigate("/");
       } else {
         const loginFormEl = document.querySelector("#login-form") as HTMLDivElement;
         loginFormEl?.classList.remove("invis");
