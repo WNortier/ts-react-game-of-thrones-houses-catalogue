@@ -7,7 +7,7 @@ import EnvironmentPlugin from "vite-plugin-environment";
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react(), EnvironmentPlugin("all")],
-    base: "./game-of-thrones-houses-catalogue",
+    base: "/",
     build: {
       target: "modules",
       define: {
@@ -24,7 +24,7 @@ export default defineConfig(({ command }) => {
   };
 
   if (command !== "serve") {
-    config.base = "./game-of-thrones-houses-catalogue";
+    config.base = "/game-of-thrones-houses-catalogue";
   }
 
   return config;

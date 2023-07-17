@@ -21,7 +21,7 @@ import { BrowserRouter } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root") as HTMLDivElement).render(
   <React.StrictMode>
     <BrowserRouter
-      basename={"/"}
+      basename={"/game-of-thrones-houses-catalogue"}
     >
       <App />
     </BrowserRouter>
