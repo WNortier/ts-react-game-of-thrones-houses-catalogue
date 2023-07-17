@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
 
-    const base = process.env.DEV ? '/' : '/game-of-thrones-houses-catalogue/'
+    const base = process.env.DEV ? './' : './'
 
     if (localStorage.getItem("disableVary") === "true") {
       setBg(base + "houses.jpeg");
