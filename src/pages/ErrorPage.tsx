@@ -11,7 +11,9 @@ export default function ErrorPage() {
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
-      navigate("/login");
+      if (localStorage.getItem('init') === 'false') navigate("/")
+      else
+        navigate("/login");
     }, 5000)
     for (let i = 1; i <= 5; i++) {
       decrementor(i)
