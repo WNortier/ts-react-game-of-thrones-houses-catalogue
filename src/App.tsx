@@ -31,12 +31,13 @@ function App() {
   useEffect(() => {
 
     // const base = process.env.DEV ? './' : './'
-
+    console.log(window.location.pathname
+      .split("/")[process.env.DEV ? 1 : 2]?.substring(0, 5))
     if (localStorage.getItem("disableVary") === "true") {
       setBg("/houses.jpeg");
     } else {
       const path = window.location.pathname
-        .split("/")[process.env.DEV ? 1 : 2]?.substring(0, 5);
+        .split("/")[process.env.DEV ? 2 : 2]?.substring(0, 5);
       if (path === "house" || path === "chara") {
         setBg("/houses.jpeg");
       } else if (path === "books" || path === "lore" || path === "/*") {
