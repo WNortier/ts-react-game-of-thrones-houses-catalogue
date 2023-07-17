@@ -256,10 +256,10 @@ function App() {
       />
 
       <audio id="music">
-        <source src="/mythical.mp3" type="audio/mpeg"></source>
+        <source src="./mythical.mp3" type="audio/mpeg"></source>
       </audio>
       <video muted id="video" loop>
-        <source src="/got.mp4" type="video/mp4"></source>
+        <source src="./got.mp4" type="video/mp4"></source>
       </video>
     </Container>
   );
