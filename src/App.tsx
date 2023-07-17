@@ -18,7 +18,7 @@ import Lore from "./pages/Lore";
 import CharactersMore from "./components/characters/CharacterDetail";
 
 function App() {
-  const [bg, setBg] = useState(process.env.DEV ? './mainbg01.jpeg' : './game-of-thrones-houses-catalogue/mainbg01.jpeg');
+  const [bg, setBg] = useState('./mainbg01.jpeg');
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("stayLoggedIn") === "true" ? true : false || false,
   );
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
 
-    const base = process.env.DEV ? './' : './game-of-thrones-houses-catalogue'
+    const base = process.env.DEV ? './' : './'
 
     if (localStorage.getItem("disableVary") === "true") {
       setBg(base + "houses.jpeg");
