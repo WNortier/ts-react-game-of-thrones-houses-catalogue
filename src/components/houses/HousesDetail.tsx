@@ -76,15 +76,15 @@ function HousesTableMore() {
         paramArg.split(" ").length === 1
           ? paramArg.split(" ")[0].toLowerCase()
           : `${paramArg.split(" ")[0].toLowerCase()}-${paramArg
-              .split(" ")[1]
-              .toLowerCase()}`;
+            .split(" ")[1]
+            .toLowerCase()}`;
     } else {
       arg =
         alias.split(" ").length === 1
           ? alias.split(" ")[0].toLowerCase()
           : `${alias.split(" ")[0].toLowerCase()}-${alias
-              .split(" ")[1]
-              .toLowerCase()}`;
+            .split(" ")[1]
+            .toLowerCase()}`;
     }
     navigate(`/characters/${arg}`, {
       state: {
@@ -112,7 +112,7 @@ function HousesTableMore() {
               opacity: "0.88",
             }}
           >
-            <Card.Img variant="top" src={"/houses-map.jpeg"} />
+            <Card.Img variant="top" src={"./houses-map.jpeg"} />
             <Card.Body>
               <Card.Title id="app-font" className="slowshake">
                 {houses?.name}
