@@ -99,7 +99,7 @@ function Paginator(props: {
       <Pagination.Next
         disabled={
           _determinePaginationPages()[
-            _determinePaginationPages().length - 1
+          _determinePaginationPages().length - 1
           ] === currentPage || totalRecordCount <= 10
         }
         id="paginator-item"
@@ -135,22 +135,22 @@ function Paginator(props: {
     arr.forEach((p: number, i: number) =>
       p === 0
         ? items.push(
-            <Pagination.Ellipsis
-              key={i}
-              id="paginator-item"
-              onClick={(e) => e.preventDefault()}
-            />,
-          )
+          <Pagination.Ellipsis
+            key={i}
+            id="paginator-item"
+            onClick={(e) => e.preventDefault()}
+          />,
+        )
         : items.push(
-            <Pagination.Item
-              className={currentPage + 1 === p ? "paginator-item-active" : ""}
-              id="paginator-item"
-              onClick={() => handleChangePaginationPage(p)}
-              key={i}
-            >
-              {p}
-            </Pagination.Item>,
-          ),
+          <Pagination.Item
+            className={currentPage + 1 === p ? "paginator-item-active" : ""}
+            id="paginator-item"
+            onClick={() => handleChangePaginationPage(p)}
+            key={i}
+          >
+            {p}
+          </Pagination.Item>,
+        ),
     );
     items.push(
       <Pagination.Prev
@@ -213,7 +213,6 @@ function Paginator(props: {
         >
           50
         </Dropdown.Item>
-        {/* {rppo} */}
       </Dropdown.Menu>
     </Dropdown>
   );

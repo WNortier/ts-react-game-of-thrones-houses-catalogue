@@ -32,7 +32,8 @@ function App() {
     if (localStorage.getItem("disableVary") === "true") {
       setBg("/houses.jpeg");
     } else {
-      const path = window.location.pathname.split("/")[2]?.substring(0, 5);
+      const path = window.location.pathname
+        .split("/")[2]?.substring(0, 5);
       if (path === "house" || path === "chara") {
         setBg("/houses.jpeg");
       } else if (path === "books" || path === "lore" || path === "/*") {
@@ -47,18 +48,21 @@ function App() {
   useEffect(() => {
     document.getElementById("video")?.classList.add("invis");
     document.querySelector("#layout-basic-navbar")?.classList.add("invis")
-    localStorage.setItem("flush", "false");
-    localStorage.setItem("hasExited", "false");
-    localStorage.setItem("loggedin", "false");
-    localStorage.setItem("disableLogin", "false");
-    localStorage.setItem("init", "false");
-    localStorage.setItem("pause", "false");
 
-    // if (localStorage.getItem("disableLogin") === "true") {
-    //   localStorage.setItem("loggedin", "true");
-    // } else {
-    //   localStorage.setItem("disableLogin", "false")
-    // }
+    if (localStorage.getItem("flush") !== "true") {
+      localStorage.setItem("flush", "true");
+      localStorage.setItem("hasExited", "false");
+      localStorage.setItem("loggedin", "false");
+      // localStorage.setItem("disableLogin", "false");
+      localStorage.setItem("init", "false");
+      localStorage.setItem("flush", "false");
+    }
+
+    if (localStorage.getItem("disableLogin") === "true") {
+      localStorage.setItem("loggedin", "true");
+    } else {
+      localStorage.setItem("disableLogin", "false")
+    }
   }, []);
 
   const override = {
@@ -103,7 +107,12 @@ function App() {
       }}
       fluid
     >
+      {/* <div id='splash-layer'>
+      </div> */}
+
       {localStorage.getItem("loggedin") === "true" ? <Breadcrumb /> : null}
+      {/* <RouterProvider router={router} /> */}
+
       {localStorage.getItem("loggedin") === "true" ||
         (localStorage.getItem("disableLogin") !== "true" &&
           window.location.pathname === "/") ? (

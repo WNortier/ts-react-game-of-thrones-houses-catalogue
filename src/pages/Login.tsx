@@ -121,9 +121,6 @@ function LoginForm(props: {
     if (localStorage.getItem('loggedin') === 'false' && localStorage.getItem('init') === 'false') {
       (document.querySelector("#login-form") as HTMLDivElement)?.classList.remove('vis');
       (document.querySelector("#login-form") as HTMLDivElement)?.classList.add('invis');
-      // (document.querySelector("#login-form") as HTMLDivElement)?.classList.add('vis');
-      // (document.querySelector("#login-form") as HTMLDivElement)?.classList.remove('invis');
-      // (document.querySelector("#login-form") as HTMLDivElement)?.classList.add("fadein");
     }
 
   }, [])
@@ -134,14 +131,10 @@ function LoginForm(props: {
 
     document.querySelector("#layout-basic-navbar")?.classList.add("invis")
     videoEl?.classList.add("vis");
-    // loginFormEl?.classList.remove('vis')
     if (
       localStorage.getItem("init") === "false" &&
       localStorage.getItem("hasExited") === "false"
     ) {
-
-      // (document.querySelector("#login-form") as HTMLDivElement)?.classList.remove('vis');
-      // (document.querySelector("#login-form") as HTMLDivElement)?.classList.add('invis');
       if (!localStorage.getItem("email")) localStorage.setItem("email", "");
       if (localStorage.getItem("hasExited") === "true") return;
       navbarEl?.classList.add("invis");
@@ -158,9 +151,6 @@ function LoginForm(props: {
         if (localStorage.getItem("hasExited") === "true") return;
         videoEl?.classList.add("invis");
         props.setVideoComplete(true);
-        // navbarEl?.classList.remove("invis");
-        // navbarEl?.classList.add("vis");
-        // navbarEl?.classList.add("fadein");
         loginFormEl?.classList.remove("invis");
         loginFormEl?.classList.add("vis");
         loginFormEl?.classList.add("fadein");

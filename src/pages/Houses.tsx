@@ -8,7 +8,6 @@ import { GOTService } from "../api/api";
 function HousesTable() {
   const navigate = useNavigate();
   const [houses, setHouses] = useState([]);
-  // const [navigate, setNavigate] = useState()
 
   const fetchHouses = async (page?: string, rows?: string) => {
     const apiService = GOTService();
@@ -83,14 +82,12 @@ function HousesTable() {
                           More
                         </Button>{" "}
                       </td>
-                      {/* <td id="layout-basic-td"> <Link to={h.url}></Link>{h.url}</td> */}
                     </tr>
                   );
                 },
               )}
             </tbody>
           </Table>
-          {/* <Paginator data={houses} setData={getHouses} resetData={resetData} /> */}
           <Paginator
             records={444}
             getHouses={fetchHouses}

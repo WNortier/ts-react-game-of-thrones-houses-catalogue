@@ -29,7 +29,6 @@ const Books = () => {
           style={{ height: "88%", padding: "2em" }}
         >
           <h4>Books</h4>
-
           <Table
             striped
             bordered
@@ -40,8 +39,6 @@ const Books = () => {
           >
             <thead id="app-font">
               <tr>
-                {/* <th style={{ fontFamily: 'arial' }}>#</th> */}
-
                 <th>Name</th>
                 <th>ISBN</th>
                 <th>Media Type</th>
@@ -69,7 +66,6 @@ const Books = () => {
                 ) => {
                   return (
                     <tr id="layout-basic-tr" key={i}>
-                      {/* <td id="layout-basic-td"> {i === 0 ? `#${i}` : `#${i}`}</td> */}
                       <td id="layout-basic-td"> {h.name}</td>
                       <td id="layout-basic-td"> {h.isbn}</td>
                       <td id="layout-basic-td"> {h.mediaType}</td>
@@ -81,16 +77,12 @@ const Books = () => {
                         {" "}
                         {h.released.substring(0, 10)}
                       </td>
-
-                      {/* <td id="layout-basic-td"> <Link to={h.overlord}></Link>{h.overlord}</td> */}
-                      {/* <td id="layout-basic-td"> <Link to={h.url}></Link>{h.url}</td> */}
                     </tr>
                   );
                 },
               )}
             </tbody>
           </Table>
-          {/* <Paginator data={houses} setData={getBooks} resetData={resetData} /> */}
           {books.length ? (
             <Paginator
               records={12}
