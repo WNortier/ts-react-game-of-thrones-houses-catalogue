@@ -112,7 +112,7 @@ function HousesTableMore() {
               opacity: "0.88",
             }}
           >
-            <Card.Img variant="top" src={process.env.DEV ? "./houses-map.jpeg" : "./houses-map.jpeg"} />
+            <Card.Img variant="top" src={"/houses-map.jpeg"} />
             <Card.Body>
               <Card.Title id="app-font" className="slowshake">
                 {houses?.name}
