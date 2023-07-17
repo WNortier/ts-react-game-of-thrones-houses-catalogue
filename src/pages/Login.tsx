@@ -24,11 +24,11 @@ function LoginForm(props: {
   const [loading, setLoading] = useState(false);
   const [loginCheckbox, setLoginCheckbox] = useState(false);
   const navigate = useNavigate();
-  const loginFormEl = (document.querySelector("#login-form") as HTMLDivElement);
-  const videoEl = (document?.getElementById("video") as HTMLVideoElement)
-  const navbarEl = document.querySelector("#layout-basic-navbar")
 
   useEffect(() => {
+    const loginFormEl = (document.querySelector("#login-form") as HTMLDivElement);
+    const videoEl = (document?.getElementById("video") as HTMLVideoElement)
+    const navbarEl = document.querySelector("#layout-basic-navbar")
     document.onkeydown = function (evt: { key: string; keyCode: number }) {
       {
         evt = evt || window;
@@ -39,7 +39,7 @@ function LoginForm(props: {
           isEscape = evt["keycode"] === 27;
         }
         if (isEscape) {
-          loginFormEl?.classList.add("invis");
+          // loginFormEl?.classList.add("invis");
           videoEl?.classList.add("begin");
           localStorage.setItem("hasExited", "true");
 
@@ -58,11 +58,13 @@ function LoginForm(props: {
               props.setInit();
             }, 250);
           }, 5100);
+        } else {
+
         }
       }
       // <DO YOUR WORK HERE>
     };
-  });
+  }, []);
 
   const handleChangePasswordType = () => {
     setType(type === "password" ? "text" : "password");
@@ -131,38 +133,40 @@ function LoginForm(props: {
 
     if (
       localStorage.getItem("init") === "false" &&
-      localStorage.getItem("hasExited") !== "true"
+      localStorage.getItem("hasExited") === "false"
     ) {
       if (!localStorage.getItem("email")) localStorage.setItem("email", "");
+      if (localStorage.getItem("hasExited") === "true") return;
       document.querySelector("#login-form")?.classList.add("invis");
       document.querySelector("#layout-basic-navbar")?.classList.add("invis");
 
       setTimeout(() => {
         if (localStorage.getItem("hasExited") === "true") return;
+        document?.getElementById("video")?.classList.remove("begin");
         document?.getElementById("video")?.classList.add("begin");
+        document.querySelector("#login-form")?.classList.add("invis");
 
-        setTimeout(() => {
-          // document?.getElementById('video')?.classList.add('invis');
-          // document.getElementById('video')!.style.display = 'none';
-        }, 5500);
+        // document?.getElementById("video")?.classList.remove("begin");
+
+        // setTimeout(() => {
+        // document?.getElementById('video')?.classList.add('invis');
+        // document.getElementById('video')!.style.display = 'none';
+        // }, 5500);
       }, 23_000);
+
+      // if (localStorage.getItem("hasExited") === "true") return;
+      // document.querySelector("#layout-basic-navbar")?.classList.add("invis");
 
       setTimeout(() => {
         if (localStorage.getItem("hasExited") === "true") return;
-        document.querySelector("#login-form")?.classList.add("invis");
-        document.querySelector("#layout-basic-navbar")?.classList.add("invis");
-
-        setTimeout(() => {
-          if (localStorage.getItem("hasExited") === "true") return;
-          (document.getElementById("video") as HTMLVideoElement).pause();
-          document?.getElementById("video")?.classList.add("invis");
-          props.setVideoComplete(true);
-          document.querySelector("#login-form")?.classList.remove("invis");
-          document.querySelector("#login-form")?.classList.add("vis");
-          document.querySelector("#login-form")?.classList.add("fadein");
-          props.setInit();
-        }, 3000);
-      }, 24_000);
+        // (document.getElementById("video") as HTMLVideoElement).pause();
+        document?.getElementById("video")?.classList.add("invis");
+        props.setVideoComplete(true);
+        document.querySelector("#login-form")?.classList.remove("invis");
+        document.querySelector("#login-form")?.classList.add("vis");
+        document.querySelector("#login-form")?.classList.add("fadein");
+        props.setInit();
+      }, 27_000);
     }
   }, []);
 

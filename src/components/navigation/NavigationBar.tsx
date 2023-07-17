@@ -80,6 +80,7 @@ function NavigationBar(props: {
       (document.getElementById("video") as HTMLVideoElement).pause();
       (document.getElementById("video") as HTMLVideoElement).currentTime = 0;
       document.getElementById("video")!.style.display = "block";
+      document.getElementById("video")!.classList.remove('begin');
 
       if (
         localStorage.getItem("disableLogin") === "false" &&

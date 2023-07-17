@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">94.44% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/17</span>
+                <span class='fraction'>17/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/16</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -172,32 +172,28 @@
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,7 +241,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -287,23 +283,21 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
 import Paginator from "../components/Paginator";
+import { GOTService } from '../api/api';
 &nbsp;
 const Books = () =&gt; {
   const [books, setBooks] = useState([]);
 &nbsp;
-  const getBooks = async (page?: string, rows?: string) =&gt; {
-    const response = await axios.get(
-      `https://anapioficeandfire.com/api/books?page=${page}&amp;pageSize=${rows}`,
-    );
-    // console.log(response.data)
-<span class="cstat-no" title="statement not covered" >    setBooks(response.data);</span>
+  const fetchBooks = async (page?: string, rows?: string) =&gt; {
+    const apiService = GOTService()
+    const data = await apiService.getBooks(page, rows)
+    setBooks(data);
   };
 &nbsp;
   useEffect(() =&gt; {
-    getBooks("1", "10");
+    fetchBooks("1", "10");
   }, []);
 &nbsp;
   const resetData = <span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >true;</span>
@@ -343,7 +337,7 @@ const Books = () =&gt; {
             &lt;/thead&gt;
             &lt;tbody style={{ width: "50%" }}&gt;
               {books.map(
-<span class="fstat-no" title="function not covered" >                (</span>
+                (
                   h: {
                     name: string;
                     isbn: string;
@@ -356,7 +350,7 @@ const Books = () =&gt; {
                   },
                   i: number,
                 ) =&gt; {
-<span class="cstat-no" title="statement not covered" >                  return (</span>
+                  return (
                     &lt;tr id="layout-basic-tr" key={i}&gt;
                       {/* &lt;td id="layout-basic-td"&gt; {i === 0 ? `#${i}` : `#${i}`}&lt;/td&gt; */}
                       &lt;td id="layout-basic-td"&gt; {h.name}&lt;/td&gt;
@@ -381,9 +375,9 @@ const Books = () =&gt; {
           &lt;/Table&gt;
           {/* &lt;Paginator data={houses} setData={getBooks} resetData={resetData} /&gt; */}
           {books.length ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >            &lt;Paginator</span>
+            &lt;Paginator
               records={12}
-              getBooks={getBooks}
+              getBooks={fetchBooks}
               data={books}
               setData={setBooks}
               resetData={resetData}
@@ -403,7 +397,7 @@ export default Books;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-16T20:39:05.798Z
+                at 2023-07-16T23:44:21.306Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
