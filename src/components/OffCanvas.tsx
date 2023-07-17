@@ -21,6 +21,8 @@ function OffCanvasSettings(props: {
   const handleVideoSettingCheckbox = () => {
     setShowVid(!showVid);
     localStorage.setItem("init", String(!showVid));
+    localStorage.setItem("disableVary", String(!disableVaryCheckbox));
+    setDisableVaryCheckbox(!disableVaryCheckbox);
   };
 
   const handlePauseMusic = () => {
