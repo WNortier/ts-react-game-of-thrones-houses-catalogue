@@ -19,10 +19,17 @@ function OffCanvasSettings(props: {
     props.setShowOffCanvasSettings(!props.showOffCanvasSettings);
 
   const handleVideoSettingCheckbox = () => {
-    setShowVid(!showVid);
-    localStorage.setItem("init", String(!showVid));
-    localStorage.setItem("disableVary", String('true'));
-    setDisableVaryCheckbox(true);
+    if (showVid === true) {
+      setShowVid(false);
+      setDisableVaryCheckbox(true);
+      localStorage.setItem("init", String('true'));
+      localStorage.setItem("disableVary", String('true'));
+    } else {
+      setShowVid(true);
+      setDisableVaryCheckbox(false);
+      localStorage.setItem("init", String('false'));
+      localStorage.setItem("disableVary", String('false'));
+    }
   };
 
   const handlePauseMusic = () => {
