@@ -7,7 +7,7 @@ import EnvironmentPlugin from "vite-plugin-environment";
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react(), EnvironmentPlugin("all")],
-    base: "/",
+    base: "./",
     build: {
       target: "modules",
       define: {
