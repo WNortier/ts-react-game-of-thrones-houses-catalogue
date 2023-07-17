@@ -1,5 +1,3 @@
-# game-of-thrones-houses-catalogue
-
 ![example workflow](https://github.com/wnortier/game-of-thrones-houses-catalogue/actions/workflows/deploy.yml/badge.svg)
 
 A catalogue detailing the various Houses from Game of Thrones
