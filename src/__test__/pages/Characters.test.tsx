@@ -45,7 +45,6 @@ describe("Characters Screen Test", () => {
   });
   test("Verifying that the correct data has been received", async () => {
     const firstEntry = data[0];
-    console.log(firstEntry);
     expect(firstEntry.url).toBeDefined();
     expect(firstEntry.url).toBe(
       "https://anapioficeandfire.com/api/characters/1",

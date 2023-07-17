@@ -91,6 +91,12 @@ function NavigationBar(props: {
         // (document.querySelector('#layout-basic-navbar') as HTMLElement).style.display = 'none'
         navigate("/");
       } else {
+        const loginFormEl = document.querySelector("#login-form") as HTMLDivElement;
+        loginFormEl?.classList.remove("invis");
+        loginFormEl?.classList.add("vis");
+        loginFormEl?.classList.remove("fadein");
+        loginFormEl?.classList.add("fadein");
+
         navigate("/login");
       }
 
@@ -111,8 +117,8 @@ function NavigationBar(props: {
       : "/" + window.location.pathname.split("/")[2];
     const currActive =
       pathname === "/" + navlink ||
-      navlink === "settings" ||
-      navlink === "offcanvas"
+        navlink === "settings" ||
+        navlink === "offcanvas"
         ? true
         : false;
     if (
@@ -172,10 +178,10 @@ function NavigationBar(props: {
                   active === ""
                     ? "Users"
                     : active === "/users"
-                    ? "Users"
-                    : active === "/about"
-                    ? "About"
-                    : "Users"
+                      ? "Users"
+                      : active === "/about"
+                        ? "About"
+                        : "Users"
                 }
                 style={{ marginLeft: "0.2em" }}
                 className={`nav-link-dropdown`}

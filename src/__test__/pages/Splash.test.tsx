@@ -21,4 +21,11 @@ describe("Splash Screen Test", () => {
     expect(splashComponent).toBeInTheDocument();
     expect(heading).toBeInTheDocument();
   });
+
+  it("The splash button should be in the document", () => {
+    const btn = screen.getByText(
+      /Begin Journey/i,
+    );
+    expect(btn).toBeInTheDocument();
+  });
 });

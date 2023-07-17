@@ -1,21 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { Container } from "react-bootstrap";
-import { generateUsers } from "../data/users";
 import Paginator from "../components/Paginator";
+import { GOTService } from '../api/api';
+import { generateUsers } from '../data/users';
 
 function UsersTable() {
   const [appUsers, setAppUsers] = useState<
     { name: string; email: string; pass: string }[]
-  >(generateUsers());
+  >();
 
-  const resetData = () => setAppUsers(generateUsers());
+  const resetData = async () => {
+    const users = await GOTService().getUsers() as { name: string; email: string; pass: string }[]
+
+    setAppUsers(users);
+  }
 
   const setAppUsersHandler = (
     newUsers: { name: string; email: string; pass: string }[],
   ) => {
     setAppUsers(newUsers);
   };
+  const fetchUsers = async () => {
+    const users = await GOTService().getUsers() as { name: string; email: string; pass: string }[]
+
+    setAppUsers(users)
+  }
+  useEffect(() => {
+    fetchUsers()
+  }, [])
 
   return (
     <Container
@@ -34,7 +47,7 @@ function UsersTable() {
           </tr>
         </thead>
         <tbody>
-          {appUsers.map((u, i: number) => {
+          {appUsers?.map((u, i: number) => {
             return (
               <tr key={i}>
                 <td> {u.name}</td>

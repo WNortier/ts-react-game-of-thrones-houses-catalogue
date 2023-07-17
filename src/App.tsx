@@ -35,7 +35,6 @@ function App() {
     } else {
       const path = window.location.pathname
         .split("/")[process.env.DEV ? 1 : 2]?.substring(0, 5);
-      console.log(path);
       if (path === "house" || path === "chara") {
         setBg("/houses.jpeg");
       } else if (path === "books" || path === "lore" || path === "/*") {
@@ -48,9 +47,8 @@ function App() {
 
 
   useEffect(() => {
-    const navbarEl = document.querySelector("#layout-basic-navbar");
     document.getElementById("video")?.classList.add("invis");
-
+    document.querySelector("#layout-basic-navbar")?.classList.add("invis")
 
     if (localStorage.getItem("flush") !== "true") {
       localStorage.setItem("flush", "true");
@@ -61,8 +59,11 @@ function App() {
       localStorage.setItem("flush", "false");
     }
 
-    if (localStorage.getItem("disableLogin") === "true")
+    if (localStorage.getItem("disableLogin") === "true") {
       localStorage.setItem("loggedin", "true");
+    } else {
+      localStorage.setItem("disableLogin", "false")
+    }
   }, []);
 
   const override = {
