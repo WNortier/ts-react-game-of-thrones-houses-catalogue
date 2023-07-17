@@ -112,7 +112,7 @@ function HousesTableMore() {
               opacity: "0.88",
             }}
           >
-            <Card.Img variant="top" src={"/houses-map.jpeg"} />
+            <Card.Img variant="top" src={"https://cdn11.bigcommerce.com/s-do0ookap9x/images/stencil/1280x1280/products/23314/31758/48105_main__77002.1567713158.jpg?c=2"} />
             <Card.Body>
               <Card.Title id="app-font" className="slowshake">
                 {houses?.name}
