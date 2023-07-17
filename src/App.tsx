@@ -32,7 +32,7 @@ function App() {
     if (localStorage.getItem("disableVary") === "true") {
       setBg("./houses.jpeg");
     } else {
-      const path = window.location.pathname.split("/")[1]?.substring(0, 5);
+      const path = window.location.pathname.split("/")[2]?.substring(0, 5);
       if (path === "house" || path === "chara") {
         setBg("./houses.jpeg");
       } else if (path === "books" || path === "lore" || path === "/*") {
