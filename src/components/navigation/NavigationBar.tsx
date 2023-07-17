@@ -27,9 +27,6 @@ function NavigationBar(props: {
     setActive(pathname);
   }, []);
   const handleUsersDropDownClick = (e: FormEvent, l: string) => {
-    // console.log(l)
-    // document.querySelector('.dropdown-toggle.nav-link.show')?.classList.remove('activeLink');
-    // (document.querySelector('.dropdown-toggle') as HTMLDivElement)!.style!.color = '#f3f3f3';
     e.preventDefault();
     setActive("/" + l);
     props.setLoading(true);
@@ -46,12 +43,7 @@ function NavigationBar(props: {
     else setActive("/about");
     props.setLoading(true);
     document.querySelector(".dropdown-menu")?.classList.remove("show");
-    // document.querySelector('.dropdown-toggle.nav-link.show')?.classList.remove('activeLink');
-    // (document.querySelector('.dropdown-toggle') as HTMLDivElement)!.style!.color = '#f3f3f3';
-    // console.log('pls')
-
     setTimeout(() => {
-      // navigate('/users')
       navigate("/" + l);
       props.setLoading(false);
     }, 1500);
@@ -89,7 +81,7 @@ function NavigationBar(props: {
         // localStorage.setItem('loggedin', 'true');
 
         // (document.querySelector('#layout-basic-navbar') as HTMLElement).style.display = 'none'
-        navigate("/game-of-thrones-houses-catalogue");
+        navigate("/");
       } else {
         const loginFormEl = document.querySelector("#login-form") as HTMLDivElement;
         loginFormEl?.classList.remove("invis");
@@ -103,15 +95,7 @@ function NavigationBar(props: {
       props.setLoading(false);
     }, 1500);
   };
-
-  // const handleShowOffCanvasSettings = () => {
-  //   props.setShowOffCanvasSettings(!props.showOffCanvasSettings);
-  // };
-
-  // console.log(window.location.hash.replace("#", ""))
-  // console.log(document.querySelector('#basic-nav-dropdown')?.classList.contains('show'))
   const checkActive = (navlink: string): string => {
-    // console.log("/" + navlink, active)
     const pathname = process.env.DEV
       ? window.location.pathname
       : "/" + window.location.pathname.split("/")[2];
@@ -147,7 +131,6 @@ function NavigationBar(props: {
 
     if (currActive) return "activeLink";
     else return "";
-    // console.log(currActive)
   };
 
   useEffect(() => {

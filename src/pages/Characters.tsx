@@ -48,7 +48,6 @@ const Characters = (props: {
     isAlive: boolean,
   ) => {
     e.preventDefault();
-    // console.log(name, typeof name)
     setLoading(true);
 
     setTimeout(async () => {
@@ -162,15 +161,15 @@ const Characters = (props: {
         paramArg.split(" ").length === 1
           ? paramArg.split(" ")[0].toLowerCase()
           : `${paramArg.split(" ")[0].toLowerCase()}-${paramArg
-              .split(" ")[1]
-              .toLowerCase()}`;
+            .split(" ")[1]
+            .toLowerCase()}`;
     } else {
       arg =
         alias.split(" ").length === 1
           ? alias.split(" ")[0].toLowerCase()
           : `${alias.split(" ")[0].toLowerCase()}-${alias
-              .split(" ")[1]
-              .toLowerCase()}`;
+            .split(" ")[1]
+            .toLowerCase()}`;
     }
     navigate(`/characters/${arg}`, {
       state: {
@@ -199,19 +198,14 @@ const Characters = (props: {
           >
             <thead id="app-font">
               <tr>
-                {/* <th style={{ fontFamily: 'arial' }}>#</th> */}
                 <th>Name</th>
                 <th>Aliases</th>
                 <th>Gender</th>
                 <th>Culture</th>
-                {/* <th>Died</th> */}
                 <th>Image</th>
                 <th></th>
-                {/* <th>Created</th> */}
               </tr>
             </thead>
-            {/* {console.log('inline', characters)} */}
-
             {loadingReset ? (
               <CircleLoader
                 color={"rgb(105, 23, 101)"}

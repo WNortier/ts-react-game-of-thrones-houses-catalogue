@@ -44,7 +44,6 @@ const CharacterDetail = () => {
 
   const getCharacter = async (url: string) => {
     const response = await axios.get(url);
-    console.log(response.data);
     setData(response.data);
 
     if (response.data.books.length > 0) {
