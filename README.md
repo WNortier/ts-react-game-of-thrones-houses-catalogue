@@ -56,10 +56,10 @@ Hierzu stehen dir folgende Hilfsmittel zur Verfügung:
 - Verwende einen Bundler (z.B. Webpack) um ein Distributive zu erstellen.
 - Benutze eine Versionsverwaltung (GitHub, Bitbucket) über die du uns das Projekt zur Verfügung stellst.
 
-### Bonus
-
-Hack the project login! I assure you it's possible ;)
-
 ### Hinweis
 
 Denk daran, dass du mit der Aufgabe deine Fähigkeiten demonstrierst. Also beeindrucke uns 🤯
+
+### Bonus
+
+Hack this solutions login form! I assure you it's possible ;)
