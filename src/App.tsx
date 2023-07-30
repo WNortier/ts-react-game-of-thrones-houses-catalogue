@@ -123,7 +123,7 @@ function App() {
         />
       ) : null}
       <Routes>
-        <Route path={"/game-of-thrones-houses-catalogue"} index element={<Splash />} />
+        <Route path={"/"} index element={<Splash />} />
         <Route
           path="/login"
           element={
