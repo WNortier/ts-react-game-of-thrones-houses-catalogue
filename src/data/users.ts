@@ -20,6 +20,12 @@ export const generateUsers = () => {
       email: "martin@avochoc.com",
       pass: "admin@qwe",
     },
+
+    {
+      name: "visitor",
+      email: "visitor",
+      pass: "visitor",
+    },
   ];
 
   // for (let i = 0; i < 51; i++) {

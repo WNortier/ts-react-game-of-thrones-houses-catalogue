@@ -18,8 +18,8 @@ function LoginForm(props: {
   videoComplete: boolean;
 }) {
   const [type, setType] = useState("password");
-  const [userPassword, setUserPassword] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("visitor");
+  const [userEmail, setUserEmail] = useState("visitor");
   const [errors, setErrors] = useState({ emailErr: false, passErr: false });
   const [loading, setLoading] = useState(false);
   const [loginCheckbox, setLoginCheckbox] = useState(false);
