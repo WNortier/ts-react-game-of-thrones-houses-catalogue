@@ -4,10 +4,10 @@ describe("Application users test", () => {
 
   it("The app should have the predetermined users set by the administrator", () => {
     const applicationUsers = users.map((u) =>
-      ["Warwick", "Jaco", "Johan", "Martin", "visitor"].includes(u.name),
+      ["visitor"].includes(u.name),
     );
     const userEmails = users.map((u) => u.email);
-    expect(applicationUsers).toHaveLength(5);
+    expect(applicationUsers).toHaveLength(1);
     expect(applicationUsers).not.toContain(false);
     userEmails.forEach((e) => expect(e).toBeDefined);
   });

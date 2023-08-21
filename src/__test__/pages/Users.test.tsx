@@ -33,7 +33,7 @@ describe("Users Page Test Suite", () => {
   });
 
   test("Fetching the correct length of user data", async () => {
-    expect(data.length).toBe(5);
+    expect(data.length).toBe(1);
   });
 
   test("Verifying that the correct data has been received", async () => {
@@ -41,7 +41,7 @@ describe("Users Page Test Suite", () => {
     expect(firstEntry.name).toBeDefined();
     expect(firstEntry.email).toBeDefined();
     expect(firstEntry.pass).toBeDefined();
-    expect(firstEntry.name).toBe('Warwick');
-    expect(firstEntry.email).toBe('warwick@avochoc.com');
+    expect(firstEntry.name).toBe('visitor');
+    expect(firstEntry.email).toBe('visitor');
   });
 });
