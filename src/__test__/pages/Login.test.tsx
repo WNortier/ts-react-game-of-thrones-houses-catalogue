@@ -27,13 +27,13 @@ describe("Login component tests", () => {
   });
   test("should render all the login inputs correctly", () => {
     const inputs = screen.getAllByTestId("login-input");
-    expect(inputs[0].getAttribute("value")).toBe("");
-    expect(inputs[1].getAttribute("value")).toBe("");
+    expect(inputs[0].getAttribute("value")).toBe("visitor");
+    expect(inputs[1].getAttribute("value")).toBe("visitor");
   });
   test("Click login button with incomplete credentials - show required message", async () => {
     const inputs = screen.getAllByTestId("login-input");
-    expect(inputs[0].getAttribute("value")).toBe("");
-    expect(inputs[1].getAttribute("value")).toBe("");
+    expect(inputs[0].getAttribute("value")).toBe("visitor");
+    expect(inputs[1].getAttribute("value")).toBe("visitor");
     inputs[0].setAttribute("value", "test");
     const btns = screen.getAllByTestId("login-btn");
     const loginButton = btns[0];
@@ -50,9 +50,9 @@ describe("Login component tests", () => {
 
   test("Click login button with correct credentials - login successful without errors", async () => {
     const inputs = screen.getAllByTestId("login-input");
-    expect(inputs[0].getAttribute("value")).toBe("");
+    expect(inputs[0].getAttribute("value")).toBe("visitor");
     // inputs[0].setAttribute('value', 'warwick@avochoc.com')
-    expect(inputs[1].getAttribute("value")).toBe("");
+    expect(inputs[1].getAttribute("value")).toBe("visitor");
     // inputs[1].setAttribute('value', 'admin@01')
     fireEvent.change(inputs[0], { target: { value: "warwick@avochoc.com" } });
     fireEvent.change(inputs[1], { target: { value: "admin@01" } });

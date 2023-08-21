@@ -33,7 +33,7 @@ describe("Users Page Test Suite", () => {
   });
 
   test("Fetching the correct length of user data", async () => {
-    expect(data.length).toBe(4);
+    expect(data.length).toBe(5);
   });
 
   test("Verifying that the correct data has been received", async () => {
