@@ -30,7 +30,8 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem("disableVary") === "true") {
-      setBg("./houses.jpeg");
+      // setBg("./houses.jpeg");
+      setBg("./4k-wallpaper.jpg");
     } else {
       const path = window.location.pathname.split("/")[2]?.substring(0, 5);
       if (path === "house" || path === "chara") {
