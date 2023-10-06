@@ -2,10 +2,6 @@
 
 ![example workflow](https://github.com/wnortier/game-of-thrones-houses-catalogue/actions/workflows/deploy.yml/badge.svg)
 
-# game-of-thrones-houses-catalogue
-
-A catalogue detailing the various Houses from Game of Thrones
-
 # Web-App Coding Challenge 👨🏼‍💻
 
 ## Task 🇩🇬
