@@ -12,7 +12,7 @@ function OffCanvasSettings(props: {
   );
   // const [showAdditionalSettings, setShowAdditionalSettings] = useState(false);
   const [pause, setPause] = useState(false);
-  const [disableLogin, setDisableLogin] = useState(false);
+  // const [disableLogin, setDisableLogin] = useState(false);
   const [disableVaryCheckbox, setDisableVaryCheckbox] = useState(false);
 
   const handleShow = () =>

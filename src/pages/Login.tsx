@@ -22,7 +22,7 @@ function LoginForm(props: {
   const [userEmail, setUserEmail] = useState("visitor");
   const [errors, setErrors] = useState({ emailErr: false, passErr: false });
   const [loading, setLoading] = useState(false);
-  const [loginCheckbox, setLoginCheckbox] = useState(false);
+  const [loginCheckbox] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
