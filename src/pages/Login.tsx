@@ -113,9 +113,9 @@ function LoginForm(props: {
     localStorage.setItem("email", e.target.value);
   };
 
-  const handleLoginCheckboxChange = () => {
-    setLoginCheckbox(!loginCheckbox);
-  };
+  // const handleLoginCheckboxChange = () => {
+  //   setLoginCheckbox(!loginCheckbox);
+  // };
 
   useEffect(() => {
     if (localStorage.getItem('loggedin') === 'false' && localStorage.getItem('init') === 'false') {

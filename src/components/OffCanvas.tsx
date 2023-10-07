@@ -52,11 +52,11 @@ function OffCanvasSettings(props: {
       +r.target.value === 100 ? 1 : +("0" + "." + r.target.value);
   };
 
-  const handleDisableLogin = () => {
-    setDisableLogin(!disableLogin);
-    localStorage.setItem("disableLogin", String(!disableLogin));
-    localStorage.setItem("loggedin", String(true));
-  };
+  // const handleDisableLogin = () => {
+  //   setDisableLogin(!disableLogin);
+  //   localStorage.setItem("disableLogin", String(!disableLogin));
+  //   localStorage.setItem("loggedin", String(true));
+  // };
 
   const handleDisableVaryCheckbox = () => {
     // if (disableVaryCheckbox === true) {
