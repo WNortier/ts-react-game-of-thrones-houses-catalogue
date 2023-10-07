@@ -123,7 +123,7 @@ function OffCanvasSettings(props: {
               Application
             </Offcanvas.Title>
 
-            <Form.Group
+            {/* <Form.Group
               className="ml-4 mt-2 mb-3"
               controlId="formBasicCheckbox"
             >
@@ -136,7 +136,7 @@ function OffCanvasSettings(props: {
                 }
                 onChange={() => handleDisableLogin()}
               />
-            </Form.Group>
+            </Form.Group> */}
             {localStorage.getItem("disableLogin") === "false" ? (
               <Form.Group
                 className="ml-4 mt-2 mb-3"

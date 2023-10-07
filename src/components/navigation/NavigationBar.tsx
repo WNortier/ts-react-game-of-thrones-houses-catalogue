@@ -27,6 +27,8 @@ function NavigationBar(props: {
     setActive(pathname);
   }, []);
   const handleUsersDropDownClick = (e: FormEvent, l: string) => {
+    console.log('INCOMING', l)
+
     e.preventDefault();
     setActive("/" + l);
     props.setLoading(true);
@@ -96,8 +98,9 @@ function NavigationBar(props: {
     }, 1500);
   };
   const checkActive = (navlink: string): string => {
+    console.log(window.location.pathname)
     const pathname = process.env.DEV
-      ? window.location.pathname
+      ? "/" + window.location.pathname.split("/")[2]
       : "/" + window.location.pathname.split("/")[2];
     const currActive =
       pathname === "/" + navlink ||

@@ -254,26 +254,26 @@ function LoginForm(props: {
             </div>
           ) : null}
 
-          <Form.Group className="ml-4 mt-3 mb-3" controlId="formBasicCheckbox">
-            <Form.Check
+          <Form.Group className="ml-4 mt-3 mb-3">
+            {/*  <Form.Check
               className="basic-check"
               type="checkbox"
               label="Remember me"
               checked={loginCheckbox}
               onChange={() => handleLoginCheckboxChange()}
-            />
+            />*/}
+            <Button
+              data-testid="login-btn"
+              disabled={userEmail.length === 0 || userPassword.length === 0}
+              id="login-btn"
+              onClick={(e: FormEvent) => handleLogin(e, userEmail, userPassword)}
+              variant="secondary"
+              type="submit"
+              size="sm"
+            >
+              Submit
+            </Button>
           </Form.Group>
-          <Button
-            data-testid="login-btn"
-            disabled={userEmail.length === 0 || userPassword.length === 0}
-            id="login-btn"
-            onClick={(e: FormEvent) => handleLogin(e, userEmail, userPassword)}
-            variant="secondary"
-            type="submit"
-            size="sm"
-          >
-            Submit
-          </Button>
         </Form>
       )}
     </Container>

@@ -17,6 +17,13 @@ import HousesTableMore from "./components/houses/HousesDetail";
 import Lore from "./pages/Lore";
 import CharactersMore from "./components/characters/CharacterDetail";
 
+// flush - false
+// hasExited - true
+// loggedin - true
+// init - true
+// disableLogin - false
+// pause - false
+
 function App() {
   const [bg, setBg] = useState('./mainbg01.jpeg');
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -30,8 +37,8 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem("disableVary") === "true") {
-      // setBg("./houses.jpeg");
-      setBg("./4k-wallpaper.jpg");
+      setBg("./houses.jpeg");
+      // setBg("./4k-wallpaper.jpg");
     } else {
       const path = window.location.pathname.split("/")[2]?.substring(0, 5);
       if (path === "house" || path === "chara") {
