@@ -33,7 +33,7 @@
     "smooth-scrollbar-react": "^2.4.1",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
-    "ts-paginator": "^1.5.1"
+    "ts-paginator": "^1.6.3"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.22.5",
