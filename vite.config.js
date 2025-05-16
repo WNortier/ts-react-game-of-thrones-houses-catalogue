@@ -4,7 +4,7 @@ import EnvironmentPlugin from "vite-plugin-environment";
 
 export default defineConfig({
   plugins: [react(), EnvironmentPlugin("all")],
-  base: "/game-of-thrones-houses-catalogue/",
+  base: "/ts-react-game-of-thrones-houses-catalogue/",
   build: {
     target: "modules",
     define: {
